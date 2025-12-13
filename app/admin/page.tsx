@@ -1,8 +1,9 @@
 import { createClient } from "@/lib/supabase/server"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Package, ShoppingCart, Users, DollarSign, TrendingUp, TrendingDown } from "lucide-react"
+import { Package, ShoppingCart, Users, TrendingUp, TrendingDown, Banknote } from "lucide-react"
 import { RecentOrdersTable } from "@/components/admin/recent-orders-table"
 import { SalesChart } from "@/components/admin/sales-chart"
+import { formatPrice } from "@/lib/types/product"
 
 async function getDashboardStats() {
   const supabase = await createClient()
@@ -40,9 +41,9 @@ async function getDashboardStats() {
       .lt("created_at", new Date(new Date().setMonth(new Date().getMonth() - 1)).toISOString()),
   ])
 
-  // Calculate total revenue (total_amount is in cents)
+  // Calculate total revenue (total_amount is in kobo for Naira)
   const revenue = allOrders?.reduce((sum, order) => sum + (order.total_amount || 0), 0) || 0
-  const revenueInDollars = revenue / 100
+  const revenueInNaira = revenue / 100
 
   // Calculate monthly sales data for chart
   const monthlySales = new Array(12).fill(0)
@@ -75,7 +76,7 @@ async function getDashboardStats() {
     ordersCount: ordersCount || 0,
     customersCount: customersCount || 0,
     recentOrders: recentOrders || [],
-    revenue: revenueInDollars,
+    revenue: revenueInNaira,
     salesData,
     orderChange: Number(orderChange) >= 0 ? `+${orderChange}%` : `${orderChange}%`,
     customerChange: Number(customerChange) >= 0 ? `+${customerChange}%` : `${customerChange}%`,
@@ -90,8 +91,8 @@ export default async function AdminDashboard() {
   const statCards = [
     {
       title: "Total Revenue",
-      value: `$${stats.revenue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
-      icon: DollarSign,
+      value: formatPrice(stats.revenue),
+      icon: Banknote,
       change: stats.revenue > 0 ? "+100%" : "0%",
       trend: stats.revenue > 0 ? "up" : "down",
     },

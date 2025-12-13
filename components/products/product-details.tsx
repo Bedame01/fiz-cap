@@ -32,6 +32,11 @@ export function ProductDetails({ product }: ProductDetailsProps) {
   const stockCount = selectedVariant?.inventory_quantity ?? product.inventory_quantity
 
   const handleAddToCart = async () => {
+    if (product.variants && product.variants.length > 0 && !selectedVariant) {
+      toast.error("Please select a size")
+      return
+    }
+
     setIsAdding(true)
     try {
       addItem(product, selectedVariant, quantity)

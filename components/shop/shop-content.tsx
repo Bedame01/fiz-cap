@@ -48,7 +48,7 @@ export function ShopContent({ products, categories, initialLayout = "grid", init
       <ProductGrid products={products} layout={layout} columns={columns} />
       {products.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-muted-foreground">No products found matching your criteria.</p>
+          <p className="text-muted-foreground textDisplay font-medium">No products found matching your criteria.</p>
         </div>
       )}
     </>

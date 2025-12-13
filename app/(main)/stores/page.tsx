@@ -16,7 +16,7 @@ export default async function StoresPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
       {/* Header */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold tracking-tight mb-4">Our Stores</h1>
+        <h1 className="text-4xl font-bold tracking-tight mb-4 textDisplay">Our Stores</h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Visit one of our flagship locations to experience our products in person. Our knowledgeable staff is ready to
           help you find exactly what you need.

@@ -3,12 +3,25 @@ import { OrdersTable } from "@/components/admin/orders-table"
 
 async function getOrders() {
   const supabase = await createClient()
-  const { data } = await supabase
-    .from("orders")
-    .select("*, profiles(email, first_name, last_name)")
-    .order("created_at", { ascending: false })
 
-  return data || []
+  const { data, error } = await supabase.from("orders").select("*").order("created_at", { ascending: false })
+
+  if (error) {
+    console.error("Error fetching orders:", error)
+    return []
+  }
+
+  // Map orders to include customer info from shipping_address
+  return (data || []).map((order) => ({
+    ...order,
+    profiles: order.shipping_address
+      ? {
+          email: order.shipping_address.email || "N/A",
+          first_name: order.shipping_address.firstName || null,
+          last_name: order.shipping_address.lastName || null,
+        }
+      : null,
+  }))
 }
 
 export default async function AdminOrdersPage() {

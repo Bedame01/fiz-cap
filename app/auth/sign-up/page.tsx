@@ -63,9 +63,9 @@ export default function SignUpPage() {
   }
 
   return (
-    <main className="flex min-h-screen w-full items-center justify-center p-6 md:p-10">
-      <div className="w-full max-w-sm">
-        <Card>
+    <main className="flex bg min-h-screen w-full items-center justify-center p-6 md:p-10">
+      <div className="w-full max-w-md relative">
+        <Card className="shadow-none">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl">Create an account</CardTitle>
             <CardDescription>Enter your details to get started</CardDescription>
@@ -132,7 +132,7 @@ export default function SignUpPage() {
                   />
                 </div>
                 {error && <p className="text-sm text-destructive">{error}</p>}
-                <Button type="submit" className="w-full" disabled={isLoading}>
+                <Button type="submit" className="w-full py-6" disabled={isLoading}>
                   {isLoading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
                   Create Account
                 </Button>
@@ -150,6 +150,20 @@ export default function SignUpPage() {
             </p>
           </CardContent>
         </Card>
+        <div className="w absolute -bottom-25 left-1/2 transform -translate-x-1/2 flex space-x-4">
+          <Link
+            href='/policy'
+            className=" text-sm font-medium text-muted-foreground hover:underline"
+          >
+            Privacy Policy
+          </Link>
+          <Link
+            href='/policy'
+            className=" text-sm font-medium text-muted-foreground hover:underline"
+          >
+            Terms of Service
+          </Link>
+        </div>
       </div>
     </main>
   )

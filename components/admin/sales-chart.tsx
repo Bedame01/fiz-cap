@@ -39,10 +39,10 @@ export function SalesChart({ data }: SalesChartProps) {
           fontSize={12}
           tickLine={false}
           axisLine={false}
-          tickFormatter={(value) => `$${value}`}
+          tickFormatter={(value) => `₦${value}`}
         />
         <Tooltip
-          formatter={(value) => [`$${value}`, "Revenue"]}
+          formatter={(value) => [`₦${value}`, "Revenue"]}
           contentStyle={{
             backgroundColor: "hsl(var(--background))",
             border: "1px solid hsl(var(--border))",

@@ -1,6 +1,8 @@
 "use server"
 
-import { createClient } from "@/lib/supabase/server"
+import { createClient } from "@supabase/supabase-js"
+
+const supabaseAdmin = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!)
 
 interface ContactFormData {
   name: string
@@ -10,8 +12,6 @@ interface ContactFormData {
 }
 
 export async function submitContactForm(data: ContactFormData) {
-  const supabase = await createClient()
-
   // Validate input
   if (!data.name || !data.email || !data.subject || !data.message) {
     return { success: false, error: "All fields are required" }
@@ -30,14 +30,23 @@ export async function submitContactForm(data: ContactFormData) {
   }
 
   try {
-    const { error } = await supabase.from("contact_submissions").insert({
+    const { error } = await supabaseAdmin.from("contact_submissions").insert({
       name: data.name,
       email: data.email,
       subject: data.subject,
       message: data.message,
+      status: "new",
     })
 
     if (error) throw error
+
+    await supabaseAdmin.from("admin_notifications").insert({
+      type: "contact",
+      title: "New Contact Message",
+      message: `${data.name} sent a message: ${data.subject}`,
+      data: { email: data.email, subject: data.subject },
+      read: false,
+    })
 
     return { success: true }
   } catch (error) {

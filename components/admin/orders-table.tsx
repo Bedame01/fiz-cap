@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Eye } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { formatPrice } from "@/lib/types/product"
 
 interface Order {
   id: string
@@ -37,6 +38,7 @@ const statusColors: Record<string, string> = {
   shipped: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200",
   delivered: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
   cancelled: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
+  refunded: "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200",
 }
 
 function getFullName(profile: Order["profiles"]): string {
@@ -112,6 +114,7 @@ export function OrdersTable({ orders }: OrdersTableProps) {
             <SelectItem value="shipped">Shipped</SelectItem>
             <SelectItem value="delivered">Delivered</SelectItem>
             <SelectItem value="cancelled">Cancelled</SelectItem>
+            <SelectItem value="refunded">Refunded</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -148,7 +151,7 @@ export function OrdersTable({ orders }: OrdersTableProps) {
                   <TableCell className="text-muted-foreground">
                     {format(new Date(order.created_at), "MMM d, yyyy")}
                   </TableCell>
-                  <TableCell className="font-medium">${(order.total_amount / 100).toFixed(2)}</TableCell>
+                  <TableCell className="font-medium">{formatPrice(order.total_amount / 100)}</TableCell>
                   <TableCell>
                     <Select
                       value={order.status}
@@ -166,6 +169,7 @@ export function OrdersTable({ orders }: OrdersTableProps) {
                         <SelectItem value="shipped">Shipped</SelectItem>
                         <SelectItem value="delivered">Delivered</SelectItem>
                         <SelectItem value="cancelled">Cancelled</SelectItem>
+                        <SelectItem value="refunded">Refunded</SelectItem>
                       </SelectContent>
                     </Select>
                   </TableCell>
@@ -182,7 +186,7 @@ export function OrdersTable({ orders }: OrdersTableProps) {
       </div>
 
       <Dialog open={!!selectedOrder} onOpenChange={() => setSelectedOrder(null)}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl max-sm:w-[95%]">
           <DialogHeader>
             <DialogTitle>Order Details</DialogTitle>
           </DialogHeader>
@@ -228,7 +232,7 @@ export function OrdersTable({ orders }: OrdersTableProps) {
                         <p className="font-medium">{item.name}</p>
                         <p className="text-sm text-muted-foreground">Qty: {item.quantity}</p>
                       </div>
-                      <p className="font-medium">${((item.price * item.quantity) / 100).toFixed(2)}</p>
+                      <p className="font-medium">{formatPrice((item.price * item.quantity) / 100)}</p>
                     </div>
                   )) || <div className="p-3 text-muted-foreground text-center">No items data available</div>}
                 </div>
@@ -236,7 +240,7 @@ export function OrdersTable({ orders }: OrdersTableProps) {
 
               <div className="flex justify-between items-center pt-4 border-t">
                 <span className="font-medium">Total</span>
-                <span className="text-xl font-bold">${(selectedOrder.total_amount / 100).toFixed(2)}</span>
+                <span className="text-xl font-bold">{formatPrice(selectedOrder.total_amount / 100)}</span>
               </div>
             </div>
           )}

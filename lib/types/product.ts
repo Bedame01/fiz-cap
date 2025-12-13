@@ -67,5 +67,7 @@ export function formatPrice(amount: number, currency = "NGN"): string {
   return new Intl.NumberFormat("en-NG", {
     style: "currency",
     currency,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   }).format(amount)
 }

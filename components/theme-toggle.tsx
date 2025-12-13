@@ -24,7 +24,7 @@ export function ThemeToggle() {
 
   return (
     <Button variant="ghost" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-      {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+      {theme === "dark" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
       <span className="sr-only">Toggle theme</span>
     </Button>
   )

@@ -13,7 +13,6 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Loader2, CreditCard, Building2, Smartphone } from "lucide-react"
 import { toast } from "sonner"
-import { createClient } from "@/lib/supabase/client"
 import Script from "next/script"
 
 interface ShippingInfo {
@@ -115,42 +114,27 @@ export function CheckoutForm() {
     const reference = generateReference()
 
     try {
-      // Create order in database first
-      const supabase = createClient()
-      const {
-        data: { user },
-      } = await supabase.auth.getUser()
+      const orderResponse = await fetch("/api/orders/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          reference,
+          total_amount: Math.round(cart.total * 100),
+          shipping_info: shippingInfo,
+          items: cart.items.map((item) => ({
+            product_id: item.product.id,
+            product_name: item.product.name,
+            variant_id: item.variant?.id || null,
+            variant_name: item.variant ? `${item.variant.size || ""} ${item.variant.color || ""}`.trim() : null,
+            quantity: item.quantity,
+            unit_price: Math.round((item.product.price + (item.variant?.price_adjustment || 0)) * 100),
+          })),
+        }),
+      })
 
-      const orderData = {
-        user_id: user?.id || null,
-        status: "pending",
-        total_amount: Math.round(cart.total * 100), // Store in kobo
-        currency: "NGN",
-        stripe_payment_intent_id: reference, // Reusing for Paystack reference
-        shipping_address: {
-          firstName: shippingInfo.firstName,
-          lastName: shippingInfo.lastName,
-          address: shippingInfo.address,
-          city: shippingInfo.city,
-          state: shippingInfo.state,
-          postalCode: shippingInfo.postalCode,
-          country: shippingInfo.country,
-          phone: shippingInfo.phone,
-        },
-        items: cart.items.map((item) => ({
-          product_id: item.product.id,
-          product_name: item.product.name,
-          variant_id: item.variant?.id || null,
-          variant_name: item.variant ? `${item.variant.size || ""} ${item.variant.color || ""}`.trim() : null,
-          quantity: item.quantity,
-          unit_price: item.product.price + (item.variant?.price_adjustment || 0),
-        })),
-      }
-
-      const { error: orderError } = await supabase.from("orders").insert(orderData)
-
-      if (orderError) {
-        throw new Error("Failed to create order")
+      if (!orderResponse.ok) {
+        const errorData = await orderResponse.json()
+        throw new Error(errorData.error || "Failed to create order")
       }
 
       // Initialize Paystack payment
@@ -164,7 +148,7 @@ export function CheckoutForm() {
       const handler = PaystackPop.setup({
         key: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
         email: shippingInfo.email,
-        amount: Math.round(cart.total * 100), // Amount in kobo
+        amount: Math.round(cart.total * 100),
         currency: "NGN",
         ref: reference,
         metadata: {
@@ -192,7 +176,7 @@ export function CheckoutForm() {
       handler.openIframe()
     } catch (error) {
       console.error("Payment error:", error)
-      toast.error("Failed to process payment. Please try again.")
+      toast.error(error instanceof Error ? error.message : "Failed to process payment. Please try again.")
       setIsProcessing(false)
     }
   }

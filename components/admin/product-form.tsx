@@ -15,7 +15,7 @@ import { Switch } from "@/components/ui/switch"
 import { useToast } from "@/hooks/use-toast"
 import { ImageUpload } from "./image-upload"
 import { AIImageGenerator } from "./ai-image-generator"
-import { Sparkles } from "lucide-react"
+import { Sparkles, Plus, X } from "lucide-react"
 
 interface Category {
   id: string
@@ -48,9 +48,19 @@ interface ProductFormProps {
   categories: Category[]
 }
 
+interface ProductVariant {
+  id?: string
+  size: string
+  color: string
+  sku: string
+  price_adjustment: number
+  inventory_quantity: number
+}
+
 const defaultStyles = ["snapback", "fitted", "dad-hat", "trucker", "beanie", "bucket", "visor"]
 const defaultColors = ["Black", "White", "Navy", "Gray", "Red", "Green", "Brown", "Beige"]
 const defaultMaterials = ["Cotton", "Polyester", "Wool", "Acrylic", "Nylon", "Leather", "Denim"]
+const defaultSizes = ["S", "M", "L", "XL", "One Size"]
 
 export function ProductForm({ product, categories }: ProductFormProps) {
   const router = useRouter()
@@ -78,6 +88,15 @@ export function ProductForm({ product, categories }: ProductFormProps) {
     product?.product_images?.map((img) => ({ url: img.url })) || [],
   )
 
+  const [variants, setVariants] = useState<ProductVariant[]>([])
+  const [newVariant, setNewVariant] = useState<ProductVariant>({
+    size: "",
+    color: "",
+    sku: "",
+    price_adjustment: 0,
+    inventory_quantity: 0,
+  })
+
   const generateSlug = (name: string) => {
     return name
       .toLowerCase()
@@ -101,6 +120,35 @@ export function ProductForm({ product, categories }: ProductFormProps) {
         description: "AI-generated image has been added to the product.",
       })
     }
+  }
+
+  const handleAddVariant = () => {
+    if (!newVariant.size) {
+      toast({
+        title: "Size required",
+        description: "Please select a size for the variant",
+        variant: "destructive",
+      })
+      return
+    }
+
+    setVariants([...variants, { ...newVariant }])
+    setNewVariant({
+      size: "",
+      color: "",
+      sku: "",
+      price_adjustment: 0,
+      inventory_quantity: 0,
+    })
+
+    toast({
+      title: "Variant added",
+      description: `${newVariant.size}${newVariant.color ? ` - ${newVariant.color}` : ""} has been added`,
+    })
+  }
+
+  const handleRemoveVariant = (index: number) => {
+    setVariants(variants.filter((_, i) => i !== index))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -146,12 +194,11 @@ export function ProductForm({ product, categories }: ProductFormProps) {
     }
 
     if (productId) {
-      // Delete existing images if editing
       if (product) {
         await supabase.from("product_images").delete().eq("product_id", productId)
+        await supabase.from("product_variants").delete().eq("product_id", productId)
       }
 
-      // Insert new images
       if (images.length > 0) {
         const imageInserts = images.map((img, index) => ({
           product_id: productId,
@@ -160,6 +207,22 @@ export function ProductForm({ product, categories }: ProductFormProps) {
           alt_text: formData.name,
         }))
         await supabase.from("product_images").insert(imageInserts)
+      }
+
+      if (variants.length > 0) {
+        const variantInserts = variants.map((variant) => ({
+          product_id: productId,
+          size: variant.size,
+          color: variant.color || null,
+          sku: variant.sku || null,
+          price_adjustment: variant.price_adjustment,
+          inventory_quantity: variant.inventory_quantity,
+        }))
+        const { error: variantsError } = await supabase.from("product_variants").insert(variantInserts)
+
+        if (variantsError) {
+          console.error("[v0] Error inserting variants:", variantsError)
+        }
       }
     }
 
@@ -327,6 +390,131 @@ export function ProductForm({ product, categories }: ProductFormProps) {
                     </Button>
                   ))}
                 </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Product Variants</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <p className="text-sm text-muted-foreground">
+                Add size and color variants for this product. Each variant can have its own inventory and pricing.
+              </p>
+
+              {variants.length > 0 && (
+                <div className="space-y-2">
+                  <Label>Current Variants</Label>
+                  <div className="space-y-2">
+                    {variants.map((variant, index) => (
+                      <div key={index} className="flex items-center justify-between p-3 border rounded-lg bg-muted/50">
+                        <div className="flex-1">
+                          <p className="font-medium">
+                            {variant.size}
+                            {variant.color && ` - ${variant.color}`}
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            Stock: {variant.inventory_quantity}
+                            {variant.price_adjustment !== 0 && ` • Price adjustment: ₦${variant.price_adjustment}`}
+                          </p>
+                        </div>
+                        <Button type="button" variant="ghost" size="sm" onClick={() => handleRemoveVariant(index)}>
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="space-y-4 p-4 border rounded-lg">
+                <Label>Add New Variant</Label>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="variant-size">Size *</Label>
+                    <Select
+                      value={newVariant.size}
+                      onValueChange={(value) => setNewVariant({ ...newVariant, size: value })}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select size" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {defaultSizes.map((size) => (
+                          <SelectItem key={size} value={size}>
+                            {size}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="variant-color">Color (Optional)</Label>
+                    <Select
+                      value={newVariant.color}
+                      onValueChange={(value) => setNewVariant({ ...newVariant, color: value })}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select color" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {defaultColors.map((color) => (
+                          <SelectItem key={color} value={color}>
+                            {color}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="variant-inventory">Inventory *</Label>
+                    <Input
+                      id="variant-inventory"
+                      type="number"
+                      min="0"
+                      value={newVariant.inventory_quantity}
+                      onChange={(e) =>
+                        setNewVariant({ ...newVariant, inventory_quantity: Number.parseInt(e.target.value) || 0 })
+                      }
+                      placeholder="0"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="variant-price-adjustment">Price Adjustment (₦)</Label>
+                    <Input
+                      id="variant-price-adjustment"
+                      type="number"
+                      step="0.01"
+                      value={newVariant.price_adjustment}
+                      onChange={(e) =>
+                        setNewVariant({ ...newVariant, price_adjustment: Number.parseFloat(e.target.value) || 0 })
+                      }
+                      placeholder="0.00"
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Additional cost for this variant (e.g., +500 for XL)
+                    </p>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="variant-sku">SKU (Optional)</Label>
+                    <Input
+                      id="variant-sku"
+                      value={newVariant.sku}
+                      onChange={(e) => setNewVariant({ ...newVariant, sku: e.target.value })}
+                      placeholder="PROD-SIZE-COLOR"
+                    />
+                  </div>
+                </div>
+
+                <Button type="button" onClick={handleAddVariant} variant="outline" className="w-full bg-transparent">
+                  <Plus className="h-4 w-4 mr-2" />
+                  Add Variant
+                </Button>
               </div>
             </CardContent>
           </Card>

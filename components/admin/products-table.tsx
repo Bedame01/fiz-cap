@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/alert-dialog"
 import { MoreHorizontal, Pencil, Trash2, Eye } from "lucide-react"
 import { Input } from "@/components/ui/input"
+import { formatPrice } from "@/lib/types/product"
 
 interface Product {
   id: string
@@ -111,10 +112,10 @@ export function ProductsTable({ products }: ProductsTableProps) {
                     <TableCell className="text-muted-foreground">{product.categories?.name || "—"}</TableCell>
                     <TableCell>
                       <div className="flex flex-col">
-                        <span>${product.price}</span>
+                        <span>{formatPrice(product.price)}</span>
                         {product.compare_at_price && (
                           <span className="text-xs text-muted-foreground line-through">
-                            ${product.compare_at_price}
+                            {formatPrice(product.compare_at_price)}
                           </span>
                         )}
                       </div>
@@ -175,7 +176,7 @@ export function ProductsTable({ products }: ProductsTableProps) {
             <AlertDialogAction
               onClick={handleDelete}
               disabled={isDeleting}
-              className="bg-destructive text-white hover:bg-destructive/90"
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
             >
               {isDeleting ? "Deleting..." : "Delete"}
             </AlertDialogAction>

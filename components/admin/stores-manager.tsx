@@ -383,7 +383,7 @@ export function StoresManager({ stores }: StoresManagerProps) {
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleDelete}
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              className="bg-destructive text-white hover:bg-destructive/90"
             >
               Remove
             </AlertDialogAction>

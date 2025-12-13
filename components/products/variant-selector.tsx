@@ -2,6 +2,7 @@
 
 import type { ProductVariant } from "@/lib/types/product"
 import { cn } from "@/lib/utils"
+import { Check } from "lucide-react"
 
 interface VariantSelectorProps {
   variants: ProductVariant[]
@@ -39,7 +40,12 @@ export function VariantSelector({ variants, selectedVariant, onVariantChange }: 
       {/* Size selector */}
       {sizes.length > 0 && (
         <div>
-          <label className="block text-sm font-medium mb-3">Size</label>
+          <label className="block text-sm font-medium mb-3">
+            Size <span className="text-red-500">*</span>
+            {selectedVariant?.size && (
+              <span className="ml-2 font-normal text-muted-foreground">- {selectedVariant.size}</span>
+            )}
+          </label>
           <div className="flex flex-wrap gap-2">
             {sizes.map((size) => {
               const isSelected = selectedVariant?.size === size
@@ -51,18 +57,20 @@ export function VariantSelector({ variants, selectedVariant, onVariantChange }: 
                   onClick={() => handleSizeChange(size!)}
                   disabled={!isAvailable}
                   className={cn(
-                    "px-4 py-2 text-sm border rounded-md transition-all",
+                    "relative px-6 py-3 text-sm font-medium border-2 rounded-lg transition-all",
                     isSelected
-                      ? "border-foreground bg-foreground text-background"
-                      : "border-border hover:border-foreground",
-                    !isAvailable && "opacity-50 cursor-not-allowed line-through",
+                      ? "border-foreground bg-foreground text-background shadow-sm"
+                      : "border-border hover:border-foreground bg-background",
+                    !isAvailable && "opacity-40 cursor-not-allowed line-through",
                   )}
                 >
                   {size}
+                  {isSelected && <Check className="absolute top-1 right-1 h-3 w-3" />}
                 </button>
               )
             })}
           </div>
+          {!selectedVariant && <p className="text-xs text-muted-foreground mt-2">Please select a size to continue</p>}
         </div>
       )}
 
@@ -70,9 +78,9 @@ export function VariantSelector({ variants, selectedVariant, onVariantChange }: 
       {colors.length > 0 && (
         <div>
           <label className="block text-sm font-medium mb-3">
-            Color{" "}
+            Color
             {selectedVariant?.color && (
-              <span className="font-normal text-muted-foreground">- {selectedVariant.color}</span>
+              <span className="ml-2 font-normal text-muted-foreground">- {selectedVariant.color}</span>
             )}
           </label>
           <div className="flex flex-wrap gap-2">
@@ -86,14 +94,15 @@ export function VariantSelector({ variants, selectedVariant, onVariantChange }: 
                   onClick={() => handleColorChange(color!)}
                   disabled={!isAvailable}
                   className={cn(
-                    "px-4 py-2 text-sm border rounded-md transition-all",
+                    "relative px-6 py-3 text-sm font-medium border-2 rounded-lg transition-all",
                     isSelected
-                      ? "border-foreground bg-foreground text-background"
-                      : "border-border hover:border-foreground",
-                    !isAvailable && "opacity-50 cursor-not-allowed line-through",
+                      ? "border-foreground bg-foreground text-background shadow-sm"
+                      : "border-border hover:border-foreground bg-background",
+                    !isAvailable && "opacity-40 cursor-not-allowed line-through",
                   )}
                 >
                   {color}
+                  {isSelected && <Check className="absolute top-1 right-1 h-3 w-3" />}
                 </button>
               )
             })}

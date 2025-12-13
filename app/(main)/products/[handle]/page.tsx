@@ -108,7 +108,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       {/* Related Products */}
       {relatedProducts.length > 0 && (
         <section className="mt-16 pt-16 border-t">
-          <h2 className="text-2xl font-bold tracking-tight mb-8">You may also like</h2>
+          <h2 className="text-2xl text-center font-medium tracking-tight mb-8 textDisplay">You may also like</h2>
           <ProductGrid products={relatedProducts} columns={4} />
         </section>
       )}

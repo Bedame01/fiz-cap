@@ -27,6 +27,20 @@ const emptyCart: Cart = {
   total: 0,
 }
 
+interface StoredCartItem {
+  id: string
+  productId: string
+  productName: string
+  productPrice: number
+  productSlug: string
+  productImage?: string
+  variantId?: string | null
+  variantSize?: string | null
+  variantColor?: string | null
+  variantPriceAdjustment?: number
+  quantity: number
+}
+
 function calculateTotals(items: CartItem[]): Omit<Cart, "items"> {
   const subtotal = items.reduce((sum, item) => {
     const itemPrice = item.product.price + (item.variant?.price_adjustment || 0)
@@ -40,6 +54,51 @@ function calculateTotals(items: CartItem[]): Omit<Cart, "items"> {
   return { subtotal, shipping, tax, total }
 }
 
+function toStoredItem(item: CartItem): StoredCartItem {
+  return {
+    id: item.id,
+    productId: item.product.id,
+    productName: item.product.name,
+    productPrice: item.product.price,
+    productSlug: item.product.slug,
+    productImage: item.product.images?.[0],
+    variantId: item.variant?.id,
+    variantSize: item.variant?.size,
+    variantColor: item.variant?.color,
+    variantPriceAdjustment: item.variant?.price_adjustment,
+    quantity: item.quantity,
+  }
+}
+
+function fromStoredItem(stored: StoredCartItem): CartItem {
+  const product: Product = {
+    id: stored.productId,
+    name: stored.productName,
+    slug: stored.productSlug,
+    price: stored.productPrice,
+    images: stored.productImage ? [stored.productImage] : [],
+    inventory_quantity: 999, // Will be validated on checkout
+  }
+
+  const variant = stored.variantId
+    ? {
+        id: stored.variantId,
+        product_id: stored.productId,
+        size: stored.variantSize,
+        color: stored.variantColor,
+        price_adjustment: stored.variantPriceAdjustment || 0,
+        inventory_quantity: 999,
+      }
+    : null
+
+  return {
+    id: stored.id,
+    product,
+    variant,
+    quantity: stored.quantity,
+  }
+}
+
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<Cart>(emptyCart)
   const [isLoading, setIsLoading] = useState(true)
@@ -50,11 +109,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
     try {
       const stored = localStorage.getItem(CART_STORAGE_KEY)
       if (stored) {
-        const parsed = JSON.parse(stored)
-        setCart(parsed)
+        const storedItems: StoredCartItem[] = JSON.parse(stored)
+        const cartItems = storedItems.map(fromStoredItem)
+        const cartData = { items: cartItems, ...calculateTotals(cartItems) }
+        setCart(cartData)
       }
     } catch (error) {
-      console.error("Failed to load cart:", error)
+      console.error("[v0] Failed to load cart:", error)
+      // Clear corrupted cart data
+      localStorage.removeItem(CART_STORAGE_KEY)
     } finally {
       setIsLoading(false)
     }
@@ -62,7 +125,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!isLoading) {
-      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart))
+      try {
+        const storedItems = cart.items.map(toStoredItem)
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(storedItems))
+      } catch (error) {
+        console.error("[v0] Failed to save cart:", error)
+        // If quota exceeded, try to clear and notify user
+        if (error instanceof DOMException && error.name === "QuotaExceededError") {
+          console.error("[v0] Storage quota exceeded")
+        }
+      }
     }
   }, [cart, isLoading])
 

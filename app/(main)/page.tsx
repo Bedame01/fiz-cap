@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Truck, RefreshCw, Shield, Crown } from "lucide-react"
 import { createClient } from "@/lib/supabase/server"
 import { ProductCard } from "@/components/products/product-card"
-
+import type { Product } from "@/lib/types/product"
+import SplitText from "@/components/Reactbits/SplitText"
 import heroBG from '@/public/images/Stylish Cap Close-Up.png'
 
 // Cap style categories for the homepage
@@ -66,6 +67,30 @@ export default async function HomePage() {
   // Fetch all categories
   const { data: categories } = await supabase.from("categories").select("*").order("sort_order")
 
+  const transformedProducts: Product[] = (featuredProducts || []).map((product) => ({
+    id: product.id,
+    name: product.name,
+    slug: product.slug,
+    description: product.description,
+    short_description: product.short_description,
+    price: product.price,
+    compare_at_price: product.compare_at_price,
+    sku: product.sku,
+    inventory_quantity: product.inventory_quantity,
+    category_id: product.category_id,
+    category: product.category,
+    style: product.style,
+    material: product.material,
+    brand: product.brand || "FIZ CAP",
+    color: product.color,
+    featured: product.featured,
+    status: product.status,
+    tags: product.tags,
+    images: product.images || [],
+    created_at: product.created_at,
+    updated_at: product.updated_at,
+  }))
+
   return (
     <main>
       {/* Hero Section */}
@@ -73,28 +98,56 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 py-16 lg:py-24 items-center">
             <div className="max-w-xl">
-              <span className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground mb-4">
-                <Crown className="w-4 h-4" />
-                Premium Headwear Collection
-              </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-balance mb-6">
-                Top Off Your Style
-              </h1>
-              <p className="text-lg text-muted-foreground mb-8 text-pretty">
-                Discover premium caps, snapbacks, and headwear designed for those who lead. From classic fitted caps to
-                trendy bucket hats — find your crown.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button size="lg" asChild>
-                  <Link href="/shop">
-                    Shop All Caps
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Link>
-                </Button>
-                <Button size="lg" variant="outline" asChild>
-                  <Link href="/shop?style=snapback">Shop Snapbacks</Link>
-                </Button>
-              </div>
+                <span className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground mb-4">
+                    <Crown className="w-4 h-4" />
+                    Premium Headwear Collection
+                </span>
+                {/* <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-balance mb-6">
+                    Top Off Your Style
+                </h1> */}
+                <SplitText
+                    text="Welcome to FIZ CAP,"
+                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl font-bold tracking-tight text-balance textDisplay"
+                    delay={100}
+                    duration={0.7}
+                    ease="power3.out"
+                    splitType="chars"
+                    from={{ opacity: 0, y: 40 }}
+                    to={{ opacity: 1, y: 0 }}
+                    threshold={0.1}
+                    rootMargin="-100px"
+                    textAlign="left"
+                    // onLetterAnimationComplete={() => {}}
+                />
+                <SplitText
+                    text="order to fix your fit."
+                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl font-bold tracking-tight text-balance mb-6 textDisplay"
+                    delay={100}
+                    duration={0.7}
+                    ease="power3.out"
+                    splitType="chars"
+                    from={{ opacity: 0, y: 40 }}
+                    to={{ opacity: 1, y: 0 }}
+                    threshold={0.1}
+                    rootMargin="-100px"
+                    textAlign="left"
+                    // onLetterAnimationComplete={() => {}}
+                />
+                <p className="text-lg text-muted-foreground mb-8 text-pretty">
+                    Discover premium caps, snapbacks, and headwear designed for those who lead. From classic fitted caps to
+                    trendy bucket hats — find your crown.
+                </p>
+                <div className="flex flex-wrap gap-4">
+                    <Button size="lg" asChild className="hover:bg-(--primary-color)!">
+                    <Link href="/shop">
+                        Shop All Caps
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                    </Link>
+                    </Button>
+                    <Button size="lg" variant="outline" asChild>
+                    <Link href="/shop?style=snapback">Shop Snapbacks</Link>
+                    </Button>
+                </div>
             </div>
             <div className="relative aspect-square lg:aspect-[4/5] rounded-2xl overflow-hidden bg-secondary">
               <Image
@@ -110,7 +163,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Features */}
+      {/* Features - Updated currency text to Naira */}
       <section className="border-y">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
@@ -120,7 +173,7 @@ export default async function HomePage() {
               </div>
               <div>
                 <h3 className="font-medium">Free Shipping</h3>
-                <p className="text-sm text-muted-foreground">On orders over $50</p>
+                <p className="text-sm text-muted-foreground">On orders over ₦50,000</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -150,7 +203,7 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <h2 className="text-3xl font-bold tracking-tight">Shop by Style</h2>
+              <h2 className="text-3xl font-bold tracking-tight textDisplay">Shop by Style</h2>
               <p className="text-muted-foreground mt-2">Find the perfect cap for your look</p>
             </div>
             <Button variant="ghost" asChild className="hidden sm:flex">
@@ -195,13 +248,13 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Featured Products */}
-      {featuredProducts && featuredProducts.length > 0 && (
+      {/* Featured Products - Use proper Product type with ProductCard */}
+      {transformedProducts.length > 0 && (
         <section className="py-16 lg:py-24 bg-secondary/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-end justify-between mb-8">
               <div>
-                <h2 className="text-3xl font-bold tracking-tight">Featured Caps</h2>
+                <h2 className="text-3xl font-bold tracking-tight textDisplay">Featured Caps</h2>
                 <p className="text-muted-foreground mt-2">Our most popular headwear this season</p>
               </div>
               <Button variant="ghost" asChild className="hidden sm:flex">
@@ -213,35 +266,8 @@ export default async function HomePage() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {featuredProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={{
-                    id: product.id,
-                    handle: product.slug,
-                    title: product.name,
-                    description: product.short_description || product.description || "",
-                    featuredImage: {
-                      url: product.images?.[0]?.url || "/cap-product.jpg",
-                      altText: product.images?.[0]?.alt_text || product.name,
-                    },
-                    priceRange: {
-                      minVariantPrice: {
-                        amount: product.price.toString(),
-                        currencyCode: "USD",
-                      },
-                    },
-                    compareAtPriceRange: product.compare_at_price
-                      ? {
-                          minVariantPrice: {
-                            amount: product.compare_at_price.toString(),
-                            currencyCode: "USD",
-                          },
-                        }
-                      : undefined,
-                    tags: product.tags || [],
-                  }}
-                />
+              {transformedProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
               ))}
             </div>
 
@@ -262,7 +288,7 @@ export default async function HomePage() {
         <section className="py-16 lg:py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight">Browse Categories</h2>
+              <h2 className="text-3xl font-bold tracking-tight textDisplay">Browse Categories</h2>
               <p className="text-muted-foreground mt-2">Explore our full collection of headwear</p>
             </div>
 

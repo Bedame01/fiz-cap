@@ -15,7 +15,7 @@ const navLinks = [
   { href: "/shop", label: "Shop All" },
   { href: "/shop?style=snapback", label: "Snapbacks" },
   { href: "/shop?style=fitted", label: "Fitted" },
-  { href: "/shop?style=dad-hat", label: "Dad Hats" },
+  { href: "/about", label: "About Us" },
   { href: "/stores", label: "Stores" },
 ]
 

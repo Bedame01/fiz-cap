@@ -65,9 +65,9 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="flex min-h-screen w-full items-center justify-center p-6 md:p-10">
-      <div className="w-full max-w-sm">
-        <Card>
+    <main className="flex bg min-h-screen w-full items-center justify-center p-6 md:p-10">
+      <div className="w-full max-w-md relative">
+        <Card className="shadow-none">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl">Welcome back</CardTitle>
             <CardDescription>Sign in to your account to continue</CardDescription>
@@ -76,20 +76,31 @@ export default function LoginPage() {
             <form onSubmit={handleLogin}>
               <div className="flex flex-col gap-6">
                 <div className="grid gap-2">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email"></Label>
                   <Input
                     id="email"
                     type="email"
-                    placeholder="you@example.com"
+                    placeholder="Email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={isLoading}
+                    className="py-6"
                   />
                 </div>
                 <div className="grid gap-2">
+                  <Input
+                    id="password"
+                    type="password"
+                    placeholder="Password"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    disabled={isLoading}
+                    className="py-6"
+                  />
                   <div className="flex items-center justify-between">
-                    <Label htmlFor="password">Password</Label>
+                    <Label htmlFor="password"></Label>
                     <Link
                       href="/auth/reset-password"
                       className="text-sm text-muted-foreground hover:underline underline-offset-4"
@@ -97,17 +108,9 @@ export default function LoginPage() {
                       Forgot password?
                     </Link>
                   </div>
-                  <Input
-                    id="password"
-                    type="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    disabled={isLoading}
-                  />
                 </div>
                 {error && <p className="text-sm text-destructive">{error}</p>}
-                <Button type="submit" className="w-full" disabled={isLoading}>
+                <Button type="submit" className="w-full py-6" disabled={isLoading}>
                   {isLoading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
                   Sign In
                 </Button>
@@ -125,7 +128,7 @@ export default function LoginPage() {
 
             <Button
               variant="outline"
-              className="w-full bg-transparent"
+              className="w-full bg-transparent py-5"
               onClick={handleGoogleLogin}
               disabled={isGoogleLoading}
             >
@@ -165,6 +168,20 @@ export default function LoginPage() {
             </p>
           </CardContent>
         </Card>
+        <div className="w absolute -bottom-25 left-1/2 transform -translate-x-1/2 flex space-x-4">
+          <Link
+            href='/policy'
+            className=" text-sm font-medium text-muted-foreground hover:underline"
+          >
+            Privacy Policy
+          </Link>
+          <Link
+            href='/policy'
+            className=" text-sm font-medium text-muted-foreground hover:underline"
+          >
+            Terms of Service
+          </Link>
+        </div>
       </div>
     </main>
   )

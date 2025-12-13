@@ -16,7 +16,7 @@ export function CartDrawer() {
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetContent className="flex flex-col w-full sm:max-w-lg">
         <SheetHeader className="border-b pb-4">
-          <SheetTitle className="flex items-center gap-2">
+          <SheetTitle className="flex items-center gap-2 textDisplay">
             <ShoppingBag className="w-5 h-5" />
             Cart {cartCount > 0 && `(${cartCount})`}
           </SheetTitle>
@@ -25,7 +25,7 @@ export function CartDrawer() {
         {isEmpty ? (
           <div className="flex-1 flex flex-col items-center justify-center text-center">
             <ShoppingBag className="w-16 h-16 text-muted-foreground/30 mb-4" />
-            <p className="text-lg font-medium">Your cart is empty</p>
+            <p className="text-4xl textDisplay font-extralight">Your cart is empty</p>
             <p className="text-muted-foreground text-sm mt-1 mb-6">Add some items to get started</p>
             <Button asChild onClick={() => setIsOpen(false)}>
               <Link href="/shop">
