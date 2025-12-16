@@ -152,7 +152,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
       </div>
 
       {/* Features */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 py-6 border-t border-b mb-8">
+      {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 py-6 border-t border-b mb-8">
         <div className="flex items-center gap-3 text-sm">
           <Truck className="w-5 h-5 text-muted-foreground" />
           <span>Free shipping over ₦50,000</span>
@@ -165,7 +165,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
           <Shield className="w-5 h-5 text-muted-foreground" />
           <span>1-year warranty</span>
         </div>
-      </div>
+      </div> */}
 
       {/* Description */}
       <div className="space-y-4">

@@ -18,7 +18,10 @@ export function CartItem({ item }: CartItemProps) {
   const image = product.images?.[0]
   const itemPrice = product.price + (variant?.price_adjustment || 0)
   const lineTotal = itemPrice * quantity
- 
+
+  const availableStock = variant?.inventory_quantity ?? product.inventory_quantity
+  const isAtMaxStock = quantity >= availableStock
+
   return (
     <div className="flex gap-4 py-4">
       {/* Image */}
@@ -72,12 +75,24 @@ export function CartItem({ item }: CartItemProps) {
             size="icon"
             className="h-7 w-7 bg-transparent"
             onClick={() => updateItemQuantity(item.id, quantity + 1)}
-            disabled={isLoading}
+            disabled={isLoading || isAtMaxStock}
+            title={isAtMaxStock ? `Only ${availableStock} available` : undefined}
           >
             <Plus className="w-3 h-3" />
             <span className="sr-only">Increase quantity</span>
           </Button>
         </div>
+        {isAtMaxStock && 
+          <p className="text-xs text-foreground mt-2 flex items-center gap-1">
+            <svg className="icon icon-error size-3.5" viewBox="0 0 13 13">
+              <circle cx="6.5" cy="6.5" r="5.5" stroke="#fff" stroke-width="var(--icon-stroke-width)"></circle>
+              <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width=".7"></circle>
+              <path fill="#fff" d="m5.874 3.528.1 4.044h1.053l.1-4.044zm.627 6.133c.38 0 .68-.288.68-.656s-.3-.656-.68-.656-.681.288-.681.656.3.656.68.656"></path>
+              <path fill="#fff" stroke="#EB001B" stroke-width=".7" d="M5.874 3.178h-.359l.01.359.1 4.044.008.341h1.736l.008-.341.1-4.044.01-.359H5.873Zm.627 6.833c.56 0 1.03-.432 1.03-1.006s-.47-1.006-1.03-1.006-1.031.432-1.031 1.006.47 1.006 1.03 1.006Z"></path>
+            </svg>
+            Only {availableStock} item was added to your cart due to availability.
+          </p>
+        }
       </div>
 
       {/* Price & Remove */}

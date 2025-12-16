@@ -58,7 +58,7 @@ interface ProductVariant {
 }
 
 const defaultStyles = ["snapback", "fitted", "dad-hat", "trucker", "beanie", "bucket", "visor"]
-const defaultColors = ["Black", "White", "Navy", "Gray", "Red", "Green", "Brown", "Beige"]
+const defaultColors = ["Black", "White", "Navy", "Gray", "Red", "Green", "Brown", "Beige", "Blue", "Yellow", "Pink"]
 const defaultMaterials = ["Cotton", "Polyester", "Wool", "Acrylic", "Nylon", "Leather", "Denim"]
 const defaultSizes = ["7", "7⅛", "7¼", "7⅜", "7½", "7⅝", "7¾", "8"]
 

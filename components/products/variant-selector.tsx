@@ -3,6 +3,7 @@
 import type { ProductVariant } from "@/lib/types/product"
 import { cn } from "@/lib/utils"
 import { Check } from "lucide-react"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 interface VariantSelectorProps {
   variants: ProductVariant[]
@@ -31,12 +32,57 @@ export function VariantSelector({ variants, selectedVariant, onVariantChange }: 
     if (variant) onVariantChange(variant)
   }
 
+  const handleVariantSelect = (variantId: string) => {
+    const variant = variants.find((v) => v.id === variantId)
+    if (variant) onVariantChange(variant)
+  }
+
   const isVariantAvailable = (size?: string | null, color?: string | null) => {
     return variants.some((v) => (!size || v.size === size) && (!color || v.color === color) && v.inventory_quantity > 0)
   }
 
+  // Format variant label for dropdown
+  const formatVariantLabel = (variant: ProductVariant) => {
+    const parts = []
+    if (variant.size) parts.push(`Size: ${variant.size}`)
+    if (variant.color) parts.push(`Color: ${variant.color}`)
+    if (parts.length === 0) parts.push("Default")
+
+    const stock = variant.inventory_quantity > 0 ? `(${variant.inventory_quantity} in stock)` : "(Out of stock)"
+    return `${parts.join(" • ")} ${stock}`
+  }
+
   return (
     <div className="space-y-6">
+      {/* Variant Dropdown Selector */}
+      <div>
+        <label className="block text-sm font-medium mb-3">
+          Select Variant <span className="text-red-500">*</span>
+        </label>
+        <Select value={selectedVariant?.id} onValueChange={handleVariantSelect}>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Choose size and color" />
+          </SelectTrigger>
+          <SelectContent>
+            {variants.map((variant) => (
+              <SelectItem
+                key={variant.id}
+                value={variant.id}
+                disabled={variant.inventory_quantity === 0}
+                className={cn(variant.inventory_quantity === 0 && "opacity-50 line-through")}
+              >
+                {formatVariantLabel(variant)}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        {selectedVariant && (
+          <p className="text-xs text-muted-foreground mt-2">
+            {selectedVariant.inventory_quantity} {selectedVariant.inventory_quantity === 1 ? "item" : "items"} available
+          </p>
+        )}
+      </div>
+
       {/* Size selector */}
       {sizes.length > 0 && (
         <div>

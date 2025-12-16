@@ -73,7 +73,7 @@ export default async function CheckoutSuccessPage({ searchParams }: SuccessPageP
                       <span>
                         {item.name} {item.variant_name && `(${item.variant_name})`} x {item.quantity}
                       </span>
-                      <span className="font-medium">{formatPrice(item.price * item.quantity)}</span>
+                      <span className="font-medium">{formatPrice((item.price / 100) * item.quantity)}</span>
                     </div>
                   ))}
                 </div>
@@ -119,11 +119,11 @@ export default async function CheckoutSuccessPage({ searchParams }: SuccessPageP
           {/* Actions */}
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             {user && (
-              <Button variant="outline" asChild>
+              <Button variant="outline" asChild className="py-5.5">
                 <Link href="/account/orders">View Orders</Link>
               </Button>
             )}
-            <Button asChild>
+            <Button asChild className="py-5.5">
               <Link href="/shop">
                 Continue Shopping
                 <ArrowRight className="w-4 h-4 ml-2" />
