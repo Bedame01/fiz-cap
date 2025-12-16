@@ -71,9 +71,9 @@ export default async function CheckoutSuccessPage({ searchParams }: SuccessPageP
                   {(order.items as any[]).map((item, index) => (
                     <div key={index} className="flex justify-between text-sm">
                       <span>
-                        {item.product_name} {item.variant_name && `(${item.variant_name})`} x {item.quantity}
+                        {item.name} {item.variant_name && `(${item.variant_name})`} x {item.quantity}
                       </span>
-                      <span className="font-medium">{formatPrice(item.unit_price * item.quantity)}</span>
+                      <span className="font-medium">{formatPrice(item.price * item.quantity)}</span>
                     </div>
                   ))}
                 </div>

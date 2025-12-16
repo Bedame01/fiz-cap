@@ -4,11 +4,12 @@ import Link from "next/link"
 import { useCart } from "@/components/cart/cart-context"
 import { CartItem } from "@/components/cart/cart-item"
 import { Button } from "@/components/ui/button"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 import { formatPrice } from "@/lib/types/product"
-import { ShoppingBag, ArrowLeft, ArrowRight, Loader2 } from "lucide-react"
+import { ShoppingBag, ArrowLeft, ArrowRight, Loader2, AlertCircle } from "lucide-react"
 
 export default function CartPage() {
-  const { cart, cartCount, isLoading } = useCart()
+  const { cart, cartCount, isLoading, availabilityWarning, clearAvailabilityWarning } = useCart()
   const isEmpty = cart.items.length === 0
 
   if (isEmpty) {
@@ -44,6 +45,13 @@ export default function CartPage() {
         </Button>
       </div>
 
+      {availabilityWarning && (
+        <Alert variant="destructive" className="mb-6">
+          <AlertCircle className="h-4 w-4" />
+          <AlertDescription className="text-sm">{availabilityWarning.message}</AlertDescription>
+        </Alert>
+      )}
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Cart Items */}
         <div className="lg:col-span-2">
@@ -68,18 +76,18 @@ export default function CartPage() {
               </div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Shipping</span>
-                <span>{cart.shipping === 0 ? "Free" : formatPrice(cart.shipping)}</span>
+                <span className="text-muted-foreground text-xs">Calculated at checkout</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">VAT (7.5%)</span>
+                <span className="text-muted-foreground">VAT (2.0%)</span>
                 <span>{formatPrice(cart.tax)}</span>
               </div>
             </div>
 
             <div className="border-t mt-4 pt-4">
               <div className="flex justify-between text-lg font-medium">
-                <span>Total</span>
-                <span>{formatPrice(cart.total)}</span>
+                <span>Estimated Total</span>
+                <span>{formatPrice(cart.subtotal + cart.tax)}</span>
               </div>
             </div>
 
@@ -90,7 +98,11 @@ export default function CartPage() {
               </Link>
             </Button>
 
-            <p className="text-xs text-muted-foreground text-center mt-4">Free shipping on orders over ₦50,000</p>
+            <p className="text-xs text-muted-foreground text-center mt-4">
+              Free shipping on orders over ₦50,000
+              <br />
+              Shipping cost based on your state
+            </p>
           </div>
         </div>
       </div>

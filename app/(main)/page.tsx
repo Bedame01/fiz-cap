@@ -203,7 +203,7 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <h2 className="text-3xl font-bold tracking-tight textDisplay">Shop by Style</h2>
+              <h2 className="text-3xl font-bold tracking-tight">Shop by Style</h2>
               <p className="text-muted-foreground mt-2">Find the perfect cap for your look</p>
             </div>
             <Button variant="ghost" asChild className="hidden sm:flex">
@@ -254,7 +254,7 @@ export default async function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-end justify-between mb-8">
               <div>
-                <h2 className="text-3xl font-bold tracking-tight textDisplay">Featured Caps</h2>
+                <h2 className="text-3xl font-bold tracking-tight">Featured Caps</h2>
                 <p className="text-muted-foreground mt-2">Our most popular headwear this season</p>
               </div>
               <Button variant="ghost" asChild className="hidden sm:flex">

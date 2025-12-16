@@ -49,7 +49,7 @@ export default async function OrdersPage() {
   return (
     <div className="space-y-4">
       {orders.map((order) => {
-        const orderItems = order.items as Array<{ product_name: string; quantity: number; unit_price: number }>
+        const orderItems = order.items as Array<{ name: string; quantity: number; price: number }>
         const orderNumber =
           order.stripe_checkout_session_id?.slice(-8).toUpperCase() || order.id.slice(0, 8).toUpperCase()
 
@@ -75,13 +75,13 @@ export default async function OrdersPage() {
               {orderItems?.map((item, idx) => (
                 <div key={idx} className="py-3 flex justify-between">
                   <span>
-                    {item.product_name} x {item.quantity}
+                    {item.name} x {item.quantity}
                   </span>
                   <span className="font-medium">
                     {new Intl.NumberFormat("en-US", {
                       style: "currency",
                       currency: order.currency || "usd",
-                    }).format((item.unit_price || 0) / 100)}
+                    }).format((item.price || 0) / 100)}
                   </span>
                 </div>
               ))}

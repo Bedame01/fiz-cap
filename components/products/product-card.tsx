@@ -9,6 +9,7 @@ import { formatPrice } from "@/lib/types/product"
 import { Button } from "@/components/ui/button"
 import { ShoppingBag } from "lucide-react"
 import { useCart } from "@/components/cart/cart-context"
+import { toast } from "sonner"
 
 interface ProductCardProps {
   product: Product
@@ -25,7 +26,17 @@ export function ProductCard({ product, layout = "grid" }: ProductCardProps) {
     e.preventDefault()
     e.stopPropagation()
     if (inStock) {
-      addItem(product)
+      const result = addItem(product)
+
+      if (result.wasLimited) {
+        if (result.added > 0) {
+          toast.warning(`Only ${result.added} item${result.added !== 1 ? "s" : ""} added due to availability`)
+        } else {
+          toast.error(`Cannot add more. Only ${result.available} available in stock`)
+        }
+      } else {
+        toast.success(`${product.name} added to cart`)
+      }
     }
   }
 

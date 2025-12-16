@@ -7,9 +7,17 @@ import { CheckoutForm } from "@/components/checkout/checkout-form"
 import { formatPrice } from "@/lib/types/product"
 import { ArrowLeft, ShoppingBag, Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useState, useEffect } from "react"
 
 export default function CheckoutPage() {
   const { cart, cartCount } = useCart()
+  const [shippingCost, setShippingCost] = useState(0)
+  const [taxAmount, setTaxAmount] = useState(cart.tax)
+
+  useEffect(() => {
+    const calculatedTax = cart.subtotal * 0.020 // 2.0% VAT
+    setTaxAmount(calculatedTax)
+  }, [cart.subtotal])
 
   if (cart.items.length === 0) {
     return (
@@ -44,9 +52,9 @@ export default function CheckoutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Checkout Form */}
           <div className="order-2 lg:order-1">
-            <div className="bg-card rounded-lg border p-6">
+            <div className="bg-card rounded-lg border p-6 max-sm:p-4">
               <h1 className="text-2xl font-bold tracking-tight mb-6">Checkout</h1>
-              <CheckoutForm />
+              <CheckoutForm onShippingCalculated={setShippingCost} />
             </div>
           </div>
 
@@ -64,17 +72,17 @@ export default function CheckoutPage() {
 
                   return (
                     <div key={item.id} className="flex gap-3 py-3">
-                      <div className="relative w-16 h-16 bg-secondary rounded-md overflow-hidden flex-shrink-0">
+                      <div className="relative w-16 h-16 bg-secondary rounded-md flex-shrink-0 border-2 border-foreground">
                         {image ? (
                           <Image
                             src={image.url || "/placeholder.svg"}
                             alt={image.alt_text || item.product.name}
                             fill
-                            className="object-cover"
+                            className="object-cover rounded-md"
                             sizes="64px"
                           />
                         ) : null}
-                        <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-foreground text-background text-xs flex items-center justify-center">
+                        <span className="absolute -top-2 -right-1 h-5 w-5 rounded-full bg-foreground text-background text-xs flex items-center justify-center">
                           {item.quantity}
                         </span>
                       </div>
@@ -100,18 +108,18 @@ export default function CheckoutPage() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Shipping</span>
-                  <span>{cart.shipping === 0 ? "Free" : formatPrice(cart.shipping)}</span>
+                  <span>{shippingCost === 0 ? ".." : formatPrice(shippingCost)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">VAT (7.5%)</span>
-                  <span>{formatPrice(cart.tax)}</span>
+                  <span className="text-muted-foreground">VAT (2.0%)</span>
+                  <span>{formatPrice(taxAmount)}</span>
                 </div>
               </div>
 
               <div className="border-t mt-4 pt-4">
                 <div className="flex justify-between text-lg font-medium">
                   <span>Total</span>
-                  <span>{formatPrice(cart.total)}</span>
+                  <span>{formatPrice(cart.subtotal + shippingCost + taxAmount)}</span>
                 </div>
               </div>
             </div>

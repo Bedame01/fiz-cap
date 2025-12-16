@@ -34,7 +34,7 @@ export function AdminSidebar() {
 
   return (
     <aside
-      className={cn("bg-background fixed top-0 z-50! min-h-screen border-r flex flex-col transition-all duration-300", collapsed ? "w-16" : "w-64")}
+      className={cn("bg-background max-lg:fixed top-0 z-50! min-h-screen border-r flex flex-col transition-all duration-300", collapsed ? "w-16" : "w-64")}
     >
       <div className="p-4 border-b flex items-center justify-between">
         {!collapsed && (

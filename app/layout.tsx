@@ -10,24 +10,24 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: {
-    default: "FIZ CAP | Fix your Fit",
-    template: "%s | Fiz Cap",
+    default: "Fiz Cap - Fix your Fit",
+    template: "%s - Fiz Cap",
   },
   description:
     "Discover our curated collection of premium caps, snapbacks, and headwear. From classic fitted caps to trendy dad hats, find your perfect style.",
   keywords: ["caps", "snapbacks", "fitted caps", "dad hats", "headwear", "hats", "streetwear", "fashion"],
   authors: [{ name: "FIZ CAP" }],
-  creator: "FIZ CAP",
+  creator: "Fiz Cap",
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "FIZ CAP",
-    title: "FIZ CAP | Fix your Fit",
+    siteName: "Fiz Cap",
+    title: "Fiz Cap - Fix your Fit",
     description: "Discover our curated collection of premium caps, snapbacks, and headwear.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "FIZ CAP | Fix your Fit",
+    title: "Fiz Cap | Fix your Fit",
     description: "Discover our curated collection of premium caps, snapbacks, and headwear.",
   },
   robots: {

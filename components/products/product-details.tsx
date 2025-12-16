@@ -7,9 +7,10 @@ import { VariantSelector } from "./variant-selector"
 import { QuantitySelector } from "./quantity-selector"
 import { Button } from "@/components/ui/button"
 import { useCart } from "@/components/cart/cart-context"
-import { Truck, RefreshCw, Shield, ShoppingBag, Heart, Share2, Loader2 } from "lucide-react"
+import { Truck, RefreshCw, Shield, ShoppingBag, Heart, Share2, Loader2, AlertCircle } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { toast } from "sonner"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 
 interface ProductDetailsProps {
   product: Product
@@ -21,6 +22,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
     product.variants && product.variants.length > 0 ? product.variants[0] : null,
   )
   const [isAdding, setIsAdding] = useState(false)
+  const [localWarning, setLocalWarning] = useState<string | null>(null)
   const { addItem } = useCart()
 
   const currentPrice = product.price + (selectedVariant?.price_adjustment || 0)
@@ -38,9 +40,19 @@ export function ProductDetails({ product }: ProductDetailsProps) {
     }
 
     setIsAdding(true)
+    setLocalWarning(null)
+
     try {
-      addItem(product, selectedVariant, quantity)
-      toast.success(`${product.name} added to cart`)
+      const result = addItem(product, selectedVariant, quantity)
+
+      if (result.wasLimited) {
+        setLocalWarning(`Only ${result.available} items were added to your cart due to availability.`)
+        setTimeout(() => setLocalWarning(null), 5000)
+        toast.warning(`Only ${result.available} items available`)
+      } else {
+        toast.success(`${product.name} added to cart`)
+      }
+
       setQuantity(1)
     } catch (error) {
       toast.error("Failed to add to cart")
@@ -64,6 +76,13 @@ export function ProductDetails({ product }: ProductDetailsProps) {
 
   return (
     <div className="flex flex-col">
+      {localWarning && (
+        <Alert variant="destructive" className="mb-4">
+          <AlertCircle className="h-4 w-4" />
+          <AlertDescription className="text-xs">{localWarning}</AlertDescription>
+        </Alert>
+      )}
+
       {/* Category & Tags */}
       <div className="flex flex-wrap items-center gap-2 mb-4">
         {product.category && <Badge variant="secondary">{product.category.name}</Badge>}

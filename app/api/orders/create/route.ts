@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js"
 import { NextResponse } from "next/server"
+import { createClient as createServerClient } from "@/lib/supabase/server"
 import { sendEmail, generateOrderConfirmationEmail, generateAdminOrderNotificationEmail } from "@/lib/email/resend"
 
 const supabaseAdmin = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!)
@@ -40,9 +41,21 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
     }
 
+    let userId: string | null = null
+    try {
+      const supabase = await createServerClient()
+      const {
+        data: { user },
+      } = await supabase.auth.getUser()
+      userId = user?.id || null
+    } catch (error) {
+      console.log("[v0] Guest checkout - no user authenticated")
+    }
+
     const { data: order, error: orderError } = await supabaseAdmin
       .from("orders")
       .insert({
+        user_id: userId, // Add user_id for logged-in customers
         status: "pending",
         total_amount,
         currency: "NGN",

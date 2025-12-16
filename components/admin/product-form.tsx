@@ -60,7 +60,7 @@ interface ProductVariant {
 const defaultStyles = ["snapback", "fitted", "dad-hat", "trucker", "beanie", "bucket", "visor"]
 const defaultColors = ["Black", "White", "Navy", "Gray", "Red", "Green", "Brown", "Beige"]
 const defaultMaterials = ["Cotton", "Polyester", "Wool", "Acrylic", "Nylon", "Leather", "Denim"]
-const defaultSizes = ["S", "M", "L", "XL", "One Size"]
+const defaultSizes = ["7", "7⅛", "7¼", "7⅜", "7½", "7⅝", "7¾", "8"]
 
 export function ProductForm({ product, categories }: ProductFormProps) {
   const router = useRouter()
@@ -248,7 +248,7 @@ export function ProductForm({ product, categories }: ProductFormProps) {
             <CardContent className="space-y-4">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Product Name *</Label>
+                  <Label htmlFor="name">Product Name</Label>
                   <Input
                     id="name"
                     value={formData.name}
@@ -258,7 +258,7 @@ export function ProductForm({ product, categories }: ProductFormProps) {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="slug">URL Slug *</Label>
+                  <Label htmlFor="slug">URL Slug</Label>
                   <Input
                     id="slug"
                     value={formData.slug}
@@ -432,7 +432,7 @@ export function ProductForm({ product, categories }: ProductFormProps) {
                 <Label>Add New Variant</Label>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
-                    <Label htmlFor="variant-size">Size *</Label>
+                    <Label htmlFor="variant-size">Size</Label>
                     <Select
                       value={newVariant.size}
                       onValueChange={(value) => setNewVariant({ ...newVariant, size: value })}
@@ -470,7 +470,7 @@ export function ProductForm({ product, categories }: ProductFormProps) {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="variant-inventory">Inventory *</Label>
+                    <Label htmlFor="variant-inventory">Inventory</Label>
                     <Input
                       id="variant-inventory"
                       type="number"
@@ -527,9 +527,9 @@ export function ProductForm({ product, categories }: ProductFormProps) {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="price">Price *</Label>
+                <Label htmlFor="price">Price</Label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">₦</span>
                   <Input
                     id="price"
                     type="number"
@@ -547,7 +547,7 @@ export function ProductForm({ product, categories }: ProductFormProps) {
               <div className="space-y-2">
                 <Label htmlFor="compare_at_price">Compare at Price</Label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">$</span>
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">₦</span>
                   <Input
                     id="compare_at_price"
                     type="number"
@@ -570,7 +570,7 @@ export function ProductForm({ product, categories }: ProductFormProps) {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="inventory_quantity">Stock Quantity *</Label>
+                <Label htmlFor="inventory_quantity">Stock Quantity</Label>
                 <Input
                   id="inventory_quantity"
                   type="number"

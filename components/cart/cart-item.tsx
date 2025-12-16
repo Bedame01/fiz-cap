@@ -18,7 +18,7 @@ export function CartItem({ item }: CartItemProps) {
   const image = product.images?.[0]
   const itemPrice = product.price + (variant?.price_adjustment || 0)
   const lineTotal = itemPrice * quantity
-
+ 
   return (
     <div className="flex gap-4 py-4">
       {/* Image */}

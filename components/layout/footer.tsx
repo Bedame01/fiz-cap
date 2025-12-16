@@ -1,4 +1,7 @@
+'use client'
+
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Instagram, Mail } from "lucide-react"
 
 import Tiktok from "@/public/icons/Tiktok-Logo--Streamline-Logos.svg"
@@ -40,6 +43,12 @@ const socialLinks = [
 ]
 
 export function Footer() {
+  const pathname = usePathname()
+
+  if (pathname === "/checkout" || pathname === "/admin") {
+    return null
+  }
+
   return (
     <footer className="bg-secondary/30 border-t">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">

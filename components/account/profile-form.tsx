@@ -59,11 +59,11 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="firstName">First Name</Label>
-          <Input id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="John" />
+          <Input id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="Enter Name" />
         </div>
         <div className="space-y-2">
           <Label htmlFor="lastName">Last Name</Label>
-          <Input id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Doe" />
+          <Input id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Enter lastName" />
         </div>
       </div>
 
