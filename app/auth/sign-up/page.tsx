@@ -150,7 +150,7 @@ export default function SignUpPage() {
             </p>
           </CardContent>
         </Card>
-        <div className="w absolute -bottom-25 left-1/2 transform -translate-x-1/2 flex space-x-4">
+        <div className="w-full absolute -bottom-18 left-1/2 transform -translate-x-1/2 flex justify-center items-center space-x-4">
           <Link
             href='/policy'
             className=" text-sm font-medium text-muted-foreground hover:underline"

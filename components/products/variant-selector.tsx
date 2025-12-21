@@ -4,6 +4,7 @@ import type { ProductVariant } from "@/lib/types/product"
 import { cn } from "@/lib/utils"
 import { Check } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useEffect } from "react"
 
 interface VariantSelectorProps {
   variants: ProductVariant[]
@@ -12,6 +13,13 @@ interface VariantSelectorProps {
 }
 
 export function VariantSelector({ variants, selectedVariant, onVariantChange }: VariantSelectorProps) {
+  useEffect(() => {
+    if (!selectedVariant && variants.length > 0) {
+      const firstAvailable = variants.find((v) => v.inventory_quantity > 0) || variants[0]
+      onVariantChange(firstAvailable)
+    }
+  }, [variants, selectedVariant, onVariantChange])
+
   // Group variants by size and color
   const sizes = [...new Set(variants.map((v) => v.size).filter(Boolean))]
   const colors = [...new Set(variants.map((v) => v.color).filter(Boolean))]

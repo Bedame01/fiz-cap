@@ -41,6 +41,7 @@ interface Product {
   brand: string | null
   tags: string[] | null
   product_images?: { id: string; url: string; position: number }[]
+  variants?: ProductVariant[]
 }
 
 interface ProductFormProps {
@@ -88,7 +89,17 @@ export function ProductForm({ product, categories }: ProductFormProps) {
     product?.product_images?.map((img) => ({ url: img.url })) || [],
   )
 
-  const [variants, setVariants] = useState<ProductVariant[]>([])
+  const [variants, setVariants] = useState<ProductVariant[]>(
+    product?.variants?.map((v) => ({
+      id: v.id,
+      size: v.size,
+      color: v.color || "",
+      sku: v.sku || "",
+      price_adjustment: v.price_adjustment || 0,
+      inventory_quantity: v.inventory_quantity || 0,
+    })) || [],
+  )
+
   const [newVariant, setNewVariant] = useState<ProductVariant>({
     size: "",
     color: "",
@@ -222,6 +233,13 @@ export function ProductForm({ product, categories }: ProductFormProps) {
 
         if (variantsError) {
           console.error("[v0] Error inserting variants:", variantsError)
+          toast({
+            title: "Error saving variants",
+            description: "Some variants may not have been saved properly",
+            variant: "destructive",
+          })
+        } else {
+          console.log("[v0] Successfully saved", variants.length, "variants")
         }
       }
     }

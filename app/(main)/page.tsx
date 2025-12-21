@@ -6,7 +6,9 @@ import { createClient } from "@/lib/supabase/server"
 import { ProductCard } from "@/components/products/product-card"
 import type { Product } from "@/lib/types/product"
 import SplitText from "@/components/Reactbits/SplitText"
-import heroBG from '@/public/images/Stylish Cap Close-Up.png'
+import heroBG from '@/public/images/heroFeatured.jpeg'
+// import CircularText from "@/components/Reactbits/CircularText"
+import CurvedLoop from "@/components/Reactbits/CurvedLoop"
 
 // Cap style categories for the homepage
 const capStyles = [
@@ -96,8 +98,15 @@ export default async function HomePage() {
       {/* Hero Section */}
       <section className="relative bg-secondary/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 py-16 lg:py-24 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 py-16 max-md:pt-14 lg:py-24 items-center">
             <div className="max-w-xl">
+                {/* <CircularText
+                  text="FIX*YOUR*FIT*"
+                  onHover="speedUp"
+                  spinDuration={20}
+                  className="custom-class mb-8 text-foreground"
+                /> */}
+
                 <span className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground mb-4">
                     <Crown className="w-4 h-4" />
                     Premium Headwear Collection
@@ -138,7 +147,7 @@ export default async function HomePage() {
                     trendy bucket hats — find your crown.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                    <Button size="lg" asChild className="hover:bg-(--primary-color)!">
+                    <Button size="lg" asChild className="btn1">
                     <Link href="/shop">
                         Shop All Caps
                         <ArrowRight className="w-4 h-4 ml-2" />
@@ -159,6 +168,14 @@ export default async function HomePage() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
+            <CurvedLoop 
+              marqueeText="Welcome ✦ To ✦ Our ✦ Exquisite ✦ Shop ✦"
+              speed={3}
+              curveAmount={300}
+              direction="right"
+              interactive={true}
+              className="custom-text-style text-foreground lg:hidden textDisplay"
+            />
           </div>
         </div>
       </section>
@@ -168,8 +185,8 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
-                <Truck className="w-6 h-6" />
+              <div className="w-12 h-12 rounded-full bg-foreground/10 flex items-center justify-center flex-shrink-0">
+                <Truck className="w-6 h-6 text-foreground" />
               </div>
               <div>
                 <h3 className="font-medium">Free Shipping</h3>
@@ -177,8 +194,8 @@ export default async function HomePage() {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
-                <RefreshCw className="w-6 h-6" />
+              <div className="w-12 h-12 rounded-full bg-foreground/10 flex items-center justify-center flex-shrink-0">
+                <RefreshCw className="w-6 h-6 text-foreground" />
               </div>
               <div>
                 <h3 className="font-medium">Easy Returns</h3>
@@ -186,8 +203,8 @@ export default async function HomePage() {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
-                <Shield className="w-6 h-6" />
+              <div className="w-12 h-12 rounded-full bg-foreground/10 flex items-center justify-center flex-shrink-0">
+                <Shield className="w-6 h-6 text-foreground" />
               </div>
               <div>
                 <h3 className="font-medium">Quality Guarantee</h3>
@@ -203,7 +220,7 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <h2 className="text-3xl font-bold tracking-tight">Shop by Style</h2>
+              <h2 className="text-3xl font-medium tracking-tight">Shop by <span className="uppercase textDisplay">Style</span></h2>
               <p className="text-muted-foreground mt-2">Find the perfect cap for your look</p>
             </div>
             <Button variant="ghost" asChild className="hidden sm:flex">
@@ -238,7 +255,7 @@ export default async function HomePage() {
           </div>
 
           <div className="mt-8 text-center sm:hidden">
-            <Button variant="outline" asChild>
+            <Button variant="outline" asChild className="py-5 px-4">
               <Link href="/shop">
                 View All Styles
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -254,7 +271,7 @@ export default async function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-end justify-between mb-8">
               <div>
-                <h2 className="text-3xl font-bold tracking-tight">Featured Caps</h2>
+                <h2 className="text-3xl font-medium tracking-tight">Featured <span className="uppercase textDisplay">Caps</span></h2>
                 <p className="text-muted-foreground mt-2">Our most popular headwear this season</p>
               </div>
               <Button variant="ghost" asChild className="hidden sm:flex">
@@ -272,7 +289,7 @@ export default async function HomePage() {
             </div>
 
             <div className="mt-8 text-center sm:hidden">
-              <Button variant="outline" asChild>
+              <Button variant="outline" asChild className="py-5 px-4">
                 <Link href="/shop?featured=true">
                   View All Products
                   <ArrowRight className="w-4 h-4 ml-2" />
@@ -317,7 +334,7 @@ export default async function HomePage() {
       <section className="py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-foreground text-background rounded-2xl p-8 sm:p-12 lg:p-16 text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-balance">Join the FIZ CAP Crew</h2>
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight mb-4 text-balance">Join the FIZ CAP Crew</h2>
             <p className="text-background/80 max-w-2xl mx-auto mb-8">
               Subscribe to get exclusive drops, early access to new releases, and member-only discounts on premium
               headwear.

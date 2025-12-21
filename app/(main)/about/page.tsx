@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Award, Heart, Shield, Sparkles, Truck, Users, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import aboutBg from '@/public/images/Stylish Cap Close-Up.png'
+import aboutBg from '@/public/images/heroFeatured.jpeg'
 
 import snapbacks from '@/public/images/snapbacks.jpeg'
 import fitted from '@/public/images/fitted.jpeg'

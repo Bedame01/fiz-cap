@@ -72,7 +72,7 @@ export function ContactForm() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="name">
-            Name <span className="text-destructive">*</span>
+            Name <span className="text-destructive"></span>
           </Label>
           <Input
             id="name"
@@ -85,7 +85,7 @@ export function ContactForm() {
         </div>
         <div className="space-y-2">
           <Label htmlFor="email">
-            Email <span className="text-destructive">*</span>
+            Email <span className="text-destructive"></span>
           </Label>
           <Input
             id="email"
@@ -101,7 +101,7 @@ export function ContactForm() {
 
       <div className="space-y-2">
         <Label htmlFor="subject">
-          Subject <span className="text-destructive">*</span>
+          Subject <span className="text-destructive"></span>
         </Label>
         <Select value={subject} onValueChange={setSubject} required disabled={isLoading}>
           <SelectTrigger>
@@ -119,7 +119,7 @@ export function ContactForm() {
 
       <div className="space-y-2">
         <Label htmlFor="message">
-          Message <span className="text-destructive">*</span>
+          Message <span className="text-destructive"></span>
         </Label>
         <Textarea
           id="message"

@@ -3,17 +3,26 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@font-face {
+/* @font-face {
   font-family: 'Recoleta';
   src: url('../public/fonts/Recoleta-RegularDEMO.otf') format('truetype');
   src: url('../public/fonts/Recoleta-RegularDEMO.otf') format('woff');
   src: url('../public/fonts/Recoleta-RegularDEMO.otf') format('woff2');
-  /* font-weight: 400; */
-  /* font-display: swap; */
+} */
+
+@font-face {
+  font-family: 'GeneralSans';
+  src: url(./../public/fonts/GeneralSans-Variable.ttf) format('truetype');
+  src: url(./../public/fonts/GeneralSans-Variable.ttf) format('woff');
+  src: url(./../public/fonts/GeneralSans-Variable.ttf) format('woff2');
+  font-weight: 400, 500, 600, 700, 800;
 }
 
 :root {
-  --primary-color: #935210;
+  /* --primary-color: #837dcb;
+  --primary-color-deep: #7069bc; */
+  --gallery-aspect-ratio: 4/5;
+  --ratio: 1.1010752688172043;
   --bg: #f5f5f5;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -87,10 +96,10 @@
 }
 
 @theme inline {
-  --font-sans: 'Nunito', 'Nunito Fallback', sans-serif;
-  --font-mono: 'Nunito', 'Nunito Fallback', monospace;
-  /* --font-sans: 'Red Hat Display', sans-serif;
-  --font-mono: 'Red Hat Display', monospace; */
+  /* --font-sans: 'Nunito', 'Nunito Fallback', sans-serif;
+  --font-mono: 'Nunito', 'Nunito Fallback', monospace; */
+  --font-sans: 'GeneralSans', sans-serif;
+  --font-mono: 'GeneralSans', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -138,14 +147,37 @@
   }
 }
 
+.aspect-ratio{
+  aspect-ratio: var(--gallery-aspect-ratio, var(--ratio)) !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+}
+
 .bg{
   background-color: var(--bg) !important;
 }
 
-.primary-color{
+/* .primary-color{
   color: var(--primary-color) !important;
-}
+} */
 
 .textDisplay{
-  font-family: 'Recoleta', sans-serif !important;
+  /* font-family: 'Recoleta', sans-serif !important; */
+  font-family: 'Nixie One', sans-serif !important;
 }
+
+/* .btn1{
+  background-color: var(--primary-color) !important;
+  color: #fff;
+  &:hover{
+    background-color: var(--primary-color-deep) !important;
+  }
+}
+
+.btn-outline{
+  border-color: var(--primary-color) !important;
+  &:hover{
+    background-color: var(--primary-color-deep) !important;
+    color: #fff !important;
+  }
+} */

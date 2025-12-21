@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Geist, Geist_Mono, Nunito, Manrope, Red_Hat_Display, Red_Hat_Mono } from "next/font/google"
+import { Geist, Geist_Mono, Nunito, Poppins, Nixie_One } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Toaster } from "@/components/ui/sonner"
 import "./globals.css"
@@ -8,9 +8,9 @@ import "./globals.css"
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 const _nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito", weight: ["400", "500", "600", "700", "800"] })
-const _manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", weight: ["400", "500", "600", "700", "800"] })
-const _redHatDisplay = Red_Hat_Display({ subsets: ["latin"], variable: "--font-red-hat-display", weight: ["400", "500", "600", "700", "800"] })
-const _redHatMono = Red_Hat_Mono({ subsets: ["latin"], variable: "--font-red-hat-mono", weight: ["400", "500", "600", "700"] })
+const _poppins = Poppins({ subsets: ["latin"], variable: "--font-poppins", weight: ["400", "500", "600", "700", "800"] })
+const _nixieOne = Nixie_One({ subsets: ["latin"], weight: ["400"] })
+
 
 export const metadata: Metadata = {
   title: {
@@ -57,10 +57,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"></link>
+      </head>
       <body className="font-sans antialiased min-h-screen flex flex-col">
         {children}
-        <Toaster position="bottom-right" />
+        <Toaster position="bottom-right"/>
         <Analytics />
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+          AOS.init();
+        </script>
       </body>
     </html>
   )

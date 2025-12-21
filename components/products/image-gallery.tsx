@@ -36,7 +36,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
     <div className="flex flex-col gap-4">
       {/* Main Image */}
       <Dialog>
-        <div className="relative aspect-square bg-secondary rounded-lg overflow-hidden group">
+        <div className="relative aspect-square bg-secondary overflow-hidden group">
           <Image
             src={images[selectedIndex].url || "/placeholder.svg"}
             alt={images[selectedIndex].alt_text || title}
@@ -110,7 +110,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
               key={image.id}
               onClick={() => setSelectedIndex(index)}
               className={cn(
-                "relative w-20 h-20 flex-shrink-0 rounded-md overflow-hidden border-2 transition-all",
+                "relative w-25 h-25 flex-shrink-0 rounded-sm overflow-hidden border-2 transition-all",
                 selectedIndex === index ? "border-foreground" : "border-transparent hover:border-muted-foreground/50",
               )}
             >

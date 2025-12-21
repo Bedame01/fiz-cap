@@ -19,8 +19,6 @@ const footerLinks = {
     { label: "Contact Us", href: "/contact" },
     { label: "FAQ", href: "/faq" },
     { label: "Size Guide", href: "/size-guide" },
-    { label: "Shipping Info", href: "/shipping" },
-    { label: "Returns & Exchanges", href: "/returns" },
   ],
   company: [
     { label: "About Fiz Cap", href: "/about" },
@@ -29,9 +27,9 @@ const footerLinks = {
     { label: "Orders", href: "/account/orders" },
   ],
   legal: [
-    { label: "Privacy Policy", href: "/privacy" },
-    { label: "Terms of Service", href: "/terms" },
-    { label: "Cookie Policy", href: "/cookies" },
+    { label: "Terms of Service", href: "/policy/terms-of-service" },
+    { label: "Shipping Policy", href: "/policy/shipping-policy" },
+    { label: "Refund Policy", href: "/policy/refund-policy" },
   ],
 }
 
@@ -45,7 +43,7 @@ const socialLinks = [
 export function Footer() {
   const pathname = usePathname()
 
-  if (pathname === "/checkout" || pathname === "/admin") {
+  if (pathname === "/checkout" || pathname === "/admin" || pathname === "/account/orders" || pathname === "/account") {
     return null
   }
 

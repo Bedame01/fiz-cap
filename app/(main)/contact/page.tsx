@@ -32,10 +32,10 @@ export default function ContactPage() {
                 <div>
                   <p className="font-medium">Email</p>
                   <a
-                    href="mailto:support@minimal.com"
+                    href="mailto:Fizayomi21@gmail.com"
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    support@minimal.com
+                    Fizayomi21@gmail.com
                   </a>
                 </div>
               </div>
@@ -50,7 +50,7 @@ export default function ContactPage() {
                     href="tel:+1-800-MINIMAL"
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    +1 (800) MINIMAL
+                    +234 123 456 7890
                   </a>
                 </div>
               </div>
@@ -60,12 +60,12 @@ export default function ContactPage() {
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="font-medium">Headquarters</p>
-                  <p className="text-muted-foreground">
+                  <p className="font-medium">Lagos, Nigeria</p>
+                  {/* <p className="text-muted-foreground">
                     123 Design Street
                     <br />
                     New York, NY 10012
-                  </p>
+                  </p> */}
                 </div>
               </div>
 
@@ -76,9 +76,7 @@ export default function ContactPage() {
                 <div>
                   <p className="font-medium">Business Hours</p>
                   <p className="text-muted-foreground">
-                    Mon - Fri: 9am - 6pm EST
-                    <br />
-                    Sat - Sun: 10am - 4pm EST
+                    Available 24/7 at all time
                   </p>
                 </div>
               </div>
