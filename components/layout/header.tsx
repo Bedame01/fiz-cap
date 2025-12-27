@@ -8,9 +8,11 @@ import { Button } from "@/components/ui/button"
 import { CartButton } from "@/components/cart/cart-button"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { cn } from "@/lib/utils"
-import { Menu, User, Search, Shield } from "lucide-react"
+import { Menu } from "lucide-react"
+import { useTheme } from "next-themes"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import logo from '@/public/icons/logo.png'
+import logoBlack from '@/public/icons/logoBlack.png'
+import logoWhite from '@/public/icons/logoWhite.png'
 import Image from "next/image"
 
 const navLinks = [
@@ -23,6 +25,7 @@ const navLinks = [
 
 export function Header() {
   const pathname = usePathname()
+  const { theme } = useTheme()
   const [isOpen, setIsOpen] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
   const supabase = createClient()
@@ -57,12 +60,12 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center">
-            <span className="text-xl font-bold tracking-tight">FIZ CAP</span>
-            {/* <Image
-              src={logo}
+            {/* <span className="text-xl font-bold tracking-tight">FIZ CAP</span> */}
+            <Image
+              src={theme === "dark" ? logoWhite : logoBlack}
               alt="logo"
-              className="w-15"
-            /> */}
+              className="w-23 h-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}

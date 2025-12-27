@@ -471,19 +471,19 @@ export function CheckoutForm({ onShippingCalculated }: CheckoutFormProps) {
         )}
 
         <div className="flex items-center gap-3 border-t pt-4 flex-wrap gap-y-2">
-          <Link href="/refund" className="text-sm underline text-blue-500 hover:text-(--primary-color)">
+          <Link href="/refund-policy" className="text-sm underline text-blue-500 hover:text-(--primary-color)">
             Refund policy
           </Link>
-          <Link href="/refund" className="text-sm underline text-blue-500 hover:text-(--primary-color)">
+          <Link href="/shipping-policy" className="text-sm underline text-blue-500 hover:text-(--primary-color)">
             Shipping
           </Link>
-          <Link href="/refund" className="text-sm underline text-blue-500 hover:text-(--primary-color)">
-            Privacy policy
+          <Link href="/size-guide" className="text-sm underline text-blue-500 hover:text-(--primary-color)">
+            Size guide
           </Link>
-          <Link href="/refund" className="text-sm underline text-blue-500 hover:text-(--primary-color)">
+          <Link href="/terms" className="text-sm underline text-blue-500 hover:text-(--primary-color)">
             Terms of service
           </Link>
-          <Link href="/refund" className="text-sm underline text-blue-500 hover:text-(--primary-color)">
+          <Link href="/contact" className="text-sm underline text-blue-500 hover:text-(--primary-color)">
             Contact
           </Link>
         </div>

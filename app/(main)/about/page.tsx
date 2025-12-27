@@ -12,6 +12,8 @@ import trucker from '@/public/images/truckers.jpeg'
 import beanies from '@/public/images/beanies.jpeg'
 import bucket from '@/public/images/bucket.jpeg'
 
+import innovationBg from '@/public/images/Futuristic Data Display.png'
+
 export const metadata: Metadata = {
   title: "About Us",
   description:
@@ -201,7 +203,7 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="relative order-1 aspect-square overflow-hidden rounded-2xl bg-muted lg:order-2">
-              <Image src="/modern-e-commerce-technology-fashion-shopping-expe.jpg" alt="Fiz Cap Technology" fill className="object-cover" />
+              <Image src={innovationBg} alt="Fiz Cap Technology" fill className="object-cover" />
             </div>
           </div>
         </div>

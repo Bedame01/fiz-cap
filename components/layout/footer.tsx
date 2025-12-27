@@ -3,8 +3,11 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Instagram, Mail } from "lucide-react"
-
-import Tiktok from "@/public/icons/Tiktok-Logo--Streamline-Logos.svg"
+import logoBlack from '@/public/icons/logoBlack.png'
+import logoWhite from '@/public/icons/logoWhite.png'
+import { useTheme } from "next-themes"
+import Image from "next/image"
+// import Tiktok from "@/public/icons/Tiktok-Logo--Streamline-Logos.svg"
 
 const footerLinks = {
   shop: [
@@ -27,9 +30,9 @@ const footerLinks = {
     { label: "Orders", href: "/account/orders" },
   ],
   legal: [
-    { label: "Terms of Service", href: "/policy/terms-of-service" },
-    { label: "Shipping Policy", href: "/policy/shipping-policy" },
-    { label: "Refund Policy", href: "/policy/refund-policy" },
+    { label: "Terms of Service", href: "/terms" },
+    { label: "Shipping Policy", href: "/shipping-policy" },
+    { label: "Refund Policy", href: "/refund-policy" },
   ],
 }
 
@@ -42,9 +45,28 @@ const socialLinks = [
 
 export function Footer() {
   const pathname = usePathname()
+  const { theme } = useTheme()
 
   if (pathname === "/checkout" || pathname === "/admin" || pathname === "/account/orders" || pathname === "/account") {
     return null
+  }
+
+  if (pathname === "/stores" || pathname === "/checkout/success") {
+   return (
+      <div className="border-t mt-12 py-8 w-full">
+          <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-muted-foreground">
+              &copy; {new Date().getFullYear()} Fiz Cap. All rights reserved.
+            </p>
+            <div className="flex items-center gap-4">
+              <img src="/visa-logo-generic.png" alt="Visa" className="h-7 opacity-70" />
+              <img src="/mastercard-logo.png" alt="Mastercard" className="h-7 opacity-70" />
+              <img src="/verve-payment-logo.jpg" alt="Verve" className="h-7 opacity-70" />
+              <img src="/paystack-payment-logo.jpg" alt="Paystack" className="h-7 opacity-70" />
+            </div>
+          </div>
+      </div>
+   )
   }
 
   return (
@@ -54,7 +76,12 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-4 lg:col-span-1 lg:pr-8">
             <Link href="/" className="inline-block mb-4">
-              <span className="text-xl font-bold tracking-tight">FIZ CAP</span>
+              {/* <span className="text-xl font-bold tracking-tight">FIZ CAP</span> */}
+              <Image
+                src={theme === "dark" ? logoWhite : logoBlack}
+                alt="logo"
+                className="w-23 h-auto"
+              />
             </Link>
             <p className="text-sm text-muted-foreground mb-6 max-w-xs">
               Premium headwear for every style. From classic snapbacks to fitted caps, Fix your fit.
@@ -73,7 +100,7 @@ export function Footer() {
                 </a>
               ))}
               <a
-                href="https://www.tiktok.com/Fizcaps"
+                href="https://www.tiktok.com/@fiz_caps?lang=en"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"

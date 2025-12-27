@@ -16,6 +16,10 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
+import Image from "next/image"
+import logoBlack from '@/public/icons/logoBlack.png'
+import logoWhite from '@/public/icons/logoWhite.png'
+import { useTheme } from "next-themes"
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
@@ -30,6 +34,7 @@ const navItems = [
 
 export function AdminSidebar() {
   const pathname = usePathname()
+  const { theme } = useTheme()
   const [collapsed, setCollapsed] = useState(false)
 
   return (
@@ -39,7 +44,11 @@ export function AdminSidebar() {
       <div className="p-4 border-b flex items-center justify-between">
         {!collapsed && (
           <Link href="/admin" className="font-bold text-xl tracking-tight">
-            FIZ CAP
+            <Image
+              src={theme === "dark" ? logoWhite : logoBlack}
+              alt="logo"
+              className="w-23 h-auto"
+            />
           </Link>
         )}
         <Button

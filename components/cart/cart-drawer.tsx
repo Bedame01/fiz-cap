@@ -70,7 +70,7 @@ export function CartDrawer() {
               </clipPath>
               </defs>
             </svg>
-            <p className="text-4xl font-medium textDisplay">Your cart is empty</p>
+            <p className="text-4xl font-medium textDisplay cart-text">Your cart is empty</p>
             <p className="text-muted-foreground text-sm mt-1 mb-6">Add some items to get started</p>
             <Button asChild onClick={() => setIsOpen(false)}>
               <Link href="/shop">

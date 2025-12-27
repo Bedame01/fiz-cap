@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Truck, RefreshCw, Shield, Crown } from "lucide-react"
+import { ArrowRight, Ruler, CheckCircle, Shield, Crown } from "lucide-react"
 import { createClient } from "@/lib/supabase/server"
 import { ProductCard } from "@/components/products/product-card"
 import type { Product } from "@/lib/types/product"
@@ -116,7 +116,7 @@ export default async function HomePage() {
                 </h1> */}
                 <SplitText
                     text="Welcome to FIZ CAP,"
-                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl font-bold tracking-tight text-balance textDisplay"
+                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl font-bold tracking-tight text-balance textDisplay hero-heading"
                     delay={100}
                     duration={0.7}
                     ease="power3.out"
@@ -130,7 +130,7 @@ export default async function HomePage() {
                 />
                 <SplitText
                     text="order to fix your fit."
-                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl font-bold tracking-tight text-balance mb-6 textDisplay"
+                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl font-bold tracking-tight text-balance mb-6 textDisplay hero-heading"
                     delay={100}
                     duration={0.7}
                     ease="power3.out"
@@ -185,26 +185,26 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-foreground/10 flex items-center justify-center flex-shrink-0">
-                <Truck className="w-6 h-6 text-foreground" />
+              <div className="w-12 h-12 rounded-full bg-foreground/8 flex items-center justify-center flex-shrink-0">
+                <Crown className="w-6 h-6 text-foreground" />
               </div>
               <div>
-                <h3 className="font-medium">Free Shipping</h3>
-                <p className="text-sm text-muted-foreground">On orders over ₦50,000</p>
+                <h3 className="font-medium">Exclusive Styles</h3>
+                <p className="text-sm text-muted-foreground">Premium headwear collection</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-foreground/10 flex items-center justify-center flex-shrink-0">
-                <RefreshCw className="w-6 h-6 text-foreground" />
+              <div className="w-12 h-12 rounded-full bg-foreground/8 flex items-center justify-center flex-shrink-0">
+                <Ruler className="w-6 h-6 text-foreground" />
               </div>
               <div>
-                <h3 className="font-medium">Easy Returns</h3>
-                <p className="text-sm text-muted-foreground">30-day return policy</p>
+                <h3 className="font-medium">Perfect Fit Promise</h3>
+                <p className="text-sm text-muted-foreground">Perfect fit every time</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-foreground/10 flex items-center justify-center flex-shrink-0">
-                <Shield className="w-6 h-6 text-foreground" />
+              <div className="w-12 h-12 rounded-full bg-foreground/8 flex items-center justify-center flex-shrink-0">
+                <CheckCircle className="w-6 h-6 text-foreground" />
               </div>
               <div>
                 <h3 className="font-medium">Quality Guarantee</h3>

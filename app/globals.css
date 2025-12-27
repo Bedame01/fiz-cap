@@ -166,6 +166,20 @@
   font-family: 'Nixie One', sans-serif !important;
 }
 
+@media screen and (max-width: 450px) {
+  .hero-heading{
+    text-overflow: nowrap !important;
+    word-wrap: nowrap !important;
+    white-space: nowrap !important;
+    font-size: 31px !important;
+  }
+
+  .cart-text{
+    font-size: 30px !important;
+  }
+  
+}
+
 /* .btn1{
   background-color: var(--primary-color) !important;
   color: #fff;

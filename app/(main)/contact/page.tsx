@@ -47,10 +47,10 @@ export default function ContactPage() {
                 <div>
                   <p className="font-medium">Phone</p>
                   <a
-                    href="tel:+1-800-MINIMAL"
+                    href="tel:07049358338"
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    +234 123 456 7890
+                    +234 704 935 8338
                   </a>
                 </div>
               </div>

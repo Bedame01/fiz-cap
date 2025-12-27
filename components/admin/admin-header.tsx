@@ -130,7 +130,7 @@ export function AdminHeader({ user }: AdminHeaderProps) {
   return (
     <header className="h-16 border-b bg-background px-6 flex items-center justify-between">
       <div>
-        <h2 className="text-lg font-semibold textDisplay">Admin Panel</h2>
+        <h2 className="text-lg font-bold textDisplay">Admin Panel</h2>
       </div>
 
       <div className="flex items-center gap-4">

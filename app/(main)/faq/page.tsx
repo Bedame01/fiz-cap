@@ -236,8 +236,8 @@ export default function FAQPage() {
                 <h3 className="font-medium">Call Us</h3>
                 <p className="mt-2 text-sm text-muted-foreground">Mon-Fri from 9am to 6pm WAT</p>
                 <Button variant="link" asChild className="mt-4 p-0">
-                  <Link href="tel:+2341234567890">
-                    +234 123 456 7890
+                  <Link href="tel:07049358338">
+                    +234 704 935 8338
                     <ArrowRight className="ml-1 h-4 w-4" />
                   </Link>
                 </Button>

@@ -152,13 +152,13 @@ export default function SignUpPage() {
         </Card>
         <div className="w-full absolute -bottom-18 left-1/2 transform -translate-x-1/2 flex justify-center items-center space-x-4">
           <Link
-            href='/policy'
+            href='/terms'
             className=" text-sm font-medium text-muted-foreground hover:underline"
           >
             Privacy Policy
           </Link>
           <Link
-            href='/policy'
+            href='/terms'
             className=" text-sm font-medium text-muted-foreground hover:underline"
           >
             Terms of Service

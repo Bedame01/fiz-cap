@@ -84,7 +84,7 @@ export function CartItem({ item }: CartItemProps) {
         </div>
         {isAtMaxStock && 
           <p className="text-xs text-foreground mt-2 flex items-center gap-1">
-            <svg className="icon icon-error size-3.5" viewBox="0 0 13 13">
+            <svg className="icon icon-error size-4" viewBox="0 0 13 13">
               <circle cx="6.5" cy="6.5" r="5.5" stroke="#fff" stroke-width="var(--icon-stroke-width)"></circle>
               <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width=".7"></circle>
               <path fill="#fff" d="m5.874 3.528.1 4.044h1.053l.1-4.044zm.627 6.133c.38 0 .68-.288.68-.656s-.3-.656-.68-.656-.681.288-.681.656.3.656.68.656"></path>
