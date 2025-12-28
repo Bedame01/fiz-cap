@@ -51,7 +51,7 @@ export function Footer() {
     return null
   }
 
-  if (pathname === "/stores" || pathname === "/checkout/success") {
+  if (pathname === "/stores" || pathname === "/checkout/success" || pathname === "/refund-policy" || pathname === "/shipping-policy" || pathname === "/size-guide" || pathname === "/terms") {
    return (
       <div className="border-t mt-12 py-8 w-full">
           <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">

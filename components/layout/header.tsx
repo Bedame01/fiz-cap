@@ -142,7 +142,12 @@ export function Header() {
               <SheetContent side="left" className="w-[300px]">
                 <SheetHeader>
                   <SheetTitle className="text-left">
-                    <span className="text-xl font-bold tracking-tight">FIZ CAP</span>
+                    {/* <span className="text-xl font-bold tracking-tight">FIZ CAP</span> */}
+                    <Image
+                      src={theme === "dark" ? logoWhite : logoBlack}
+                      alt="logo"
+                      className="w-23 h-auto"
+                    />
                   </SheetTitle>
                 </SheetHeader>
                 <nav className="flex flex-col gap-4 mt-8 px-3">
