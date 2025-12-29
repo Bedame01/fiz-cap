@@ -669,6 +669,6 @@ For technical support or questions:
 
 ---
 
-*Fiz Cap - Cap Your Style*
+*Fiz Cap - Fiz Your Fit*
 
 Version 1.0.0 | Last Updated: December 2025
