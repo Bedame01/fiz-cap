@@ -46,25 +46,27 @@ export default function LoginPage() {
   }
 
   const handleGoogleLogin = async () => {
-    const supabase = createClient()
-    setIsGoogleLoading(true)
-    setError(null)
+  const supabase = createClient()
+  setIsGoogleLoading(true)
+  setError(null)
 
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: {
-          redirectTo:
-            process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL ||
-            `${window.location.origin}/auth/callback?redirect=${redirectTo}`,
-        },
-      })
-      if (error) throw error
-    } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : "An error occurred")
-      setIsGoogleLoading(false)
-    }
+  try {
+    // Get the proper redirect URL based on environment
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || window.location.origin
+    const redirectUrl = `${siteUrl}/auth/callback?redirect=${redirectTo}`
+
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: redirectUrl,
+      },
+    })
+    if (error) throw error
+  } catch (error: unknown) {
+    setError(error instanceof Error ? error.message : "An error occurred")
+    setIsGoogleLoading(false)
   }
+}
 
   return (
     <main className="flex bg min-h-screen w-full items-center justify-center p-6 md:p-10">
