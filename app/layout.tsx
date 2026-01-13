@@ -10,7 +10,7 @@ import favicon from "@/public/icons/favicon.png"
 // const _geist = Geist({ subsets: ["latin"] })
 // const _geistMono = Geist_Mono({ subsets: ["latin"] })
 const _nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito", weight: ["400", "500", "600", "700", "800"] })
-const _nixieOne = Nixie_One({ subsets: ["latin"], weight: ["400"] })
+const _nixieOne = Nixie_One({ subsets: ["latin"], weight: ["400"], variable: "--font-nixie-one", })
 
 export const metadata: Metadata = {
   title: {
