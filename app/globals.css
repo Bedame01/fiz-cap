@@ -12,7 +12,7 @@
 
 @font-face {
   font-family: 'GeneralSans';
-  src: url(./../public/fonts/GeneralSans-Variable.ttf) format('truetype');
+  src: url(./../public/fonts/GeneralSans-Variable.ttf) format('true-type');
   src: url(./../public/fonts/GeneralSans-Variable.ttf) format('woff');
   src: url(./../public/fonts/GeneralSans-Variable.ttf) format('woff2');
   font-weight: 400, 500, 600, 700, 800;
@@ -41,8 +41,8 @@
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --input: oklch(88.224% 0.0001 271.152);
+  --ring: oklch(91.357% 0.00106 11.782);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -79,7 +79,7 @@
   --destructive-foreground: oklch(0.637 0.237 25.331);
   --border: oklch(0.269 0 0);
   --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
+  --ring: oklch(26.033% 0.00003 271.152);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -96,10 +96,10 @@
 }
 
 @theme inline {
-  /* --font-sans: 'Nunito', 'Nunito Fallback', sans-serif;
-  --font-mono: 'Nunito', 'Nunito Fallback', monospace; */
-  --font-sans: 'GeneralSans', sans-serif;
-  --font-mono: 'GeneralSans', monospace;
+  --font-sans: 'Nunito', 'Nunito Fallback', sans-serif;
+  --font-mono: 'Nunito', 'Nunito Fallback', monospace;
+  /* --font-sans: 'GeneralSans', sans-serif;
+  --font-mono: 'GeneralSans', monospace; */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

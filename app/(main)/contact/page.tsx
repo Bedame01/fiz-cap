@@ -12,7 +12,7 @@ export default function ContactPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
       {/* Header */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold tracking-tight mb-4">Get in Touch</h1>
+        <h1 className="text-4xl font-bold tracking-tight mb-4">Get in Touch.</h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Have a question or need assistance? We are here to help. Fill out the form below or reach out through one of
           our contact channels.

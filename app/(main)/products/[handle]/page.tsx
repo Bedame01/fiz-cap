@@ -96,7 +96,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-13! sm:pb-16! sm:py-12">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
         {/* Image Gallery */}
         <ImageGallery images={product.images || []} title={product.name} />
@@ -107,7 +107,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
       {/* Related Products */}
       {relatedProducts.length > 0 && (
-        <section className="mt-16 pt-16 border-t">
+        <section className="mt-16 pt-16 border-t max-sm:px-2">
           <h2 className="text-2xl text-center font-medium tracking-tight mb-8 textDisplay">You may also like</h2>
           <ProductGrid products={relatedProducts} columns={4} />
         </section>

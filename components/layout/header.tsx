@@ -17,10 +17,11 @@ import Image from "next/image"
 
 const navLinks = [
   { href: "/shop", label: "Shop All" },
-  { href: "/shop?style=snapback", label: "Snapbacks" },
-  { href: "/shop?style=fitted", label: "Fitted" },
+  // { href: "/shop?style=snapback", label: "Snapbacks" },
+  // { href: "/shop?style=fitted", label: "Fitted" },
   { href: "/about", label: "About Us" },
   { href: "/stores", label: "Stores" },
+  { href: "/contact", label: "Contact Us" },
 ]
 
 export function Header() {

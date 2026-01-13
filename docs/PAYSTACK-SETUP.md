@@ -1,6 +1,6 @@
 # Paystack Integration Setup
 
-This document explains how to set up Paystack payment integration for the CAPHAUS e-commerce platform.
+This document explains how to set up Paystack payment integration for the FIZ CAP e-commerce platform.
 
 ## Environment Variables
 

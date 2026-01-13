@@ -130,7 +130,7 @@ export default async function HomePage() {
                 />
                 <SplitText
                     text="order to fix your fit."
-                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl font-bold tracking-tight text-balance mb-6 textDisplay hero-heading"
+                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl font-bold tracking-tight text-balance mb-6 textDisplay overflow-visible hero-heading"
                     delay={100}
                     duration={0.7}
                     ease="power3.out"
@@ -282,7 +282,7 @@ export default async function HomePage() {
               </Button>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-sm:px-2">
               {transformedProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}

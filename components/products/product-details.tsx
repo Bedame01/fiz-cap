@@ -136,7 +136,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         </div>
 
         <div className="flex gap-3">
-          <Button className="flex-1" size="lg" onClick={handleAddToCart} disabled={!inStock || isAdding}>
+          <Button className="flex-1 py-5.5" size="lg" onClick={handleAddToCart} disabled={!inStock || isAdding}>
             {isAdding ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : 
               <svg className="icon icon-cart size-4 fill-background mr-1" role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="cart-icon">
                 <title id="cart-icon">Cart</title>
@@ -154,11 +154,11 @@ export function ProductDetails({ product }: ProductDetailsProps) {
               }
             {inStock ? "Add to Cart" : "Out of Stock"}
           </Button>
-          <Button variant="outline" size="lg" className="px-4 bg-transparent">
+          <Button variant="outline" size="lg" className="px-4 py-5.5 bg-transparent">
             <Heart className="w-5 h-5" />
             <span className="sr-only">Add to wishlist</span>
           </Button>
-          <Button variant="outline" size="lg" className="px-4 bg-transparent" onClick={handleShare}>
+          <Button variant="outline" size="lg" className="px-4 py-5.5 bg-transparent" onClick={handleShare}>
             <Share2 className="w-5 h-5" />
             <span className="sr-only">Share</span>
           </Button>

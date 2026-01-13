@@ -47,7 +47,7 @@ interface AdminOrderNotificationData {
  */
 export async function sendEmail({ to, subject, html }: EmailOptions) {
   if (!resend) {
-    console.log("[v0] Resend not configured, skipping email")
+    console.log(" Resend not configured, skipping email")
     return null
   }
 
@@ -61,10 +61,10 @@ export async function sendEmail({ to, subject, html }: EmailOptions) {
       html,
     })
 
-    console.log("[v0] Email sent successfully:", result)
+    console.log(" Email sent successfully:", result)
     return result
   } catch (error) {
-    console.error("[v0] Failed to send email:", error)
+    console.error(" Failed to send email:", error)
     return null
   }
 }
@@ -87,7 +87,7 @@ export function generateOrderConfirmationEmail(data: OrderConfirmationData): str
 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
   <div style="background: #000; color: #fff; padding: 30px; text-align: center; border-radius: 8px 8px 0 0;">
     <h1 style="margin: 0; font-size: 28px;">Fiz Cap</h1>
-    <p style="margin: 10px 0 0; font-size: 14px; opacity: 0.9;">Premium Headwear</p>
+    <p style="margin: 10px 0 0; font-size: 14px; opacity: 0.9;">Premium Headwear - Fix your Fit</p>
   </div>
   
   <div style="background: #f9f9f9; padding: 30px; border-radius: 0 0 8px 8px;">
@@ -146,7 +146,7 @@ export function generateOrderConfirmationEmail(data: OrderConfirmationData): str
     </div>
     
     <p style="text-align: center; color: #666; font-size: 12px; margin-top: 30px;">
-      Need help? Contact us at <a href="mailto:support@fizcap.com" style="color: #000;">support@fizcap.com</a>
+      Need help? Contact us at <a href="mailto:Fizayomi21@gmail.com" style="color: #000;">Fizayomi21@gmail.com</a>
     </p>
   </div>
 </body>

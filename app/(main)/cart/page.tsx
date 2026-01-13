@@ -14,7 +14,7 @@ export default function CartPage() {
 
   if (isEmpty) {
     return (
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
         <div className="text-center">
           {/* <ShoppingBag className="w-20 h-20 text-muted-foreground/30 mx-auto mb-6" /> */}
           <svg className="icon icon-cart size-20 fill-muted-foreground/30 mx-auto mb-6" role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="cart-icon">
@@ -46,7 +46,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-5 sm:pt-12">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-3xl font-semibold tracking-tight">Shopping Cart ({cartCount})</h1>
