@@ -166,7 +166,11 @@
   font-family: 'Nixie One', sans-serif !important;
 }
 
-@media screen and (max-width: 450px) {
+/* .hero-heading{
+  font-family: 'GeneralSans' !important;
+} */
+
+@media screen and (max-width: 420px) {
   .hero-heading{
     text-overflow: nowrap !important;
     word-wrap: nowrap !important;

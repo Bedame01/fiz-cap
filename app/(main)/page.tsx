@@ -115,8 +115,8 @@ export default async function HomePage() {
                     Top Off Your Style
                 </h1> */}
                 <SplitText
-                    text="Welcome to FIZ CAP,"
-                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl tracking-tight text-balance textDisplay hero-heading"
+                    text="Welcome to Fiz Cap,"
+                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl tracking-tight text-balance font-medium hero-heading"
                     delay={100}
                     duration={0.7}
                     ease="power3.out"
@@ -129,8 +129,8 @@ export default async function HomePage() {
                     // onLetterAnimationComplete={() => {}}
                 />
                 <SplitText
-                    text="order to fix your fit."
-                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl tracking-tight text-balance mb-6 textDisplay overflow-visible hero-heading"
+                    text="Order to Fix your Fit."
+                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl tracking-tight text-balance font-medium mb-6 overflow-visible hero-heading"
                     delay={100}
                     duration={0.7}
                     ease="power3.out"
@@ -174,7 +174,7 @@ export default async function HomePage() {
               curveAmount={300}
               direction="right"
               interactive={true}
-              className="custom-text-style text-foreground lg:hidden textDisplay"
+              className="custom-text-style text-foreground font-medium lg:hidden"
             />
           </div>
         </div>
