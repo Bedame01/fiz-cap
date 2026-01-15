@@ -70,7 +70,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-secondary/30 mt-18">
+    <footer className="bg-secondary/30 mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           
@@ -145,19 +145,19 @@ export function Footer() {
         </div>
 
         {/* Brand */}
-        <div className="flex justify-center mx-auto mt-7 pt-7 border-t w-full">
+        <div className="flex justify-center mx-auto mt-6 pt-6 border-t w-full">
           <Link href="/" className="">
             {/* <span className="text-xl font-bold tracking-tight">FIZ CAP</span> */}
             <Image
               src={theme === "dark" ? logoWhite : logoBlack}
               alt="logo"
-              className="w-[25%] md:w-[16%]! lg:w-[13%]! mx-auto h-auto"
+              className="w-[33%]! md:w-[18%]! lg:w-[13%]! mx-auto h-auto"
             />
           </Link>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="border-t mt-6 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} Fiz Cap. All rights reserved.
           </p>

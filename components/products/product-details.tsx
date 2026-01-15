@@ -91,13 +91,13 @@ export function ProductDetails({ product }: ProductDetailsProps) {
             {product.style.replace("-", " ")}
           </Badge>
         )}
-        {isOnSale && <Badge className="bg-red-500">Sale</Badge>}
+        {isOnSale && <Badge className="bg-red-500 text-white">Sale 🎉</Badge>}
       </div>
 
       {/* Title & Price */}
       <div className="mb-6">
         <h1 className="text-3xl font-bold tracking-tight text-foreground mb-2 textDisplay">{product.name}</h1>
-        {product.brand && <p className="text-sm text-muted-foreground mb-4">by {product.brand}</p>}
+        {product.brand && <p className="text-sm text-muted-foreground/70 mb-4">by - {product.brand}</p>}
         <div className="flex items-center gap-3">
           <span className="text-2xl font-medium text-foreground">{formatPrice(currentPrice)}</span>
           {isOnSale && comparePrice && (
@@ -108,7 +108,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         {/* Stock status */}
         <div className="mt-2">
           {inStock ? (
-            <p className="text-sm text-green-600">
+            <p className="text-sm text-green-600 font-semibold">
               {stockCount <= 5 ? `Only ${stockCount} left in stock` : "In stock"}
             </p>
           ) : (

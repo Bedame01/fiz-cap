@@ -57,7 +57,7 @@ export default async function OrdersPage() {
           <div key={order.id} className="bg-card rounded-lg border p-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
               <div>
-                <p className="text-sm text-muted-foreground">Order #{orderNumber}</p>
+                <p className="font-semibold text-sm text-muted-foreground">Order #{orderNumber}</p>
                 <p className="text-sm text-muted-foreground">
                   {new Date(order.created_at).toLocaleDateString("en-US", {
                     year: "numeric",

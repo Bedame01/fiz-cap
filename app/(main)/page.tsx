@@ -109,7 +109,7 @@ export default async function HomePage() {
 
                 <span className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground mb-4">
                     <Crown className="w-4 h-4" />
-                    Premium Headwear Collection
+                    Premium Headwear Collection🧢🛍️🛒
                 </span>
                 {/* <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-balance mb-6">
                     Top Off Your Style

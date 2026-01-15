@@ -192,12 +192,12 @@
   font-family: 'GeneralSans' !important;
 } */
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 500px) {
   .hero-heading{
     text-overflow: nowrap !important;
     word-wrap: nowrap !important;
     white-space: nowrap !important;
-    font-size: 31px !important;
+    font-size: 8vw !important;
   }
 
   .cart-text{

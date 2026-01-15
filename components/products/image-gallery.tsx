@@ -51,7 +51,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
             <Button
               variant="secondary"
               size="icon"
-              className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity"
+              className="absolute py-0 top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity"
             >
               <ZoomIn className="w-4 h-4" />
               <span className="sr-only">Zoom image</span>
@@ -63,7 +63,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
               <Button
                 variant="secondary"
                 size="icon"
-                className="absolute left-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute py-0 left-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity"
                 onClick={goToPrevious}
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -72,7 +72,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
               <Button
                 variant="secondary"
                 size="icon"
-                className="absolute right-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute py-0 right-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity"
                 onClick={goToNext}
               >
                 <ChevronRight className="w-5 h-5" />

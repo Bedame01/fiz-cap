@@ -65,7 +65,7 @@ export function VariantSelector({ variants, selectedVariant, onVariantChange }: 
       {/* Variant Dropdown Selector */}
       <div>
         <label className="block text-sm font-medium mb-3">
-          Select Variant <span className="text-red-500">*</span>
+          Select Variant <span className="text-red-500">⬇️</span>
         </label>
         <Select value={selectedVariant?.id} onValueChange={handleVariantSelect}>
           <SelectTrigger className="w-full">
@@ -95,7 +95,7 @@ export function VariantSelector({ variants, selectedVariant, onVariantChange }: 
       {sizes.length > 0 && (
         <div>
           <label className="block text-sm font-medium mb-3">
-            Size <span className="text-red-500">*</span>
+            Size <span className="text-red-500">➡️</span>
             {selectedVariant?.size && (
               <span className="ml-2 font-normal text-muted-foreground">- {selectedVariant.size}</span>
             )}
