@@ -14,11 +14,11 @@ interface LayoutToggleProps {
 export function LayoutToggle({ layout, columns, onLayoutChange, onColumnsChange }: LayoutToggleProps) {
   return (
     <div className="flex items-center gap-2">
-      <div className="flex border rounded-md">
+      <div className="flex border rounded-md overflow-hidden">
         <Button
           variant="ghost"
           size="sm"
-          className={cn("rounded-r-none", layout === "grid" && "bg-muted")}
+          className={cn("rounded-l-none! py-4.5 rounded-r-none!", layout === "grid" && "bg-muted")}
           onClick={() => onLayoutChange("grid")}
         >
           <LayoutGrid className="w-4 h-4" />
@@ -27,7 +27,7 @@ export function LayoutToggle({ layout, columns, onLayoutChange, onColumnsChange 
         <Button
           variant="ghost"
           size="sm"
-          className={cn("rounded-l-none", layout === "list" && "bg-muted")}
+          className={cn("rounded-l-none! py-4.5 rounded-r-none!", layout === "list" && "bg-muted")}
           onClick={() => onLayoutChange("list")}
         >
           <List className="w-4 h-4" />
@@ -40,7 +40,7 @@ export function LayoutToggle({ layout, columns, onLayoutChange, onColumnsChange 
           <Button
             variant="ghost"
             size="sm"
-            className={cn("rounded-r-none px-2", columns === 2 && "bg-muted")}
+            className={cn("rounded-r-none rounded-none! py-4.5 px-2", columns === 2 && "bg-muted")}
             onClick={() => onColumnsChange(2)}
           >
             <Columns2 className="w-4 h-4" />
@@ -48,7 +48,7 @@ export function LayoutToggle({ layout, columns, onLayoutChange, onColumnsChange 
           <Button
             variant="ghost"
             size="sm"
-            className={cn("rounded-none px-2", columns === 3 && "bg-muted")}
+            className={cn("py-4.5 rounded-none! px-2", columns === 3 && "bg-muted")}
             onClick={() => onColumnsChange(3)}
           >
             <Columns3 className="w-4 h-4" />
@@ -56,7 +56,7 @@ export function LayoutToggle({ layout, columns, onLayoutChange, onColumnsChange 
           <Button
             variant="ghost"
             size="sm"
-            className={cn("rounded-l-none px-2", columns === 4 && "bg-muted")}
+            className={cn("rounded-l-none py-4.5 rounded-none! px-2", columns === 4 && "bg-muted")}
             onClick={() => onColumnsChange(4)}
           >
             <Columns4 className="w-4 h-4" />

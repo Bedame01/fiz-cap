@@ -111,7 +111,7 @@ export function VariantSelector({ variants, selectedVariant, onVariantChange }: 
                   onClick={() => handleSizeChange(size!)}
                   disabled={!isAvailable}
                   className={cn(
-                    "relative px-6 py-3 text-sm font-medium border-2 rounded-lg transition-all",
+                    "relative px-4 py-2 text-sm font-medium border-2 rounded-lg transition-all",
                     isSelected
                       ? "border-foreground bg-foreground text-background shadow-sm"
                       : "border-border hover:border-foreground bg-background",
@@ -148,7 +148,7 @@ export function VariantSelector({ variants, selectedVariant, onVariantChange }: 
                   onClick={() => handleColorChange(color!)}
                   disabled={!isAvailable}
                   className={cn(
-                    "relative px-6 py-3 text-sm font-medium border-2 rounded-lg transition-all",
+                    "relative px-5 py-2 text-sm font-medium border-2 rounded-lg transition-all",
                     isSelected
                       ? "border-foreground bg-foreground text-background shadow-sm"
                       : "border-border hover:border-foreground bg-background",

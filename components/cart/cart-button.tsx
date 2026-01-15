@@ -11,7 +11,7 @@ export function CartButton() {
     <Button
       variant="ghost"
       size="icon"
-      className="relative"
+      className="relative rounded-lg! p-0"
       onClick={() => setIsOpen(true)}
       aria-label={`Open cart with ${cartCount} items`}
     >

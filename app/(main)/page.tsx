@@ -116,7 +116,7 @@ export default async function HomePage() {
                 </h1> */}
                 <SplitText
                     text="Welcome to Fiz Cap,"
-                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl tracking-tight text-balance font-medium hero-heading"
+                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl tracking-tight text-balance font-semibold textDisplay hero-heading"
                     delay={100}
                     duration={0.7}
                     ease="power3.out"
@@ -130,7 +130,7 @@ export default async function HomePage() {
                 />
                 <SplitText
                     text="Order to Fix your Fit."
-                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl tracking-tight text-balance font-medium mb-6 overflow-visible hero-heading"
+                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl tracking-tight text-balance font-semibold mb-6 overflow-visible textDisplay hero-heading"
                     delay={100}
                     duration={0.7}
                     ease="power3.out"
@@ -147,13 +147,13 @@ export default async function HomePage() {
                     trendy bucket hats — find your crown.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                    <Button size="lg" asChild className="btn1">
+                    <Button size="lg" asChild className="btn1 py-5.5">
                     <Link href="/shop">
                         Shop All Caps
                         <ArrowRight className="w-4 h-4 ml-2" />
                     </Link>
                     </Button>
-                    <Button size="lg" variant="outline" asChild>
+                    <Button size="lg" variant="outline" asChild className="py-5.5">
                     <Link href="/shop?style=snapback">Shop Snapbacks</Link>
                     </Button>
                 </div>
@@ -220,7 +220,7 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <h2 className="text-3xl font-medium tracking-tight">Shop by <span className="uppercase textDisplay">Style</span></h2>
+              <h2 className="text-3xl tracking-tight uppercase">Shop by <span className="textDisplay">Style</span></h2>
               <p className="text-muted-foreground mt-2">Find the perfect cap for your look</p>
             </div>
             <Button variant="ghost" asChild className="hidden sm:flex">
@@ -271,7 +271,7 @@ export default async function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-end justify-between mb-8">
               <div>
-                <h2 className="text-3xl font-medium tracking-tight">Featured <span className="uppercase textDisplay">Caps</span></h2>
+                <h2 className="text-3xl tracking-tight uppercase">Featured <span className="textDisplay">Caps</span></h2>
                 <p className="text-muted-foreground mt-2">Our most popular headwear this season</p>
               </div>
               <Button variant="ghost" asChild className="hidden sm:flex">
@@ -305,7 +305,7 @@ export default async function HomePage() {
         <section className="py-16 lg:py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight textDisplay">Browse Categories</h2>
+              <h2 className="text-3xl font-semibold tracking-tight textDisplay">Browse Categories</h2>
               <p className="text-muted-foreground mt-2">Explore our full collection of headwear</p>
             </div>
 

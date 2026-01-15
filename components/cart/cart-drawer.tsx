@@ -73,7 +73,7 @@ export function CartDrawer() {
             <p className="text-4xl font-medium textDisplay cart-text">Your cart is empty</p>
             <p className="text-muted-foreground text-sm mt-1 mb-6">Add some items to get started</p>
             <Button asChild onClick={() => setIsOpen(false)}>
-              <Link href="/shop">
+              <Link href="/shop" className="py-5">
                 Continue Shopping
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Link>

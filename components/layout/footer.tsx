@@ -70,48 +70,10 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-secondary/30 border-t">
+    <footer className="bg-secondary/30 mt-18">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
-          {/* Brand */}
-          <div className="col-span-2 md:col-span-4 lg:col-span-1 lg:pr-8">
-            <Link href="/" className="inline-block mb-4">
-              {/* <span className="text-xl font-bold tracking-tight">FIZ CAP</span> */}
-              <Image
-                src={theme === "dark" ? logoWhite : logoBlack}
-                alt="logo"
-                className="w-23 h-auto"
-              />
-            </Link>
-            <p className="text-sm text-muted-foreground mb-6 max-w-xs">
-              Premium headwear for every style. From classic snapbacks to fitted caps, Fix your fit.
-            </p>
-            <div className="flex gap-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                  aria-label={social.label}
-                >
-                  <social.icon className="w-5 h-5" />
-                </a>
-              ))}
-              <a
-                href="https://www.tiktok.com/@fiz_caps?lang=en"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                // aria-label='Tiktok'
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="size-[19px] stroke-muted-foreground hover:stroke-foreground transition-all">
-                  <path stroke="inherit" stroke-linejoin="round" d="M16 1.5h-3.5V16c0 1.5 -1.5 3 -3 3s-3 -0.5 -3 -3c0 -2 1.899 -3.339 3.5 -3V9.5c-6.12 0 -7 5 -7 6.5s0.977 6.5 6.5 6.5c4.522 0 6.5 -3.5 6.5 -6v-8c1.146 1.018 2.922 1.357 5 1.5V6.5c-3.017 0 -5 -2.654 -5 -5Z" stroke-width="1.8"></path>
-                </svg>
-              </a>
-            </div>
-          </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          
 
           {/* Shop Links */}
           <div>
@@ -182,8 +144,20 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Brand */}
+        <div className="flex justify-center mx-auto mt-7 pt-7 border-t w-full">
+          <Link href="/" className="">
+            {/* <span className="text-xl font-bold tracking-tight">FIZ CAP</span> */}
+            <Image
+              src={theme === "dark" ? logoWhite : logoBlack}
+              alt="logo"
+              className="w-[25%] md:w-[16%]! lg:w-[13%]! mx-auto h-auto"
+            />
+          </Link>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="border-t mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="border-t mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} Fiz Cap. All rights reserved.
           </p>

@@ -59,7 +59,7 @@ export function ProductCard({ product, layout = "grid" }: ProductCardProps) {
             <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">No image</div>
           )}
           {isOnSale && (
-            <span className="absolute top-2 left-2 bg-red-500 text-white px-2 py-0.5 text-xs font-medium rounded">
+            <span className="absolute top-2 left-2 bg-accent text-foreground px-5 py-2 text-xs font-medium rounded-2xl">
               SALE
             </span>
           )}
@@ -119,12 +119,12 @@ export function ProductCard({ product, layout = "grid" }: ProductCardProps) {
             <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">No image</div>
           )}
           {isOnSale && (
-            <span className="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 text-xs font-medium rounded">
+            <span className="absolute top-3 left-3 bg-accent text-foreground px-5 py-2 text-xs font-medium rounded-2xl">
               SALE
             </span>
           )}
           {!inStock && (
-            <span className="absolute top-3 left-3 bg-muted text-muted-foreground px-2 py-1 text-xs font-medium rounded">
+            <span className="absolute top-3 left-3 bg-muted text-muted-foreground px-5 py-2 text-xs font-medium rounded">
               SOLD OUT
             </span>
           )}

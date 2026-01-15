@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { CartButton } from "@/components/cart/cart-button"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { cn } from "@/lib/utils"
-import { Menu } from "lucide-react"
+import { Menu, Instagram, Mail } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import logoBlack from '@/public/icons/logoBlack.png'
@@ -22,6 +22,13 @@ const navLinks = [
   { href: "/about", label: "About Us" },
   { href: "/stores", label: "Stores" },
   { href: "/contact", label: "Contact Us" },
+]
+
+const socialLinks = [
+  // { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
+  // { icon: Tiktok, href: "https://tiktok.com/Fizcaps", label: "Tiktok" },
+  { icon: Instagram, href: "https://instagram.com/Fiz_caps", label: "Instagram" },
+  { icon: Mail, href: "mailto:Fizayomi21@gmail.com", label: "Email;" },
 ]
 
 export function Header() {
@@ -57,7 +64,7 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background">
+    <header className="sticky top-0 z-50 w-full bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center">
@@ -89,7 +96,7 @@ export function Header() {
 
           {/* Actions */}
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" asChild className="hidden sm:flex">
+            <Button variant="ghost" size="icon" asChild className="hidden sm:flex rounded-lg! p-0">
               <Link href="/shop">
                 {/* <Search className="w-5 h-5" /> */}
                 <svg className="modal__toggle-open icon icon-search size-5 fill-foreground" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search-icon">
@@ -110,7 +117,7 @@ export function Header() {
             </Button>
             <ThemeToggle />
             {isAdmin && (
-              <Button variant="ghost" size="icon" asChild className="hidden sm:flex">
+              <Button variant="ghost" size="icon" asChild className="hidden sm:flex rounded-lg! p-0">
                 <Link href="/admin">
                   {/* <Shield className="w-5 h-5" /> */}
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" id="Admin-Panel-Settings--Streamline-Outlined-Material" height="24" width="24" className="size-5.5 fill-foreground">
@@ -120,7 +127,7 @@ export function Header() {
                 </Link>
               </Button>
             )}
-            <Button variant="ghost" size="icon" asChild>
+            <Button variant="ghost" size="icon" asChild className="rounded-lg! p-0">
               <Link href="/account">
                 {/* <User className="w-5 h-5" /> */}
                 <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="img" aria-labelledby="account-icon-title" className="icon icon-account size-5 text-foreground" fill="none" viewBox="0 0 18 19">
@@ -135,7 +142,7 @@ export function Header() {
             {/* Mobile Menu */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild className="md:hidden">
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className="rounded-lg! p-0">
                   <Menu className="size-6 text-foreground" />
                   <span className="sr-only">Menu</span>
                 </Button>
@@ -151,46 +158,75 @@ export function Header() {
                     />
                   </SheetTitle>
                 </SheetHeader>
-                <nav className="flex flex-col gap-4 mt-8 px-3">
+                <nav className="flex flex-col gap-2 mt-8 px-3">
                   {navLinks.map((link) => (
                     <Link
                       key={link.href}
                       href={link.href}
                       onClick={() => setIsOpen(false)}
                       className={cn(
-                        "text-lg font-medium transition-colors hover:text-foreground py-2",
-                        pathname === link.href ? "text-foreground" : "text-muted-foreground",
+                        "text-xl uppercase transition-colors hover:text-muted-foreground py-2",
+                        pathname === link.href ? "text-muted-foreground" : "text-foreground",
                       )}
                     >
                       {link.label}
                     </Link>
                   ))}
-                  <div className="border-t pt-4 mt-4">
-                    <Link
-                      href="/account"
-                      onClick={() => setIsOpen(false)}
-                      className="flex items-center gap-3 text-lg font-medium text-muted-foreground hover:text-foreground py-2"
-                    >
-                      {/* <User className="w-5 h-5" /> */}
-                      <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="img" aria-labelledby="account-icon-title" className="icon icon-account size-5 text-foreground" fill="none" viewBox="0 0 18 19">
-                        <title id="account-icon-title">Login to Account</title>
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6 4.5a3 3 0 116 0 3 3 0 01-6 0zm3-4a4 4 0 100 8 4 4 0 000-8zm5.58 12.15c1.12.82 1.83 2.24 1.91 4.85H1.51c.08-2.6.79-4.03 1.9-4.85C4.66 11.75 6.5 11.5 9 11.5s4.35.26 5.58 1.15zM9 10.5c-2.5 0-4.65.24-6.17 1.35C1.27 12.98.5 14.93.5 18v.5h17V18c0-3.07-.77-5.02-2.33-6.15-1.52-1.1-3.67-1.35-6.17-1.35z" fill="currentColor"></path>
-                      </svg>
-                      Account
-                    </Link>
-                    {isAdmin && (
+                  <div className="border-t pt-8 mt-6">
+                    <Button variant="outline" asChild className="w-full py-5">
                       <Link
-                        href="/admin"
+                        href="/account"
                         onClick={() => setIsOpen(false)}
                         className="flex items-center gap-3 text-lg font-medium text-muted-foreground hover:text-foreground py-2"
                       >
-                        {/* <Shield className="w-5 h-5" /> */}
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" id="Admin-Panel-Settings--Streamline-Outlined-Material" height="24" width="24" className="size-5.5 fill-foreground">
-                          <path fill="inherit" d="M17.272 17.2501c0.43135 0 0.798 -0.15835 1.1 -0.475 0.302 -0.31665 0.453 -0.69065 0.453 -1.122 0 -0.43135 -0.151 -0.798 -0.453 -1.1 -0.302 -0.302 -0.66865 -0.453 -1.1 -0.453 -0.43135 0 -0.80535 0.151 -1.122 0.453 -0.31665 0.302 -0.475 0.66865 -0.475 1.1 0 0.43135 0.15835 0.80535 0.475 1.122 0.31665 0.31665 0.69065 0.475 1.122 0.475Zm-0.0345 3.125c0.55835 0 1.0625 -0.11665 1.5125 -0.35 0.45 -0.23335 0.83335 -0.56665 1.15 -1 -0.43335 -0.23335 -0.86635 -0.40835 -1.299 -0.525 -0.43265 -0.11665 -0.88265 -0.175 -1.35 -0.175 -0.46735 0 -0.92185 0.05835 -1.3635 0.175 -0.44165 0.11665 -0.87085 0.29165 -1.2875 0.525 0.31665 0.43335 0.69585 0.76665 1.1375 1 0.44165 0.23335 0.94165 0.35 1.5 0.35ZM12 22.0001c-2.3 -0.53335 -4.20835 -1.8375 -5.725 -3.9125C4.758335 16.0126 4 13.63345 4 10.9501v-5.975l8 -3 8 3v6.75c-0.23335 -0.11665 -0.48335 -0.22085 -0.75 -0.3125 -0.26665 -0.09165 -0.51665 -0.15415 -0.75 -0.1875v-5.2l-6.5 -2.4 -6.5 2.4v4.925c0 1.26665 0.20415 2.43335 0.6125 3.5 0.40835 1.06665 0.92915 2.00415 1.5625 2.8125 0.63335 0.80835 1.33335 1.47915 2.1 2.0125 0.76665 0.53335 1.50835 0.91665 2.225 1.15 0.1 0.2 0.25 0.425 0.45 0.675 0.2 0.25 0.36665 0.44165 0.5 0.575 -0.15 0.08335 -0.30835 0.14585 -0.475 0.1875 -0.16665 0.04165 -0.325 0.0875 -0.475 0.1375Zm5.3125 0c-1.29165 0 -2.39585 -0.4625 -3.3125 -1.3875 -0.91665 -0.925 -1.375 -2.02085 -1.375 -3.2875 0 -1.30715 0.45825 -2.4215 1.37475 -3.343 0.9165 -0.92135 2.0249 -1.382 3.32525 -1.382 1.28335 0 2.3875 0.46065 3.3125 1.382 0.925 0.9215 1.3875 2.03585 1.3875 3.343 0 1.26665 -0.4625 2.3625 -1.3875 3.2875 -0.925 0.925 -2.03335 1.3875 -3.325 1.3875Z" stroke-width="0.3"></path>
+                        {/* <User className="w-5 h-5" /> */}
+                        <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="img" aria-labelledby="account-icon-title" className="icon icon-account size-5 text-foreground" fill="none" viewBox="0 0 18 19">
+                          <title id="account-icon-title">Login to Account</title>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M6 4.5a3 3 0 116 0 3 3 0 01-6 0zm3-4a4 4 0 100 8 4 4 0 000-8zm5.58 12.15c1.12.82 1.83 2.24 1.91 4.85H1.51c.08-2.6.79-4.03 1.9-4.85C4.66 11.75 6.5 11.5 9 11.5s4.35.26 5.58 1.15zM9 10.5c-2.5 0-4.65.24-6.17 1.35C1.27 12.98.5 14.93.5 18v.5h17V18c0-3.07-.77-5.02-2.33-6.15-1.52-1.1-3.67-1.35-6.17-1.35z" fill="currentColor"></path>
                         </svg>
-                        Admin Panel
+                        Account
                       </Link>
+                    </Button>
+                    {isAdmin && (
+                      <Button variant="outline" asChild className="w-full py-5 mt-3">
+                        <Link
+                          href="/admin"
+                          onClick={() => setIsOpen(false)}
+                          className="flex items-center gap-3 text-lg font-medium text-muted-foreground hover:text-foreground py-2"
+                        >
+                          {/* <Shield className="w-5 h-5" /> */}
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" id="Admin-Panel-Settings--Streamline-Outlined-Material" height="24" width="24" className="size-5.5 fill-foreground">
+                            <path fill="inherit" d="M17.272 17.2501c0.43135 0 0.798 -0.15835 1.1 -0.475 0.302 -0.31665 0.453 -0.69065 0.453 -1.122 0 -0.43135 -0.151 -0.798 -0.453 -1.1 -0.302 -0.302 -0.66865 -0.453 -1.1 -0.453 -0.43135 0 -0.80535 0.151 -1.122 0.453 -0.31665 0.302 -0.475 0.66865 -0.475 1.1 0 0.43135 0.15835 0.80535 0.475 1.122 0.31665 0.31665 0.69065 0.475 1.122 0.475Zm-0.0345 3.125c0.55835 0 1.0625 -0.11665 1.5125 -0.35 0.45 -0.23335 0.83335 -0.56665 1.15 -1 -0.43335 -0.23335 -0.86635 -0.40835 -1.299 -0.525 -0.43265 -0.11665 -0.88265 -0.175 -1.35 -0.175 -0.46735 0 -0.92185 0.05835 -1.3635 0.175 -0.44165 0.11665 -0.87085 0.29165 -1.2875 0.525 0.31665 0.43335 0.69585 0.76665 1.1375 1 0.44165 0.23335 0.94165 0.35 1.5 0.35ZM12 22.0001c-2.3 -0.53335 -4.20835 -1.8375 -5.725 -3.9125C4.758335 16.0126 4 13.63345 4 10.9501v-5.975l8 -3 8 3v6.75c-0.23335 -0.11665 -0.48335 -0.22085 -0.75 -0.3125 -0.26665 -0.09165 -0.51665 -0.15415 -0.75 -0.1875v-5.2l-6.5 -2.4 -6.5 2.4v4.925c0 1.26665 0.20415 2.43335 0.6125 3.5 0.40835 1.06665 0.92915 2.00415 1.5625 2.8125 0.63335 0.80835 1.33335 1.47915 2.1 2.0125 0.76665 0.53335 1.50835 0.91665 2.225 1.15 0.1 0.2 0.25 0.425 0.45 0.675 0.2 0.25 0.36665 0.44165 0.5 0.575 -0.15 0.08335 -0.30835 0.14585 -0.475 0.1875 -0.16665 0.04165 -0.325 0.0875 -0.475 0.1375Zm5.3125 0c-1.29165 0 -2.39585 -0.4625 -3.3125 -1.3875 -0.91665 -0.925 -1.375 -2.02085 -1.375 -3.2875 0 -1.30715 0.45825 -2.4215 1.37475 -3.343 0.9165 -0.92135 2.0249 -1.382 3.32525 -1.382 1.28335 0 2.3875 0.46065 3.3125 1.382 0.925 0.9215 1.3875 2.03585 1.3875 3.343 0 1.26665 -0.4625 2.3625 -1.3875 3.2875 -0.925 0.925 -2.03335 1.3875 -3.325 1.3875Z" stroke-width="0.3"></path>
+                          </svg>
+                          Admin Panel
+                        </Link>
+                      </Button>
                     )}
+                    <div className="flex gap-6 mt-6 justify-center w-full">
+                      {socialLinks.map((social) => (
+                        <a
+                          key={social.label}
+                          href={social.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-foreground transition-colors"
+                          aria-label={social.label}
+                        >
+                          <social.icon className="w-5 h-5" />
+                        </a>
+                      ))}
+                      <a
+                        href="https://www.tiktok.com/@fiz_caps?lang=en"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-foreground transition-colors"
+                        // aria-label='Tiktok'
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="size-[19px] stroke-muted-foreground hover:stroke-foreground transition-all">
+                          <path stroke="inherit" stroke-linejoin="round" d="M16 1.5h-3.5V16c0 1.5 -1.5 3 -3 3s-3 -0.5 -3 -3c0 -2 1.899 -3.339 3.5 -3V9.5c-6.12 0 -7 5 -7 6.5s0.977 6.5 6.5 6.5c4.522 0 6.5 -3.5 6.5 -6v-8c1.146 1.018 2.922 1.357 5 1.5V6.5c-3.017 0 -5 -2.654 -5 -5Z" stroke-width="1.8"></path>
+                        </svg>
+                      </a>
+                    </div>
                   </div>
                 </nav>
               </SheetContent>

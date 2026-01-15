@@ -1,7 +1,7 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 // import { Geist, Geist_Mono, Nunito, Poppins, Nixie_One } from "next/font/google"
-import { Nunito, Nixie_One } from "next/font/google"
+import { Nunito, Nixie_One, Livvic } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Toaster } from "@/components/ui/sonner"
 import "./globals.css"
@@ -10,7 +10,8 @@ import favicon from "@/public/icons/favicon.png"
 // const _geist = Geist({ subsets: ["latin"] })
 // const _geistMono = Geist_Mono({ subsets: ["latin"] })
 const _nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito", weight: ["400", "500", "600", "700", "800"] })
-const _nixieOne = Nixie_One({ subsets: ["latin"], weight: ["400"], variable: "--font-nixie-one", })
+// const _nixieOne = Nixie_One({ subsets: ["latin"], weight: ["400"], variable: "--font-nixie-one", })
+const _livvic = Livvic({ subsets: ["latin"], variable: "--font-livvic", weight: ["100", "200", "300", "400", "500", "600", "700", "900"] })
 
 export const metadata: Metadata = {
   title: {

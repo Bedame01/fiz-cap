@@ -62,7 +62,7 @@ export function CartItem({ item }: CartItemProps) {
           <Button
             variant="outline"
             size="icon"
-            className="h-7 w-7 bg-transparent"
+            className="h-7 w-7 bg-transparent py-0 rounded-md!"
             onClick={() => updateItemQuantity(item.id, quantity - 1)}
             disabled={isLoading}
           >
@@ -73,7 +73,7 @@ export function CartItem({ item }: CartItemProps) {
           <Button
             variant="outline"
             size="icon"
-            className="h-7 w-7 bg-transparent"
+            className="h-7 w-7 bg-transparent py-0 rounded-md!"
             onClick={() => updateItemQuantity(item.id, quantity + 1)}
             disabled={isLoading || isAtMaxStock}
             title={isAtMaxStock ? `Only ${availableStock} available` : undefined}
@@ -100,7 +100,7 @@ export function CartItem({ item }: CartItemProps) {
         <Button
           variant="ghost"
           size="icon"
-          className="h-7 w-7 -mr-2 -mt-1"
+          className="h-7 w-7 -mr-2 -mt-1 py-0"
           onClick={() => removeItem(item.id)}
           disabled={isLoading}
         >

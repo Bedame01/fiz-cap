@@ -30,13 +30,13 @@ export function QuantitySelector({ quantity, onQuantityChange, min = 1, max = 99
         size="icon"
         onClick={decrease}
         disabled={quantity <= min}
-        className="h-10 w-10 bg-transparent"
+        className="h-10 w-10 bg-transparent py-0 rounded-md!"
       >
         <Minus className="w-4 h-4" />
         <span className="sr-only">Decrease quantity</span>
       </Button>
       <span className="w-12 text-center font-medium tabular-nums">{quantity}</span>
-      <Button variant="outline" size="icon" onClick={increase} disabled={quantity >= max} className="h-10 w-10">
+      <Button variant="outline" size="icon" onClick={increase} disabled={quantity >= max} className="h-10 w-10 py-0 rounded-md!">
         <Plus className="w-4 h-4" />
         <span className="sr-only">Increase quantity</span>
       </Button>
