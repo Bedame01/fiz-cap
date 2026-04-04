@@ -151,7 +151,7 @@ export function Footer() {
             <Image
               src={theme === "dark" ? logoWhite : logoBlack}
               alt="logo"
-              className="w-[33%]! md:w-[18%]! lg:w-[13%]! mx-auto h-auto"
+              className="w-[33%]! md:w-[18%]! lg:w-[11%]! mx-auto h-auto"
             />
           </Link>
         </div>
@@ -162,10 +162,10 @@ export function Footer() {
             &copy; {new Date().getFullYear()} Fiz Cap. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <img src="/visa-logo-generic.png" alt="Visa" className="h-7 opacity-70" />
-            <img src="/mastercard-logo.png" alt="Mastercard" className="h-7 opacity-70" />
-            <img src="/verve-payment-logo.jpg" alt="Verve" className="h-7 opacity-70" />
-            <img src="/paystack-payment-logo.jpg" alt="Paystack" className="h-7 opacity-70" />
+            <img src="/visa-logo-generic.png" alt="Visa" className="h-8 opacity-70" />
+            <img src="/mastercard-logo.png" alt="Mastercard" className="h-8 opacity-70" />
+            <img src="/verve-payment-logo.jpg" alt="Verve" className="h-8 opacity-70" />
+            <img src="/paystack-payment-logo.jpg" alt="Paystack" className="h-8 opacity-70" />
           </div>
         </div>
       </div>

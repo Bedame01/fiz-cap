@@ -3,32 +3,25 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* @font-face {
+@font-face {
   font-family: 'Recoleta';
   src: url('../public/fonts/Recoleta-RegularDEMO.otf') format('truetype');
   src: url('../public/fonts/Recoleta-RegularDEMO.otf') format('woff');
   src: url('../public/fonts/Recoleta-RegularDEMO.otf') format('woff2');
-} */
-
-@font-face {
-  font-family: 'Sentient';
-  src: url(../public/fonts/Sentient-Variable.ttf) format('true-type');
-  src: url(../public/fonts/Sentient-Variable.ttf) format('woff');
-  src: url(../public/fonts/Sentient-Variable.ttf) format('woff2');
 }
 
 @font-face {
   font-family: 'Nixie One Regular';
-  font-style: normal;
-  font-weight: normal;
+  src: local('Nixie One Regular'), url('../public/fonts/NixieOne.woff') format('true-type');
   src: local('Nixie One Regular'), url('../public/fonts/NixieOne.woff') format('woff');
+  src: local('Nixie One Regular'), url('../public/fonts/NixieOne.woff') format('woff2');
 }
     
 @font-face {
-  font-family: 'Nixie One Regular';
-  font-style: normal;
-  font-weight: normal;
-  src: local('Nixie One Regular'), url('../public/fonts/NixieOne-Regular.woff') format('woff');
+  font-family: 'LubalinGraph';
+  src: url('../public/fonts/LubalinGraphStd-Book.ttf') format('truetype');
+  src: url('../public/fonts/LubalinGraphStd-Book.ttf') format('woff');
+  src: url('../public/fonts/LubalinGraphStd-Book.ttf') format('woff2');
 }
 
 /* @font-face {
@@ -117,10 +110,10 @@
 }
 
 @theme inline {
-  --font-sans: 'Livvic', sans-serif;
-  --font-mono: 'Livvic', monospace;
-  /* --font-sans: 'GeneralSans', sans-serif;
-  --font-mono: 'GeneralSans', monospace; */
+  /* --font-sans: 'Livvic', sans-serif;
+  --font-mono: 'Livvic', monospace; */
+  --font-sans: 'manrope', sans-serif;
+  --font-mono: 'manrope', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -183,9 +176,8 @@
 } */
 
 .textDisplay{
-  /* font-family: 'Sentient' !important;
-  /* font-family: 'Nixie One', sans-serif !important; */
-  font-family: 'Nixie One Regular' !important;
+  /* font-family: 'Nixie One Regular' !important; */
+  font-family: 'LubalinGraph' !important;
 }
 
 /* .hero-heading{

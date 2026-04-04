@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Ruler, CheckCircle, Shield, Crown } from "lucide-react"
+import { ArrowRight, Ruler, CheckCircle, Instagram, Mail, Crown } from "lucide-react"
 import { createClient } from "@/lib/supabase/server"
 import { ProductCard } from "@/components/products/product-card"
 import type { Product } from "@/lib/types/product"
@@ -48,6 +48,13 @@ const capStyles = [
     description: "Trendy sun protection",
     image: "/bucket-hat-product.jpg",
   },
+]
+
+const socialLinks = [
+  // { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
+  // { icon: Tiktok, href: "https://tiktok.com/Fizcaps", label: "Tiktok" },
+  { icon: Instagram, href: "https://instagram.com/Fiz_caps", label: "Instagram" },
+  { icon: Mail, href: "mailto:Fizayomi21@gmail.com", label: "Email;" },
 ]
 
 export default async function HomePage() {
@@ -116,7 +123,7 @@ export default async function HomePage() {
                 </h1> */}
                 <SplitText
                     text="Welcome to Fiz Cap,"
-                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl tracking-tight text-balance font-semibold textDisplay hero-heading"
+                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl tracking-tight text-balance textDisplay hero-heading"
                     delay={100}
                     duration={0.7}
                     ease="power3.out"
@@ -130,7 +137,7 @@ export default async function HomePage() {
                 />
                 <SplitText
                     text="Order to Fix your Fit."
-                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl tracking-tight text-balance font-semibold mb-6 overflow-visible textDisplay hero-heading"
+                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl tracking-tight text-balance mb-6 overflow-visible textDisplay hero-heading"
                     delay={100}
                     duration={0.7}
                     ease="power3.out"
@@ -156,6 +163,31 @@ export default async function HomePage() {
                     <Button size="lg" variant="outline" asChild className="py-5.5">
                     <Link href="/shop?style=snapback">Shop Snapbacks</Link>
                     </Button>
+                </div>
+                <div className="hidden md:flex gap-6 mt-6 ml-2">
+                  {socialLinks.map((social) => (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-foreground transition-colors"
+                      aria-label={social.label}
+                    >
+                      <social.icon className="w-5 h-5" />
+                    </a>
+                  ))}
+                  <a
+                    href="https://www.tiktok.com/@fiz_caps?lang=en"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    // aria-label='Tiktok'
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="size-[19px] stroke-muted-foreground hover:stroke-foreground transition-all">
+                      <path stroke="inherit" stroke-linejoin="round" d="M16 1.5h-3.5V16c0 1.5 -1.5 3 -3 3s-3 -0.5 -3 -3c0 -2 1.899 -3.339 3.5 -3V9.5c-6.12 0 -7 5 -7 6.5s0.977 6.5 6.5 6.5c4.522 0 6.5 -3.5 6.5 -6v-8c1.146 1.018 2.922 1.357 5 1.5V6.5c-3.017 0 -5 -2.654 -5 -5Z" stroke-width="1.8"></path>
+                    </svg>
+                  </a>
                 </div>
             </div>
             <div className="relative aspect-square lg:aspect-[4/5] rounded-2xl overflow-hidden bg-secondary">

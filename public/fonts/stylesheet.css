@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'ITC Lubalin Graph Std';
+    src: url('LubalinGraphStd-Demi.eot');
+    src: local('ITC Lubalin Graph Std Demi'), local('LubalinGraphStd-Demi'),
+        url('LubalinGraphStd-Demi.eot?#iefix') format('embedded-opentype'),
+        url('LubalinGraphStd-Demi.woff2') format('woff2'),
+        url('LubalinGraphStd-Demi.woff') format('woff'),
+        url('LubalinGraphStd-Demi.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ITC Lubalin Graph Std';
+    src: url('LubalinGraphStd-DemiOblique.eot');
+    src: local('ITC Lubalin Graph Std Demi Oblique'), local('LubalinGraphStd-DemiOblique'),
+        url('LubalinGraphStd-DemiOblique.eot?#iefix') format('embedded-opentype'),
+        url('LubalinGraphStd-DemiOblique.woff2') format('woff2'),
+        url('LubalinGraphStd-DemiOblique.woff') format('woff'),
+        url('LubalinGraphStd-DemiOblique.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ITC Lubalin Graph Std';
+    src: url('LubalinGraphStd-Book.eot');
+    src: local('ITC Lubalin Graph Std Book'), local('LubalinGraphStd-Book'),
+        url('LubalinGraphStd-Book.eot?#iefix') format('embedded-opentype'),
+        url('LubalinGraphStd-Book.woff2') format('woff2'),
+        url('LubalinGraphStd-Book.woff') format('woff'),
+        url('LubalinGraphStd-Book.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ITC Lubalin Graph Std';
+    src: url('LubalinGraphStd-BookOblique.eot');
+    src: local('ITC Lubalin Graph Std Book Oblique'), local('LubalinGraphStd-BookOblique'),
+        url('LubalinGraphStd-BookOblique.eot?#iefix') format('embedded-opentype'),
+        url('LubalinGraphStd-BookOblique.woff2') format('woff2'),
+        url('LubalinGraphStd-BookOblique.woff') format('woff'),
+        url('LubalinGraphStd-BookOblique.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
