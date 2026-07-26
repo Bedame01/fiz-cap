@@ -4,6 +4,8 @@ import { ImageGallery } from "@/components/products/image-gallery"
 import { ProductDetails } from "@/components/products/product-details"
 import { ProductGrid } from "@/components/products/product-grid"
 import type { Metadata } from "next"
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
+import Link from "next/link"
 
 interface ProductPageProps {
   params: Promise<{ handle: string }>
@@ -97,6 +99,35 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-13! sm:pb-16! sm:py-12">
+      <Breadcrumb className="mb-6">
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link href="/">Home</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link href="/shop">Shop</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          {product.category && (
+            <>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href={`/shop?category=${product.category.slug}`}>{product.category.name}</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+            </>
+          )}
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>{product.name}</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
         {/* Image Gallery */}
         <ImageGallery images={product.images || []} title={product.name} />

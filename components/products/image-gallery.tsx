@@ -36,7 +36,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
     <div className="flex flex-col gap-4">
       {/* Main Image */}
       <Dialog>
-        <div className="relative aspect-square bg-secondary overflow-hidden group">
+        <div className="relative aspect-square bg-secondary rounded-2xl overflow-hidden group">
           <Image
             src={images[selectedIndex].url || "/placeholder.svg"}
             alt={images[selectedIndex].alt_text || title}
@@ -51,7 +51,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
             <Button
               variant="secondary"
               size="icon"
-              className="absolute py-0 top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity"
+              className="absolute py-0 top-3 right-3 transition-opacity"
             >
               <ZoomIn className="w-4 h-4" />
               <span className="sr-only">Zoom image</span>
@@ -63,7 +63,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
               <Button
                 variant="secondary"
                 size="icon"
-                className="absolute py-0 left-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute py-0 left-3 top-1/2 -translate-y-1/2 transition-opacity"
                 onClick={goToPrevious}
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -72,7 +72,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
               <Button
                 variant="secondary"
                 size="icon"
-                className="absolute py-0 right-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute py-0 right-3 top-1/2 -translate-y-1/2 transition-opacity"
                 onClick={goToNext}
               >
                 <ChevronRight className="w-5 h-5" />
@@ -110,8 +110,8 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
               key={image.id}
               onClick={() => setSelectedIndex(index)}
               className={cn(
-                "relative w-25 h-25 flex-shrink-0 rounded-sm overflow-hidden border-2 transition-all",
-                selectedIndex === index ? "border-foreground" : "border-transparent hover:border-muted-foreground/50",
+                "relative w-25 h-25 flex-shrink-0 rounded-sm overflow-hidden border-2 transition-all opacity-70",
+                selectedIndex === index ? "border-foreground opacity-100" : "border-transparent hover:border-muted-foreground/60 hover:opacity-100",
               )}
             >
               <Image

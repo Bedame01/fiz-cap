@@ -55,7 +55,7 @@ export function ProductFilters({ categories }: ProductFiltersProps) {
   return (
     <div className="flex flex-wrap gap-3 items-center">
       <Select value={currentStyle || "all"} onValueChange={(value) => updateFilter("style", value)}>
-        <SelectTrigger className="w-[140px]">
+        <SelectTrigger className="w-[140px] py-5!">
           <SelectValue placeholder="All Styles" />
         </SelectTrigger>
         <SelectContent>
@@ -68,7 +68,7 @@ export function ProductFilters({ categories }: ProductFiltersProps) {
       </Select>
 
       <Select value={currentCategory || "all"} onValueChange={(value) => updateFilter("category", value)}>
-        <SelectTrigger className="w-[140px]">
+        <SelectTrigger className="w-[140px] py-5!">
           <SelectValue placeholder="All Categories" />
         </SelectTrigger>
         <SelectContent>
@@ -82,7 +82,7 @@ export function ProductFilters({ categories }: ProductFiltersProps) {
       </Select>
 
       <Select value={currentSort} onValueChange={(value) => updateFilter("sort", value)}>
-        <SelectTrigger className="w-[160px]">
+        <SelectTrigger className="w-[160px] py-5!">
           <SelectValue placeholder="Sort by" />
         </SelectTrigger>
         <SelectContent>

@@ -5,10 +5,13 @@ import { ArrowRight, Ruler, CheckCircle, Instagram, Mail, Crown } from "lucide-r
 import { createClient } from "@/lib/supabase/server"
 import { ProductCard } from "@/components/products/product-card"
 import type { Product } from "@/lib/types/product"
-import SplitText from "@/components/Reactbits/SplitText"
-import heroBG from '@/public/images/heroFeatured.jpeg'
+import { FadeIn } from "@/components/ui/FadeIn"
+import HeroCarousel from "@/components/ui/carousel/Carousel"
+import { NewsletterSignup } from "@/components/newsletter-signup"
+// import SplitText from "@/components/Reactbits/SplitText"
+// import heroBG from '@/public/images/heroFeatured.jpeg'
 // import CircularText from "@/components/Reactbits/CircularText"
-import CurvedLoop from "@/components/Reactbits/CurvedLoop"
+// import CurvedLoop from "@/components/Reactbits/CurvedLoop"
 
 // Cap style categories for the homepage
 const capStyles = [
@@ -102,113 +105,74 @@ export default async function HomePage() {
 
   return (
     <main>
-      {/* Hero Section */}
-      <section className="relative bg-secondary/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 py-16 max-md:pt-14 lg:py-24 items-center">
-            <div className="max-w-xl">
-                {/* <CircularText
-                  text="FIX*YOUR*FIT*"
-                  onHover="speedUp"
-                  spinDuration={20}
-                  className="custom-class mb-8 text-foreground"
-                /> */}
+      <section className="min-h-[90vh] bg-background/80 flex flex-col-reverse lg:flex-row items-start justify-end" id="up">
+        <FadeIn className="heroDisplay lg:flex-[0_0_auto] lg:h-screen lg:sticky lg:top-0 lg:w-[45%] z-1">
+          <HeroCarousel />
+        </FadeIn>
 
-                <span className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground mb-4">
-                    <Crown className="w-4 h-4" />
-                    Premium Headwear Collection🧢🛍️🛒
-                </span>
-                {/* <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-balance mb-6">
-                    Top Off Your Style
-                </h1> */}
-                <SplitText
-                    text="Welcome to Fiz Cap,"
-                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl tracking-tight text-balance textDisplay hero-heading"
-                    delay={100}
-                    duration={0.7}
-                    ease="power3.out"
-                    splitType="chars"
-                    from={{ opacity: 0, y: 40 }}
-                    to={{ opacity: 1, y: 0 }}
-                    threshold={0.1}
-                    rootMargin="-100px"
-                    textAlign="left"
-                    // onLetterAnimationComplete={() => {}}
-                />
-                <SplitText
-                    text="Order to Fix your Fit."
-                    className="text-4xl sm:text-5xl lg:text-[40px] xl:text-5xl tracking-tight text-balance mb-6 overflow-visible textDisplay hero-heading"
-                    delay={100}
-                    duration={0.7}
-                    ease="power3.out"
-                    splitType="chars"
-                    from={{ opacity: 0, y: 40 }}
-                    to={{ opacity: 1, y: 0 }}
-                    threshold={0.1}
-                    rootMargin="-100px"
-                    textAlign="left"
-                    // onLetterAnimationComplete={() => {}}
-                />
-                <p className="text-lg text-muted-foreground mb-8 text-pretty">
-                    Discover premium caps, snapbacks, and headwear designed for those who lead. From classic fitted caps to
-                    trendy bucket hats — find your crown.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                    <Button size="lg" asChild className="btn1 py-5.5">
-                    <Link href="/shop">
-                        Shop All Caps
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                    </Link>
-                    </Button>
-                    <Button size="lg" variant="outline" asChild className="py-5.5">
-                    <Link href="/shop?style=snapback">Shop Snapbacks</Link>
-                    </Button>
-                </div>
-                <div className="hidden md:flex gap-6 mt-6 ml-2">
-                  {socialLinks.map((social) => (
-                    <a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                      aria-label={social.label}
-                    >
-                      <social.icon className="w-5 h-5" />
-                    </a>
-                  ))}
-                  <a
-                    href="https://www.tiktok.com/@fiz_caps?lang=en"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                    // aria-label='Tiktok'
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="size-[19px] stroke-muted-foreground hover:stroke-foreground transition-all">
-                      <path stroke="inherit" stroke-linejoin="round" d="M16 1.5h-3.5V16c0 1.5 -1.5 3 -3 3s-3 -0.5 -3 -3c0 -2 1.899 -3.339 3.5 -3V9.5c-6.12 0 -7 5 -7 6.5s0.977 6.5 6.5 6.5c4.522 0 6.5 -3.5 6.5 -6v-8c1.146 1.018 2.922 1.357 5 1.5V6.5c-3.017 0 -5 -2.654 -5 -5Z" stroke-width="1.8"></path>
-                    </svg>
-                  </a>
-                </div>
-            </div>
-            <div className="relative aspect-square lg:aspect-[4/5] rounded-2xl overflow-hidden bg-secondary">
-              <Image
-                src={heroBG}
-                alt="FIZ CAP featured collection"
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
-            <CurvedLoop 
-              marqueeText="Welcome ✦ To ✦ Our ✦ Exquisite ✦ Shop ✦"
-              speed={3}
-              curveAmount={300}
-              direction="right"
-              interactive={true}
-              className="custom-text-style text-foreground font-medium lg:hidden"
-            />
+        <div className="container-wide section-padding ">
+          <FadeIn className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground mb-4! md:mb-8!">
+            <Crown className="w-4 h-4" />
+            Premium Headwear Collection🧢🛍️🛒
+            {/* <p className="text-lg md:text-xl text-muted font-medium font-serif italic mb-10 md:mb-13">Premium Headwear Collection🧢🛍️🛒</p> */}
+          </FadeIn>
+
+          <FadeIn >
+            <h1 className="text-5xl! sm:text-7xl! md:text-8xl! lg:text-7xl! textDisplay mb-10 md:mb-20 lg:mb-25!">•Fiz Cap <br /> Fix your Fit.</h1>
+          </FadeIn>
+
+          <FadeIn delay={0.1}>
+            <p className="text-2xl/8 md:text-3xl font-medium max-w-2xl mb-12 md:mb-16">
+            Discover premium caps, snapbacks, and headwear designed for those who lead. From classic fitted caps to trendy bucket hats — find your crown
+            </p>
+          </FadeIn>
+
+          <div className="flex flex-wrap gap-4">
+              <Button size="lg" asChild className="btn1 py-5.5">
+              <Link href="/shop">
+                  Shop All Caps
+                  <ArrowRight className="w-4 h-4 ml-2" />
+              </Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild className="py-5.5">
+              <Link href="/account">My Account</Link>
+              </Button>
           </div>
+
+          <div className="hidden md:flex gap-8 mt-12 lg:mt-20! ml-2">
+            {socialLinks.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors border-r border-foreground/60 pr-8"
+                aria-label={social.label}
+              >
+                <social.icon className="w-6 h-6" />
+              </a>
+            ))}
+            <a
+              href="https://www.tiktok.com/@fiz_caps?lang=en"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              // aria-label='Tiktok'
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="size-[23px] stroke-muted-foreground hover:stroke-foreground transition-all">
+                <path stroke="inherit" stroke-linejoin="round" d="M16 1.5h-3.5V16c0 1.5 -1.5 3 -3 3s-3 -0.5 -3 -3c0 -2 1.899 -3.339 3.5 -3V9.5c-6.12 0 -7 5 -7 6.5s0.977 6.5 6.5 6.5c4.522 0 6.5 -3.5 6.5 -6v-8c1.146 1.018 2.922 1.357 5 1.5V6.5c-3.017 0 -5 -2.654 -5 -5Z" stroke-width="1.8"></path>
+              </svg>
+            </a>
+          </div>
+
+          {/* <CurvedLoop 
+            marqueeText="Welcome ✦ To ✦ Fiz ✦ Cap ✦ Shop ✦"
+            speed={3}
+            curveAmount={300}
+            direction="right"
+            interactive={true}
+            className="custom-text-style text-foreground font-medium lg:hidden"
+          /> */}
         </div>
       </section>
 
@@ -221,7 +185,7 @@ export default async function HomePage() {
                 <Crown className="w-6 h-6 text-foreground" />
               </div>
               <div>
-                <h3 className="font-medium">Exclusive Styles</h3>
+                <h3 className="font-bold tracking-tight">Exclusive Styles</h3>
                 <p className="text-sm text-muted-foreground">Premium headwear collection</p>
               </div>
             </div>
@@ -230,7 +194,7 @@ export default async function HomePage() {
                 <Ruler className="w-6 h-6 text-foreground" />
               </div>
               <div>
-                <h3 className="font-medium">Perfect Fit Promise</h3>
+                <h3 className="font-bold tracking-tight">Perfect Fit Guaranteed</h3>
                 <p className="text-sm text-muted-foreground">Perfect fit every time</p>
               </div>
             </div>
@@ -239,7 +203,7 @@ export default async function HomePage() {
                 <CheckCircle className="w-6 h-6 text-foreground" />
               </div>
               <div>
-                <h3 className="font-medium">Quality Guarantee</h3>
+                <h3 className="font-bold tracking-tight">Quality Guarantee</h3>
                 <p className="text-sm text-muted-foreground">Premium materials only</p>
               </div>
             </div>
@@ -252,7 +216,7 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <h2 className="text-3xl tracking-tight uppercase">Shop by <span className="textDisplay">Style</span></h2>
+              <h2 className="text-3xl tracking-tight uppercase">Shop by <span className="font-bold">Style</span></h2>
               <p className="text-muted-foreground mt-2">Find the perfect cap for your look</p>
             </div>
             <Button variant="ghost" asChild className="hidden sm:flex">
@@ -303,7 +267,7 @@ export default async function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-end justify-between mb-8">
               <div>
-                <h2 className="text-3xl tracking-tight uppercase">Featured <span className="textDisplay">Caps</span></h2>
+                <h2 className="text-3xl tracking-tight uppercase">Featured <span className="font-bold">Caps</span></h2>
                 <p className="text-muted-foreground mt-2">Our most popular headwear this season</p>
               </div>
               <Button variant="ghost" asChild className="hidden sm:flex">
@@ -371,22 +335,7 @@ export default async function HomePage() {
               Subscribe to get exclusive drops, early access to new releases, and member-only discounts on premium
               headwear.
             </p>
-            <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-background/50"
-                required
-              />
-              <Button
-                type="submit"
-                variant="secondary"
-                size="lg"
-                className="bg-background text-foreground hover:bg-background/90"
-              >
-                Subscribe
-              </Button>
-            </form>
+            <NewsletterSignup />
           </div>
         </div>
       </section>

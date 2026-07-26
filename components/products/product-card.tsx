@@ -45,7 +45,7 @@ export function ProductCard({ product, layout = "grid" }: ProductCardProps) {
       <div className="flex gap-4 p-4 border rounded-lg bg-card hover:shadow-md transition-shadow">
         <Link
           href={`/products/${product.slug}`}
-          className="relative w-32 h-36 flex-shrink-0 bg-secondary overflow-hidden"
+          className="relative w-32 h-36 flex-shrink-0 bg-secondary overflow-hidden rounded-lg"
         >
           {image ? (
             <Image
@@ -73,7 +73,7 @@ export function ProductCard({ product, layout = "grid" }: ProductCardProps) {
               {product.short_description || product.description}
             </p>
             <div className="flex items-center gap-2 mt-2">
-              <span className="text-foreground font-medium">{formatPrice(product.price)}</span>
+              <span className="text-foreground font-medium bg-foreground/10 px-6 py-1 rounded-full">{formatPrice(product.price)}</span>
               {isOnSale && (
                 <span className="text-muted-foreground line-through text-sm">
                   {formatPrice(product.compare_at_price!)}
@@ -81,9 +81,9 @@ export function ProductCard({ product, layout = "grid" }: ProductCardProps) {
               )}
             </div>
           </div>
-          <Button size="sm" className="w-fit mt-2" onClick={handleQuickAdd} disabled={!inStock}>
+          <Button size="sm" className="w-fit mt-2 rounded-lg! py-1! text-xs! font-semibold! text-background cursor-pointer" onClick={handleQuickAdd} disabled={!inStock}>
             {/* <ShoppingBag className="w-4 h-4 mr-2" /> */}
-            <svg className="icon icon-cart size-4 mr-2 fill-background" role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="cart-icon">
+            <svg className="icon icon-cart size-4 mr-1 fill-background" role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="cart-icon">
               <title id="cart-icon">Cart</title>
               <g clip-path="url(#clip0_738:3282)">
               <path d="M22.4717 23.9989H0.524841C0.455894 23.9998 0.387406 23.9876 0.323371 23.963C0.259337 23.9384 0.200993 23.9018 0.151663 23.8555C0.102333 23.8091 0.0629937 23.7538 0.0359119 23.6928C0.00883007 23.6318 -0.00547204 23.5663 -0.00616455 23.4999V8.2669C-0.00547204 8.20056 0.00883007 8.135 0.0359119 8.07399C0.0629937 8.01297 0.102333 7.95768 0.151663 7.91132C0.200993 7.86496 0.259337 7.82845 0.323371 7.80384C0.387406 7.77923 0.455894 7.76698 0.524841 7.76788H22.4717C22.5407 7.76687 22.6092 7.77896 22.6733 7.80353C22.7374 7.8281 22.7958 7.86463 22.8451 7.91101C22.8945 7.95739 22.9338 8.01271 22.9609 8.07378C22.9879 8.13485 23.0021 8.20053 23.0027 8.2669V23.4999C23.002 23.5663 22.9877 23.6318 22.9606 23.6928C22.9335 23.7538 22.8942 23.8091 22.8449 23.8555C22.7956 23.9018 22.7372 23.9384 22.6731 23.963C22.6091 23.9876 22.5407 23.9998 22.4717 23.9989ZM1.05579 23.0002H21.9408V8.76582H1.05579V23.0002Z" fill="inherit"></path>
@@ -106,7 +106,7 @@ export function ProductCard({ product, layout = "grid" }: ProductCardProps) {
   return (
     <div className="group">
       <Link href={`/products/${product.slug}`} className="block">
-        <div className="relative aspect-ratio overflow-hidden bg-secondary mb-4">
+        <div className="relative aspect-ratio rounded-xl overflow-hidden bg-secondary mb-4">
           {image ? (
             <Image
               src={image.url || "/placeholder.svg"}
@@ -129,8 +129,8 @@ export function ProductCard({ product, layout = "grid" }: ProductCardProps) {
             </span>
           )}
           {/* Quick add button */}
-          <div className="absolute inset-x-0 bottom-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity">
-            <Button className="w-full py-5" size="sm" onClick={handleQuickAdd} disabled={!inStock}>
+          <div className="absolute inset-x-0 bottom-0 p-3 transition-opacity">
+            <Button className="w-full py-6! font-semibold" size="sm" onClick={handleQuickAdd} disabled={!inStock}>
               {/* <ShoppingBag className="w-4 h-4 mr-2" /> */}
               <svg className="icon icon-cart size-4 fill-background mr-1" role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="cart-icon">
                 <title id="cart-icon">Cart</title>
@@ -150,13 +150,13 @@ export function ProductCard({ product, layout = "grid" }: ProductCardProps) {
           </div>
         </div>
         <div className="space-y-1">
-          <h3 className="font-medium text-foreground group-hover:underline underline-offset-4 transition-all line-clamp-1">
+          <h3 className="font-medium text-xl uppercase text-foreground group-hover:underline underline-offset-4 transition-all line-clamp-1">
             {product.name}
           </h3>
-          <div className="flex items-center gap-2">
-            <span className="text-foreground">{formatPrice(product.price)}</span>
+          <div className="flex items-center gap-2 border-b pb-4">
+            <span className="text-foreground text-lg font-bold bg-foreground/10 py-1 px-6 rounded-full">{formatPrice(product.price)}</span>
             {isOnSale && (
-              <span className="text-muted-foreground line-through text-sm">
+              <span className="text-muted-foreground line-through text-base">
                 {formatPrice(product.compare_at_price!)}
               </span>
             )}

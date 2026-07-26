@@ -81,6 +81,7 @@ export function ContactForm() {
             placeholder="Your name"
             required
             disabled={isLoading}
+            className="py-6 rounded-lg text-sm font-medium"
           />
         </div>
         <div className="space-y-2">
@@ -95,6 +96,7 @@ export function ContactForm() {
             placeholder="you@example.com"
             required
             disabled={isLoading}
+            className="py-6 rounded-lg text-sm font-medium"
           />
         </div>
       </div>
@@ -104,7 +106,7 @@ export function ContactForm() {
           Subject <span className="text-destructive"></span>
         </Label>
         <Select value={subject} onValueChange={setSubject} required disabled={isLoading}>
-          <SelectTrigger>
+          <SelectTrigger className="py-5">
             <SelectValue placeholder="Select a subject" />
           </SelectTrigger>
           <SelectContent>
@@ -129,6 +131,7 @@ export function ContactForm() {
           rows={6}
           required
           disabled={isLoading}
+          className="rounded-lg text-sm font-medium"
         />
       </div>
 

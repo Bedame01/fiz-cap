@@ -59,17 +59,17 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="firstName">First Name</Label>
-          <Input id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="Enter Name" />
+          <Input className="py-6 rounded-xl text-sm font-medium" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="Enter Name" />
         </div>
         <div className="space-y-2">
           <Label htmlFor="lastName">Last Name</Label>
-          <Input id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Enter lastName" />
+          <Input className="py-6 rounded-xl text-sm font-medium" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Enter lastName" />
         </div>
       </div>
 
       <div className="space-y-2">
         <Label htmlFor="email">Email</Label>
-        <Input id="email" value={initialData.email} disabled className="bg-muted" />
+        <Input id="email" value={initialData.email} disabled className="bg-muted py-5 rounded-xl text-sm font-medium" />
         <p className="text-xs text-muted-foreground">Contact support to change your email address</p>
       </div>
 
@@ -81,6 +81,7 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           placeholder="+1 (555) 000-0000"
+          className="py-6 rounded-xl text-sm font-medium"
         />
       </div>
 

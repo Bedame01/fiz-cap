@@ -52,7 +52,7 @@ export default function CartPage() {
         <h1 className="text-3xl font-semibold tracking-tight">Shopping Cart ({cartCount})</h1>
         <Button variant="ghost" asChild>
           <Link href="/shop">
-            <ArrowLeft className="w-4 h-4 mr-2" />
+            <ArrowLeft className="w-4 h-4 mr-1" />
             Continue Shopping
           </Link>
         </Button>
@@ -80,20 +80,20 @@ export default function CartPage() {
         {/* Order Summary */}
         <div className="lg:col-span-1">
           <div className="bg-card rounded-lg border p-6 sticky top-24">
-            <h2 className="text-lg font-medium mb-4">Order Summary</h2>
+            <h2 className="text-xl font-bold mb-4">Order Summary</h2>
 
             <div className="space-y-3 text-sm">
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Subtotal</span>
-                <span>{formatPrice(cart.subtotal)}</span>
+                <span className="text-muted-foreground font-semibold">Subtotal</span>
+                <span className="font-medium">{formatPrice(cart.subtotal)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Shipping</span>
-                <span className="text-muted-foreground text-xs">Calculated at checkout</span>
+                <span className="text-muted-foreground font-semibold">Shipping</span>
+                <span className="text-foreground text-xs font-bold">Calculated at checkout</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">VAT (2.0%)</span>
-                <span>{formatPrice(cart.tax)}</span>
+                <span className="text-muted-foreground font-semibold">VAT (2.0%)</span>
+                <span className="font-medium">{formatPrice(cart.tax)}</span>
               </div>
             </div>
 

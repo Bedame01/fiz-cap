@@ -66,13 +66,13 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-20 items-center justify-between">
           <Link href="/" className="flex items-center">
             {/* <span className="text-xl font-bold tracking-tight">FIZ CAP</span> */}
             <Image
               src={theme === "dark" ? logoWhite : logoBlack}
               alt="logo"
-              className="w-23 h-auto"
+              className="w-25 h-auto"
             />
           </Link>
 
@@ -142,10 +142,22 @@ export function Header() {
             {/* Mobile Menu */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild className="md:hidden">
-                <Button variant="ghost" size="icon" className="rounded-lg! p-0">
-                  <Menu className="size-6 text-foreground" />
-                  <span className="sr-only">Menu</span>
-                </Button>
+              <button
+                // onClick={() => setMenuOpen(!menuOpen)}
+                className="flex flex-col gap-1.5 w-8 ml-2"
+                aria-label="Toggle menu"
+              >
+                <span
+                  className={`block h-0.5 bg-foreground transition-transform ${
+                    isOpen ? "-rotate-20 translate-y-1" : ""
+                  }`}
+                />
+                <span
+                  className={`block h-0.5 bg-foreground transition-transform ${
+                    isOpen ? "rotate-20 -translate-y-1" : ""
+                  }`}
+                />
+              </button>
               </SheetTrigger>
               <SheetContent side="left" className="w-[300px]">
                 <SheetHeader>

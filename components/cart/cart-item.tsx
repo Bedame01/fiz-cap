@@ -46,7 +46,7 @@ export function CartItem({ item }: CartItemProps) {
       <div className="flex-1 min-w-0">
         <Link
           href={`/products/${product.slug}`}
-          className="font-medium hover:underline underline-offset-4 line-clamp-1"
+          className="font-medium sm:text-lg hover:underline underline-offset-4 line-clamp-1"
         >
           {product.name}
         </Link>
@@ -55,7 +55,7 @@ export function CartItem({ item }: CartItemProps) {
             {[variant.size, variant.color].filter(Boolean).join(" / ")}
           </p>
         )}
-        <p className="text-sm font-medium mt-1">{formatPrice(itemPrice)}</p>
+        <p className="text-sm font-bold mt-1">{formatPrice(itemPrice)}</p>
 
         {/* Quantity Controls */}
         <div className="flex items-center gap-2 mt-2">
@@ -107,7 +107,7 @@ export function CartItem({ item }: CartItemProps) {
           <X className="w-4 h-4" />
           <span className="sr-only">Remove item</span>
         </Button>
-        <span className="font-medium">{formatPrice(lineTotal)}</span>
+        <span className="font-medium bg-foreground/10 px-4 py-1 rounded-full">{formatPrice(lineTotal)}</span>
       </div>
     </div>
   )

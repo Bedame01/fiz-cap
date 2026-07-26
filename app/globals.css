@@ -2,20 +2,6 @@
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
-
-@font-face {
-  font-family: 'Recoleta';
-  src: url('../public/fonts/Recoleta-RegularDEMO.otf') format('truetype');
-  src: url('../public/fonts/Recoleta-RegularDEMO.otf') format('woff');
-  src: url('../public/fonts/Recoleta-RegularDEMO.otf') format('woff2');
-}
-
-@font-face {
-  font-family: 'Nixie One Regular';
-  src: local('Nixie One Regular'), url('../public/fonts/NixieOne.woff') format('true-type');
-  src: local('Nixie One Regular'), url('../public/fonts/NixieOne.woff') format('woff');
-  src: local('Nixie One Regular'), url('../public/fonts/NixieOne.woff') format('woff2');
-}
     
 @font-face {
   font-family: 'LubalinGraph';
@@ -24,13 +10,6 @@
   src: url('../public/fonts/LubalinGraphStd-Book.ttf') format('woff2');
 }
 
-/* @font-face {
-  font-family: 'GeneralSans';
-  src: url(./../public/fonts/GeneralSans-Variable.ttf) format('true-type');
-  src: url(./../public/fonts/GeneralSans-Variable.ttf) format('woff');
-  src: url(./../public/fonts/GeneralSans-Variable.ttf) format('woff2');
-  font-weight: 400, 500, 600, 700, 800;
-} */
 
 :root {
   /* --primary-color: #837dcb;
@@ -114,6 +93,8 @@
   --font-mono: 'Livvic', monospace; */
   --font-sans: 'manrope', sans-serif;
   --font-mono: 'manrope', monospace;
+  --font-display: "Anton", ui-sans-serif, system-ui, sans-serif;
+  --text-display: "Anton";
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -156,8 +137,33 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  .title{
+    @apply text-display uppercase text-8xl! md:text-9xl! lg:text-[150px]!
+  }
+
+  .title2{
+    @apply text-display uppercase text-7xl! md:text-8xl! lg:text-[130px]!
+  }
+
+  .desc{
+    @apply text-foreground font-medium max-w-xl md:max-w-4xl text-xl/7 md:text-3xl! lg:text-4xl/12!
+  }
+
+  .text-display {
+    font-family: var(--font-display);
+  }
+
+  .section-padding {
+    @apply px-6 sm:px-8 md:px-13 lg:px-20 py-15 md:py-20 lg:py-28;
+  }
+
+  .container-wide {
+    @apply max-w-[1400px] mx-auto w-full;
   }
 }
 
@@ -171,18 +177,21 @@
   background-color: var(--bg) !important;
 }
 
-/* .primary-color{
-  color: var(--primary-color) !important;
-} */
-
 .textDisplay{
-  /* font-family: 'Nixie One Regular' !important; */
   font-family: 'LubalinGraph' !important;
+  text-transform: uppercase !important;
 }
 
-/* .hero-heading{
-  font-family: 'GeneralSans' !important;
-} */
+*.textDisplay2 {
+  font-family: var(--text-display);
+  text-transform: uppercase !important;
+}
+
+section .heroDisplay {
+  flex: 0 0 auto !important;
+}
+
+/* =========== RESPONSIVE DESIGN =========== */
 
 @media screen and (max-width: 500px) {
   .hero-heading{
@@ -195,7 +204,26 @@
   .cart-text{
     font-size: 30px !important;
   }
-  
+}
+
+@media (max-width: 809.98px) {
+  section .heroDisplay {
+    aspect-ratio: 1 / 1;
+    height: 45%;
+    position: relative;
+    top: unset;
+    width: 100%;
+  }
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  section .heroDisplay {
+    aspect-ratio: 1.125 / 1;
+    height: var(--aspect-ratio-supported, 720px) !important;
+    position: relative !important;
+    top: unset !important;
+    width: 100%;
+  }
 }
 
 /* .btn1{

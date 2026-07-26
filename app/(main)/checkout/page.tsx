@@ -52,7 +52,7 @@ export default function CheckoutPage() {
         <div className="flex items-center justify-between mb-8">
           <Button variant="ghost" asChild>
             <Link href="/cart">
-              <ArrowLeft className="w-4 h-4 mr-2" />
+              <ArrowLeft className="w-4 h-4 mr-1" />
               Back to Cart
             </Link>
           </Button>

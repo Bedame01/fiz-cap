@@ -12,7 +12,8 @@ import trucker from '@/public/images/truckers.jpeg'
 import beanies from '@/public/images/beanies.jpeg'
 import bucket from '@/public/images/bucket.jpeg'
 
-import innovationBg from '@/public/images/Futuristic Data Display.png'
+import innovationBg from '@/public/images/Futuristic Character Design.png'
+import HeroCarousel from "@/components/ui/carousel/Carousel"
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -109,7 +110,8 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="grid gap-16 lg:grid-cols-2 lg:gap-24 items-center">
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-muted">
-              <Image src={aboutBg} alt="Fiz Cap Style" fill className="object-cover" />
+              {/* <Image src={aboutBg} alt="Fiz Cap Style" fill className="object-cover" /> */}
+              <HeroCarousel />
             </div>
             <div>
               <p className="mb-4 text-sm font-medium uppercase tracking-widest text-muted-foreground">Our Mission</p>
@@ -127,7 +129,7 @@ export default function AboutPage() {
                       <value.icon className="h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="font-medium">{value.title}</h3>
+                      <h3 className="font-semibold">{value.title}</h3>
                       <p className="mt-1 text-sm text-muted-foreground">{value.description}</p>
                     </div>
                   </div>

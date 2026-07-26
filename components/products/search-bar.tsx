@@ -57,7 +57,7 @@ export function SearchBar() {
         placeholder="Search products..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="pl-10 pr-10"
+        className="pl-10 pr-10 py-6 rounded-full"
         disabled={isPending}
       />
       {query && (

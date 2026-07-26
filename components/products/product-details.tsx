@@ -96,10 +96,10 @@ export function ProductDetails({ product }: ProductDetailsProps) {
 
       {/* Title & Price */}
       <div className="mb-6">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground mb-2 textDisplay">{product.name}</h1>
+        <h1 className="text-4xl uppercase font-medium tracking-tight text-foreground mb-2">{product.name}</h1>
         {product.brand && <p className="text-sm text-muted-foreground/70 mb-4">by - {product.brand}</p>}
         <div className="flex items-center gap-3">
-          <span className="text-2xl font-medium text-foreground">{formatPrice(currentPrice)}</span>
+          <span className="text-xl font-semibold text-foreground bg-foreground/10 py-1 px-6 rounded-full">{formatPrice(currentPrice)}</span>
           {isOnSale && comparePrice && (
             <span className="text-lg text-muted-foreground line-through">{formatPrice(comparePrice)}</span>
           )}
