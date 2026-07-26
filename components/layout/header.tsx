@@ -66,7 +66,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-19 items-center justify-between">
           <Link href="/" className="flex items-center">
             {/* <span className="text-xl font-bold tracking-tight">FIZ CAP</span> */}
             <Image
