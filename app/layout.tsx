@@ -2,7 +2,7 @@ import type React from "react"
 import type { Metadata, Viewport } from "next"
 // import { Geist, Geist_Mono, Nunito, Poppins, Nixie_One } from "next/font/google"
 import { Nunito, Nixie_One, Livvic, Manrope } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
+// import { Analytics } from "@vercel/analytics/next"
 import { Toaster } from "@/components/ui/sonner"
 import "./globals.css"
 import favicon from "@/public/icons/favicon.png"
@@ -66,7 +66,7 @@ export default function RootLayout({
       <body className="font-sans antialiased min-h-screen flex flex-col">
         {children}
         <Toaster position="bottom-right"/>
-        <Analytics />
+        {/* <Analytics /> */}
       </body>
     </html>
   )
