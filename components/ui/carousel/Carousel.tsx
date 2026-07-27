@@ -1,20 +1,13 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  Navigation,
-  Pagination,
-  Autoplay,
-  FreeMode,
-  EffectCards,
-  Parallax,
-} from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/effect-cards";
-import './Carousel.css';
+import "swiper/css/autoplay";
+import "./Carousel.css";
 import Image from "next/image";
 
 import project1 from '@/public/images/heroFeatured.jpeg'
@@ -27,21 +20,9 @@ import project6 from '@/public/images/showcase5.jpeg'
 export default function HeroCarousel() {
   return (
     <Swiper
-      modules={[
-        Navigation,
-        Pagination,
-        Autoplay,
-        FreeMode,
-        EffectCards,
-        Parallax,
-      ]}
+      modules={[Navigation, Pagination, Autoplay]}
       speed={800}
       rewind={true}
-      parallax={true}
-      effect="creative"
-      freeMode={{
-        enabled: false,
-      }}
       navigation={true}
       pagination={{
         clickable: true,
@@ -57,10 +38,7 @@ export default function HeroCarousel() {
       className="w-full h-full"
     >
       <SwiperSlide>
-        <div
-          data-swiper-parallax="-300"
-          className="h-full overflow-hidden"
-        >
+        <div className="h-full overflow-hidden">
           <Image
             src={project1}
             alt=""
@@ -70,10 +48,7 @@ export default function HeroCarousel() {
       </SwiperSlide>
 
       <SwiperSlide>
-        <div
-          data-swiper-parallax="-300"
-          className="h-full overflow-hidden"
-        >
+        <div className="h-full overflow-hidden">
           <Image
             src={project2}
             alt=""
@@ -83,10 +58,7 @@ export default function HeroCarousel() {
       </SwiperSlide>
 
       <SwiperSlide>
-        <div
-          data-swiper-parallax="-300"
-          className="h-full overflow-hidden"
-        >
+        <div className="h-full overflow-hidden">
           <Image
             src={project3}
             alt=""
@@ -96,10 +68,7 @@ export default function HeroCarousel() {
       </SwiperSlide>
 
       <SwiperSlide>
-        <div
-          data-swiper-parallax="-300"
-          className="h-full overflow-hidden"
-        >
+        <div className="h-full overflow-hidden">
           <Image
             src={project4}
             alt=""
@@ -109,10 +78,7 @@ export default function HeroCarousel() {
       </SwiperSlide>
 
       <SwiperSlide>
-        <div
-          data-swiper-parallax="-300"
-          className="h-full overflow-hidden"
-        >
+        <div className="h-full overflow-hidden">
           <Image
             src={project5}
             alt=""
@@ -122,10 +88,7 @@ export default function HeroCarousel() {
       </SwiperSlide>
 
       <SwiperSlide>
-        <div
-          data-swiper-parallax="-300"
-          className="h-full overflow-hidden"
-        >
+        <div className="h-full overflow-hidden">
           <Image
             src={project6}
             alt=""
