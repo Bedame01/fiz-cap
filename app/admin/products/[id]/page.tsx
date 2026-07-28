@@ -4,7 +4,11 @@ import { ProductForm } from "@/components/admin/product-form"
 
 async function getProduct(id: string) {
   const supabase = await createClient()
-  const { data } = await supabase.from("products").select("*, product_images(id, url, position)").eq("id", id).single()
+  const { data } = await supabase
+    .from("products")
+    .select(`*, product_images(id, url, position), variants:product_variants(*)`)
+    .eq("id", id)
+    .single()
 
   return data
 }

@@ -134,7 +134,7 @@ export function MessagesTable({ messages }: MessagesTableProps) {
 
               <div className="border-t pt-4">
                 <h4 className="font-medium mb-2">Message</h4>
-                <p className="text-muted-foreground whitespace-pre-wrap">{selectedMessage.message}</p>
+                <p className="text-background whitespace-pre-wrap border py-3 px-2 bg-foreground rounded-sm">{selectedMessage.message}</p>
               </div>
 
               <div className="flex gap-2 pt-4">

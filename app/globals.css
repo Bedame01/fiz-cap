@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+/* @import url('https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro'); */
+
 @custom-variant dark (&:is(.dark *));
     
 @font-face {
@@ -89,9 +91,8 @@
 }
 
 @theme inline {
-  /* --font-sans: 'Livvic', sans-serif;
-  --font-mono: 'Livvic', monospace; */
-  --font-sans: 'manrope', sans-serif;
+  --font-sans: 'Neue Haas Grotesk Display Pro', sans-serif;;
+  /* --font-sans: 'manrope', sans-serif; */
   --font-mono: 'manrope', monospace;
   --font-display: "Anton", ui-sans-serif, system-ui, sans-serif;
   --text-display: "Anton";
@@ -136,6 +137,10 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+
+  p{
+    @apply font-medium;
   }
 
   body {

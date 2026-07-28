@@ -6,6 +6,7 @@ import {
   generateNewsletterWelcomeEmail,
   sendSmtpEmail,
 } from "@/lib/email/gmail-smtp"
+import { sendEmail as sendResendEmail } from "@/lib/email/resend"
 
 const supabaseAdmin = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!)
 
@@ -32,7 +33,7 @@ export async function subscribeToNewsletter(email: string) {
     if (existingSubscriber?.status === "active") {
       return {
         success: true,
-        message: "You are already subscribed to the FIZ CAP Crew.",
+        message: "You are already subscribed to the FIZ CAP Era.",
         alreadySubscribed: true,
       }
     }
@@ -53,31 +54,50 @@ export async function subscribeToNewsletter(email: string) {
       if (insertError) throw insertError
     }
 
-    const welcomeResult = await sendSmtpEmail({
+    let welcomeResult = await sendSmtpEmail({
       to: normalizedEmail,
-      subject: "Welcome to the FIZ CAP Crew",
+      subject: "Welcome to the FIZ CAP Era",
       html: generateNewsletterWelcomeEmail(normalizedEmail),
     })
 
     if (!welcomeResult.success) {
-      return {
-        success: false,
-        error: "Subscription saved, but we could not send your confirmation email. Please try again later.",
+      console.warn("SMTP welcome email failed, trying Resend fallback:", welcomeResult.error)
+
+      const resendResult = await sendResendEmail({
+        to: normalizedEmail,
+        subject: "Welcome to the FIZ CAP Era",
+        html: generateNewsletterWelcomeEmail(normalizedEmail),
+      })
+
+      if (!resendResult) {
+        console.error("Newsletter welcome email failed on both SMTP and Resend.")
+        return {
+          success: false,
+          error:
+            welcomeResult.error ||
+            "Subscription saved, but we could not send your confirmation email. Please try again later.",
+        }
       }
+
+      welcomeResult = { success: true }
     }
 
     const adminEmail = process.env.ADMIN_EMAIL || process.env.GMAIL_USER || process.env.SMTP_USER
     if (adminEmail) {
-      await sendSmtpEmail({
+      const adminResult = await sendSmtpEmail({
         to: adminEmail,
-        subject: "New FIZ CAP Crew subscriber",
+        subject: "New FIZ CAP Era subscriber",
         html: generateNewsletterAdminNotificationEmail(normalizedEmail),
       })
+
+      if (!adminResult.success) {
+        console.error("Newsletter admin notification failed:", adminResult.error)
+      }
     }
 
     return {
       success: true,
-      message: "Welcome to the FIZ CAP Crew! Check your inbox for a confirmation email.",
+      message: "Welcome to the FIZ CAP Era! Check your inbox for a confirmation email.",
     }
   } catch (error) {
     console.error("Failed to subscribe to newsletter:", error)

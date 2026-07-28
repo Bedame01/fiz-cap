@@ -375,20 +375,19 @@ export function ProductForm({ product, categories }: ProductFormProps) {
               </div>
 
               <div className="space-y-3">
-                <Label>Color</Label>
-                <div className="flex flex-wrap gap-2">
+                <Label htmlFor="color">Color</Label>
+                <Input
+                  id="color"
+                  value={formData.color}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, color: e.target.value }))}
+                  placeholder="Enter a color or shade"
+                  list="color-suggestions"
+                />
+                <datalist id="color-suggestions">
                   {defaultColors.map((color) => (
-                    <Button
-                      key={color}
-                      type="button"
-                      variant={formData.color === color ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setFormData((prev) => ({ ...prev, color: prev.color === color ? "" : color }))}
-                    >
-                      {color}
-                    </Button>
+                    <option key={color} value={color} />
                   ))}
-                </div>
+                </datalist>
               </div>
 
               <div className="space-y-3">
@@ -424,22 +423,29 @@ export function ProductForm({ product, categories }: ProductFormProps) {
               {variants.length > 0 && (
                 <div className="space-y-2">
                   <Label>Current Variants</Label>
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     {variants.map((variant, index) => (
-                      <div key={index} className="flex items-center justify-between p-3 border rounded-lg bg-muted/50">
-                        <div className="flex-1">
+                      <div key={index} className="grid gap-3 sm:grid-cols-[1fr_auto] p-4 border rounded-lg bg-muted/50">
+                        <div>
                           <p className="font-medium">
-                            {variant.size}
-                            {variant.color && ` - ${variant.color}`}
+                            {variant.size || "Default"}
+                            {variant.color ? ` • ${variant.color}` : ""}
+                          </p>
+                          <p className="text-sm text-muted-foreground mt-1">
+                            SKU: {variant.sku || "—"}
                           </p>
                           <p className="text-sm text-muted-foreground">
-                            Stock: {variant.inventory_quantity}
-                            {variant.price_adjustment !== 0 && ` • Price adjustment: ₦${variant.price_adjustment}`}
+                            Inventory: {variant.inventory_quantity}
                           </p>
+                          {variant.price_adjustment !== 0 && (
+                            <p className="text-sm text-muted-foreground">Price Adjustment: ₦{variant.price_adjustment}</p>
+                          )}
                         </div>
-                        <Button type="button" variant="ghost" size="sm" onClick={() => handleRemoveVariant(index)}>
-                          <X className="h-4 w-4" />
-                        </Button>
+                        <div className="flex items-center justify-end gap-2">
+                          <Button type="button" variant="ghost" size="sm" onClick={() => handleRemoveVariant(index)}>
+                            <X className="h-4 w-4" />
+                          </Button>
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -470,21 +476,18 @@ export function ProductForm({ product, categories }: ProductFormProps) {
 
                   <div className="space-y-2">
                     <Label htmlFor="variant-color">Color (Optional)</Label>
-                    <Select
+                    <Input
+                      id="variant-color"
                       value={newVariant.color}
-                      onValueChange={(value) => setNewVariant({ ...newVariant, color: value })}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select color" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {defaultColors.map((color) => (
-                          <SelectItem key={color} value={color}>
-                            {color}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                      onChange={(e) => setNewVariant({ ...newVariant, color: e.target.value })}
+                      placeholder="Enter variant color"
+                      list="variant-color-suggestions"
+                    />
+                    <datalist id="variant-color-suggestions">
+                      {defaultColors.map((color) => (
+                        <option key={color} value={color} />
+                      ))}
+                    </datalist>
                   </div>
 
                   <div className="space-y-2">

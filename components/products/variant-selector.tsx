@@ -65,10 +65,10 @@ export function VariantSelector({ variants, selectedVariant, onVariantChange }: 
       {/* Variant Dropdown Selector */}
       <div>
         <label className="block text-sm font-medium mb-3">
-          Select Variant <span className="text-red-500">📃🔎</span>
+          Select Variant <span className="text-red-500">🧢🔎</span>
         </label>
         <Select value={selectedVariant?.id} onValueChange={handleVariantSelect}>
-          <SelectTrigger className="w-full">
+          <SelectTrigger className="w-full py-6">
             <SelectValue placeholder="Choose size and color" />
           </SelectTrigger>
           <SelectContent>
@@ -85,7 +85,7 @@ export function VariantSelector({ variants, selectedVariant, onVariantChange }: 
           </SelectContent>
         </Select>
         {selectedVariant && (
-          <p className="text-xs text-muted-foreground mt-2">
+          <p className="text-xs font-semibold text-muted-foreground mt-2">
             {selectedVariant.inventory_quantity} {selectedVariant.inventory_quantity === 1 ? "item" : "items"} available
           </p>
         )}

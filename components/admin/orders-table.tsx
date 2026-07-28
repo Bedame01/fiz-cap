@@ -33,12 +33,12 @@ interface OrdersTableProps {
 }
 
 const statusColors: Record<string, string> = {
-  pending: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200",
-  processing: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
-  shipped: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200",
-  delivered: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
-  cancelled: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
-  refunded: "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200",
+  pending: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200 font-semibold",
+  processing: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 font-semibold",
+  shipped: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 font-semibold",
+  delivered: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 font-semibold",
+  cancelled: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200 font-semibold",
+  refunded: "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200 font-semibold",
 }
 
 function getFullName(profile: Order["profiles"]): string {
@@ -101,7 +101,7 @@ export function OrdersTable({ orders }: OrdersTableProps) {
           placeholder="Search orders..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="max-w-sm"
+          className="max-w-sm py-6"
         />
         <Select value={statusFilter} onValueChange={setStatusFilter}>
           <SelectTrigger className="w-40">
@@ -151,7 +151,7 @@ export function OrdersTable({ orders }: OrdersTableProps) {
                   <TableCell className="text-muted-foreground">
                     {format(new Date(order.created_at), "MMM d, yyyy")}
                   </TableCell>
-                  <TableCell className="font-medium">{formatPrice(order.total_amount / 100)}</TableCell>
+                  <TableCell className="font-semibold">{formatPrice(order.total_amount / 100)}</TableCell>
                   <TableCell>
                     <Select
                       value={order.status}

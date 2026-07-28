@@ -9,11 +9,11 @@ export const metadata = {
 }
 
 const statusColors: Record<string, string> = {
-  pending: "bg-yellow-100 text-yellow-800",
-  processing: "bg-blue-100 text-blue-800",
-  shipped: "bg-purple-100 text-purple-800",
-  delivered: "bg-green-100 text-green-800",
-  cancelled: "bg-red-100 text-red-800",
+  pending: "bg-yellow-100 text-yellow-800 font-semibold",
+  processing: "bg-blue-100 text-blue-800 font-semibold",
+  shipped: "bg-purple-100 text-purple-800 font-semibold",
+  delivered: "bg-green-100 text-green-800 font-semibold",
+  cancelled: "bg-red-100 text-red-800 font-semibold",
 }
 
 export default async function OrdersPage() {
@@ -57,8 +57,8 @@ export default async function OrdersPage() {
           <div key={order.id} className="bg-card rounded-lg border p-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
               <div>
-                <p className="font-medium text-xl text-muted-foreground">• Order #{orderNumber}</p>
-                <p className="text-sm text-muted-foreground">
+                <p className="font-medium text-xl text-foreground">• Order #{orderNumber}</p>
+                <p className="text-sm text-muted-foreground font-medium!">
                   {new Date(order.created_at).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "long",
@@ -77,7 +77,7 @@ export default async function OrdersPage() {
                   <span>
                     {item.name} x {item.quantity}
                   </span>
-                  <span className="font-medium">
+                  <span className="font-medium text-sm flex items-center bg-foreground/10 text-foreground px-3 py-1 rounded-xl">
                     {new Intl.NumberFormat("en-US", {
                       style: "currency",
                       currency: order.currency || "usd",
@@ -89,7 +89,7 @@ export default async function OrdersPage() {
 
             <div className="border-t pt-4 mt-4 flex justify-between font-medium">
               <span>Total</span>
-              <span>
+              <span className="font-semibold">
                 {new Intl.NumberFormat("en-US", {
                   style: "currency",
                   currency: order.currency || "usd",

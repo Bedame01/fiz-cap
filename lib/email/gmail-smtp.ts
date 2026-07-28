@@ -6,6 +6,12 @@ interface SendSmtpEmailOptions {
   html: string
 }
 
+interface SendSmtpEmailResult {
+  success: boolean
+  messageId?: string
+  error?: string
+}
+
 function getSmtpConfig() {
   const user = process.env.GMAIL_USER || process.env.SMTP_USER
   const pass = process.env.GMAIL_APP_PASSWORD || process.env.SMTP_PASS
@@ -26,12 +32,12 @@ function getFromAddress() {
   return process.env.SMTP_FROM || process.env.GMAIL_USER || process.env.SMTP_USER || "Fiz Cap"
 }
 
-export async function sendSmtpEmail({ to, subject, html }: SendSmtpEmailOptions) {
+export async function sendSmtpEmail({ to, subject, html }: SendSmtpEmailOptions): Promise<SendSmtpEmailResult> {
   const config = getSmtpConfig()
 
   if (!config) {
-    console.log("Gmail SMTP not configured, skipping email")
-    return { success: false as const, error: "Email service is not configured" }
+    console.error("Gmail SMTP not configured. Check GMAIL_USER/GMAIL_APP_PASSWORD or SMTP_USER/SMTP_PASS.")
+    return { success: false as const, error: "SMTP credentials are not configured" }
   }
 
   try {
@@ -47,8 +53,9 @@ export async function sendSmtpEmail({ to, subject, html }: SendSmtpEmailOptions)
     console.log("Gmail SMTP email sent successfully:", result.messageId)
     return { success: true as const, messageId: result.messageId }
   } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error)
     console.error("Failed to send Gmail SMTP email:", error)
-    return { success: false as const, error: "Failed to send email" }
+    return { success: false as const, error: `SMTP send failed: ${errorMessage}` }
   }
 }
 

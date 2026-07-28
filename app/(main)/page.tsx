@@ -185,7 +185,7 @@ export default async function HomePage() {
                 <Crown className="w-6 h-6 text-foreground" />
               </div>
               <div>
-                <h3 className="font-bold tracking-tight">Exclusive Styles</h3>
+                <h3 className="font-semibold tracking-tight">Exclusive Styles</h3>
                 <p className="text-sm text-muted-foreground">Premium headwear collection</p>
               </div>
             </div>
@@ -194,7 +194,7 @@ export default async function HomePage() {
                 <Ruler className="w-6 h-6 text-foreground" />
               </div>
               <div>
-                <h3 className="font-bold tracking-tight">Perfect Fit Guaranteed</h3>
+                <h3 className="font-semibold tracking-tight">Perfect Fit Guaranteed</h3>
                 <p className="text-sm text-muted-foreground">Perfect fit every time</p>
               </div>
             </div>
@@ -203,7 +203,7 @@ export default async function HomePage() {
                 <CheckCircle className="w-6 h-6 text-foreground" />
               </div>
               <div>
-                <h3 className="font-bold tracking-tight">Quality Guarantee</h3>
+                <h3 className="font-semibold tracking-tight">Quality Guarantee</h3>
                 <p className="text-sm text-muted-foreground">Premium materials only</p>
               </div>
             </div>
@@ -216,7 +216,7 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <h2 className="text-3xl tracking-tight uppercase">Shop by <span className="font-bold">Style</span></h2>
+              <h2 className="text-3xl tracking-tight uppercase">Shop by <span className="font-semibold">Style</span></h2>
               <p className="text-muted-foreground mt-2">Find the perfect cap for your look</p>
             </div>
             <Button variant="ghost" asChild className="hidden sm:flex">
@@ -267,7 +267,7 @@ export default async function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-end justify-between mb-8">
               <div>
-                <h2 className="text-3xl tracking-tight uppercase">Featured <span className="font-bold">Caps</span></h2>
+                <h2 className="text-3xl tracking-tight uppercase">Featured <span className="font-semibold">Caps</span></h2>
                 <p className="text-muted-foreground mt-2">Our most popular headwear this season</p>
               </div>
               <Button variant="ghost" asChild className="hidden sm:flex">
@@ -330,7 +330,7 @@ export default async function HomePage() {
       <section className="py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-foreground text-background rounded-2xl p-8 sm:p-12 lg:p-16 text-center">
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight mb-4 text-balance">Join the FIZ CAP Crew</h2>
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight mb-4 text-balance">Join FIZ CAP Era For Aura👑</h2>
             <p className="text-background/80 max-w-2xl mx-auto mb-8">
               Subscribe to get exclusive drops, early access to new releases, and member-only discounts on premium
               headwear.

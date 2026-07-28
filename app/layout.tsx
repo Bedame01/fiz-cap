@@ -1,17 +1,11 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-// import { Geist, Geist_Mono, Nunito, Poppins, Nixie_One } from "next/font/google"
-import { Nunito, Nixie_One, Livvic, Manrope } from "next/font/google"
-// import { Analytics } from "@vercel/analytics/next"
+import { Manrope } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
 import { Toaster } from "@/components/ui/sonner"
 import "./globals.css"
 import favicon from "@/public/icons/favicon.png"
 
-// const _geist = Geist({ subsets: ["latin"] })
-// const _geistMono = Geist_Mono({ subsets: ["latin"] })
-const _nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito", weight: ["400", "500", "600", "700", "800"] })
-// const _nixieOne = Nixie_One({ subsets: ["latin"], weight: ["400"], variable: "--font-nixie-one", })
-const _livvic = Livvic({ subsets: ["latin"], variable: "--font-livvic", weight: ["100", "200", "300", "400", "500", "600", "700", "900"] })
 const _manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", weight: ["200", "300", "400", "500", "600", "700", "800"] })
 
 export const metadata: Metadata = {
@@ -62,11 +56,12 @@ export default function RootLayout({
       <head>
         {/* Favicon */}
         <link rel="icon" href={favicon.src} type="image/png" />
+        <link href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro" rel="stylesheet"></link>
       </head>
       <body className="font-sans antialiased min-h-screen flex flex-col">
         {children}
         <Toaster position="bottom-right"/>
-        {/* <Analytics /> */}
+        <Analytics />
       </body>
     </html>
   )

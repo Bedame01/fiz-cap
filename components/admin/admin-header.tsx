@@ -147,7 +147,7 @@ export function AdminHeader({ user }: AdminHeaderProps) {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-80">
             <DropdownMenuLabel className="flex items-center justify-between">
-              <span>Notifications</span>
+              <span className="font-semibold">Notifications</span>
               {unreadCount > 0 && (
                 <Button variant="ghost" size="sm" className="h-auto py-1 px-2 text-xs" onClick={markAllAsRead}>
                   Mark all read
@@ -168,11 +168,11 @@ export function AdminHeader({ user }: AdminHeaderProps) {
                     {getNotificationIcon(notification.type)}
                   </div>
                   <div className="flex-1 space-y-1">
-                    <p className={`text-sm ${notification.read ? "font-normal" : "font-medium"}`}>
+                    <p className={`text-sm ${notification.read ? "font-medium" : "font-semibold"}`}>
                       {notification.title}
                     </p>
                     <p className="text-xs text-muted-foreground line-clamp-1">{notification.message}</p>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-xs font-medium text-foreground bg-foreground/10 px-1.5 py-0.5 rounded-lg inline-block">
                       {formatDistanceToNow(new Date(notification.created_at), { addSuffix: true })}
                     </p>
                   </div>
@@ -194,7 +194,7 @@ export function AdminHeader({ user }: AdminHeaderProps) {
           <DropdownMenuContent align="end" className="w-56">
             <DropdownMenuLabel>
               <div className="flex flex-col space-y-1">
-                <p className="text-sm font-medium">Admin</p>
+                <p className="text-sm font-semibold">Admin</p>
                 <p className="text-xs text-muted-foreground truncate">{user.email}</p>
               </div>
             </DropdownMenuLabel>

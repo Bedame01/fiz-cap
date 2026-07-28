@@ -189,7 +189,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         </div>
 
         {/* Product details */}
-        {(product.material || product.color || product.sku) && (
+        {(product.material || product.color || product.sku || selectedVariant) && (
           <div className="mt-6 space-y-2 text-sm">
             <h3 className="font-medium text-foreground">Product Details</h3>
             {product.material && (
@@ -197,14 +197,19 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                 <span className="text-muted-foreground">Material:</span> {product.material}
               </p>
             )}
-            {product.color && (
+            {(selectedVariant?.size || product.variants?.length === 0) && (
               <p>
-                <span className="text-muted-foreground">Color:</span> {product.color}
+                <span className="text-muted-foreground">Size:</span> {selectedVariant?.size || "One size"}
               </p>
             )}
-            {product.sku && (
+            {(selectedVariant?.color || product.color) && (
               <p>
-                <span className="text-muted-foreground">SKU:</span> {product.sku}
+                <span className="text-muted-foreground">Color:</span> {selectedVariant?.color || product.color}
+              </p>
+            )}
+            {(selectedVariant?.sku || product.sku) && (
+              <p>
+                <span className="text-muted-foreground">SKU:</span> {selectedVariant?.sku || product.sku}
               </p>
             )}
           </div>
